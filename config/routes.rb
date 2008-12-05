@@ -1,14 +1,25 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :users
-
-
+    
   map.resource :user_session
   map.root :controller => "user_sessions", :action => "new"
 
   map.resource :account, :controller => "users"
   map.resources :users
 
+  map.resources :password_resets
+
+  map.resources :catalogues
+  map.resources :articles, :shallow => true do |article|
+    article.resources :additions do |addition|
+      addition.resources :comments
+    end
+  end
+
+  map.resources :ratings
   
+  map.resources :dealing_centers
+  map.resources :books
+  map.resources :video
 
   # The priority is based upon order of creation: first created -> highest priority.
 
