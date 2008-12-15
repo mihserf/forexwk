@@ -1,0 +1,18 @@
+
+<h2><%= @catalogue.name %></h2>
+
+<%= sub_catalogues(@catalogue) %>
+
+
+<h2><%= @article.name %></h2>
+<%= @article.content %>
+
+<%= rate(@article,5) if current_user%>
+
+
+<% content_for :right do %>
+  <%= top_articles_of(@catalogue) %>
+  <%= link_to "Все похожие публикации", per_rating_catalogue_articles_path(@catalogue) %>
+<% end %>
+<br>
+<%= link_to 'редактировать', edit_article_path(@article), :class => "admin_edit_link"  if admin? %>

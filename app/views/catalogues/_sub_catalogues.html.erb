@@ -1,0 +1,7 @@
+
+<ul style="list-style:none; display:block">
+<% items.each do |item| %>
+  <li style="float:left"><%= link_to item.name, catalogue_articles_path(item) %></li>
+<% end %>
+</li>
+

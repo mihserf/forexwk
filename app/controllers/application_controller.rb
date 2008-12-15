@@ -16,6 +16,22 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session, :current_user
 
   private
+    def admin_required
+      require_user
+
+      if admin?
+        return true
+      else
+        store_location
+        flash[:notice] = "Должены иметь соответствующие права для доступа к этой странице"
+        redirect_to new_user_session_url
+      end
+    end
+
+    def admin?
+      current_user.admin?
+    end
+
     def current_user_session
       return @current_user_session if defined?(@current_user_session)
       @current_user_session = UserSession.find
@@ -29,7 +45,7 @@ class ApplicationController < ActionController::Base
     def require_user
       unless current_user
         store_location
-        flash[:notice] = "You must be logged in to access this page"
+        flash[:notice] = "Вы должны быть залогинены, для доступа к этой странице"
         redirect_to new_user_session_url
         return false
       end
@@ -38,7 +54,7 @@ class ApplicationController < ActionController::Base
     def require_no_user
       if current_user
         store_location
-        flash[:notice] = "You must be logged out to access this page"
+        flash[:notice] = "Вы должны быть залогинены, для доступа к этой странице"
         redirect_to account_url
         return false
       end

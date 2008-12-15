@@ -1,0 +1,12 @@
+
+<h2><%= @catalogue.name %></h2>
+
+<%= sub_catalogues(@catalogue) %>
+
+<%= articles_of(@catalogue) %>
+
+<% content_for :right do %>
+  <%= top_articles_of(@catalogue) %>
+<% end %>
+<br>
+<%= link_to 'редактировать', edit_admin_catalogue_path(@catalogue), :class => "admin_edit_link"  if admin? %>

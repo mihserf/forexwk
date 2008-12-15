@@ -1,0 +1,6 @@
+<li style="list-style:none; padding-left:<%= it.level*20 %>px;"><%= link_to it.name, catalogue_path(it) %>
+  
+    <%= link_to image_tag("/images/edit_ico.gif",:alt=>"Редактировать"), edit_admin_catalogue_path(it) %>
+     | <%=link_to image_tag("/images/delete_ico.gif",:alt=>"Удалить"), admin_catalogue_path(it), :method => :delete, :confirm => 'подтвердите удаление'%>
+  
+</li> 

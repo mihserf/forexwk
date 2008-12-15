@@ -1,0 +1,26 @@
+
+<h2><%= @catalogue.name %></h2>
+
+<%= sub_catalogues(@catalogue) %>
+
+<%= link_to "сортировать по дате", catalogue_articles_path unless params[:action]=="per_date" || params[:action]=="index" %>
+<%= link_to "сортировать по рейтингу", per_rating_catalogue_articles_path unless params[:action]=="per_rating" %>
+
+<ul style="list-style:none;">
+<% @articles.each do |item| %>
+  <li>
+    <%= link_to item.name, catalogue_article_path(@catalogue,item) %>
+    <div>
+      <%= item.short %>
+    </div>
+  </li>
+<% end %>
+</li>
+
+
+
+<% content_for :right do %>
+  <%= top_articles_of(@catalogue, @orders[:for_top]) %>
+<% end %>
+<br>
+<%= link_to 'редактировать', edit_admin_catalogue_path(@catalogue), :class => "admin_edit_link"  if admin? %>

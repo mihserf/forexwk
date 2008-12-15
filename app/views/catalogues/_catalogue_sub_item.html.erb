@@ -1,0 +1,6 @@
+
+
+<li style="list-style:none; padding-left:<%= it.level*20 %>px;">
+<%= link_to it.name, catalogue_path(it) %>
+<%= sub_items_menu(it){|i| render :partial=>"catalogues/catalogue_sub_item.html.erb", :locals =>{:it=>i} } unless it.leaf? %>
+</li>

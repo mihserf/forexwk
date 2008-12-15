@@ -8,9 +8,13 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :password_resets
 
-  map.resources :catalogues
-  map.resources :articles, :shallow => true do |article|
-    article.resources :additions do |addition|
+  map.resources :catalogues do |catalogue|
+    catalogue.resources :articles, :collection => {:per_rating => :get}
+  end
+
+
+  map.resources :articles, :has_many => :ratings, :shallow => true do |article|
+    article.resources :additions, :has_many => :ratings do |addition|
       addition.resources :comments
     end
   end
@@ -20,7 +24,16 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :dealing_centers
   map.resources :books
   map.resources :video
+  map.resources :events
 
+  map.namespace :admin do |admin|
+    admin.resources :catalogues
+    admin.resources :users, :only => [:index,:destroy]
+  end
+
+
+
+  
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

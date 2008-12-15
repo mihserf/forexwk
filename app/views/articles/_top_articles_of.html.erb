@@ -1,0 +1,7 @@
+
+<ul style="list-style:none;">
+<% items.each do |item| %>
+  <li><%= link_to item.name, catalogue_article_path(@catalogue,item) %> <%= item.stat_rating.rating_avg unless item.stat_rating.nil? %></li>
+<% end %>
+</li>
+

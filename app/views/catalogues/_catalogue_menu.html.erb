@@ -1,0 +1,9 @@
+
+<ul class="sf-menu sf-vertical" style="padding-left:10px !important; margin-left:10px !important">
+<% for item in items %>
+  <li>
+      <%= link_to item.name, catalogue_articles_path(item), {:class => "sf-with-ul"} %>
+      <%= sub_items_menu(item){|i| render :partial=>"catalogues/catalogue_sub_item.html.erb", :locals =>{:it=>i} } unless item.leaf?%>
+  </li>
+<% end %>
+</ul>

@@ -1,6 +1,9 @@
 class CreateUsers < ActiveRecord::Migration
   def self.up
     create_table :users do |t|
+      t.string :first_name
+      t.string :last_name
+      
       t.string :login
       t.string :crypted_password
       t.string :password_salt
@@ -18,8 +21,9 @@ class CreateUsers < ActiveRecord::Migration
       t.string :avatar_file_name
       t.string :avatar_content_type
       t.string :avatar_file_size
-      
-      t.integer :diling_center_id
+
+      t.boolean :admin
+      t.integer :dealing_center_id
 
       t.timestamps
     end

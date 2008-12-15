@@ -1,0 +1,6 @@
+
+<ul>
+<%= items_set(Catalogue) {|i| render :partial=>"admin/catalogues/catalogue_item.html.erb", :locals =>{:it=>i} } %>
+</ul>
+
+<%= link_to 'Добавить каталог', new_admin_catalogue_path %>

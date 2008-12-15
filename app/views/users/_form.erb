@@ -1,12 +1,27 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+	$("#password").hide();
+	$("#change_password_link").click(function(){
+          $(this).toggle("fast");
+          $("#password").toggle("fast");
+          $("#change_password").val(1);
+          return false});
+  });
+</script>
+
 <%= form.label :login %><br />
 <%= form.text_field :login %><br />
-<br />
+
+<p><a href="#" id="change_password_link">изменить пароль</a></p>
+<div id="password">
 <%= form.label :password, form.object.new_record? ? nil : "Change password" %><br />
 <%= form.password_field :password %><br />
 <br />
 <%= form.label :password_confirmation %><br />
 <%= form.password_field :password_confirmation %><br />
-<br />
+
+<input type="hidden" name="change_password" id="change_password" value="0"/>
+</div>
 
 <%= form.label :email %><br />
 <%= form.text_field :email %><br />
