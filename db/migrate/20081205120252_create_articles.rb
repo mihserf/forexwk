@@ -4,6 +4,7 @@ class CreateArticles < ActiveRecord::Migration
       t.string :name
       t.text :short
       t.text :content
+      t.boolean :temp
       t.references :catalogue
       t.references :user
 
