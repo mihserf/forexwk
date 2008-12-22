@@ -29,8 +29,8 @@
             <div class="user_time"><%= item.created_at.to_date %> <span><%= item.created_at.strftime("%H:%M") %></span></div>
             <p class="font12" style="font-size:10px; margin-top:5px;">Автор: <%= link_to item.user.name, user_path(item.user.id) %></p>
             <h4><%= link_to item.name, catalogue_article_path((@catalogue.nil? ? item.catalogue.id : @catalogue),item) %></h4>
+            <p class="small">дополнений <%= item.stat_additions %>, комментариев <%= item.stat_comments %>, средняя оценка <%= item.stat_rating.rating_avg unless item.stat_rating.nil? %>, общий рейтинг <%= item.stat_rating.rating_total unless item.stat_rating.nil? %></p>
             <p class="article_text"><%= item.short %></p>
-            <%= item.stat_rating.rating_avg unless item.stat_rating.nil? %>
             <div class="hr"><hr /></div>
           </div>
         <% end %>
