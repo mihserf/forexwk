@@ -17,9 +17,7 @@ class ApplicationController < ActionController::Base
 
   private
     def admin_required
-      require_user
-
-      if admin?
+      if current_user && admin?
         return true
       else
         store_location
@@ -31,7 +29,7 @@ class ApplicationController < ActionController::Base
     def moderator_required
       require_user
 
-      if moderator?
+      if current_user && moderator?
         return true
       else
         store_location
@@ -41,6 +39,7 @@ class ApplicationController < ActionController::Base
     end
 
     def admin?
+      #debugger
       current_user.admin?
     end
 
