@@ -175,13 +175,18 @@ h4 a:hover {color:#666666; text-decoration: none;}
 	}
 
 .exit {
-	margin-top:30px;
+        height: 31px;
+        padding-top:30px;
 	font-size:11px;
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 	}
 
 .exit a {
 	color:#005b7f;
+        display:block;
+        height:16px;
+        float:left;
+        margin-right:8px;
 	}
 
 .exit a:link {text-decoration: underline;}
@@ -989,4 +994,9 @@ a:hover.lblue {text-decoration: none}
     float:right;
     display:block;
     width:100px;
+}
+
+.additional_header{
+    clear:both;
+    padding-top:10px;
 }
