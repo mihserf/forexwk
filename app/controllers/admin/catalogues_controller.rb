@@ -11,7 +11,6 @@ class Admin::CataloguesController < ApplicationController
   def create
     @catalogue=Catalogue.new(params[:catalogue])
 
-
     if  @catalogue.save!
       unless params[:catalogue][:parent_id].empty?
         @catalogue.move_to_child_of Catalogue.find(params[:catalogue][:parent_id])

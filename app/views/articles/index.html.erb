@@ -1,26 +1,47 @@
-
-<h2><%= @catalogue.name %></h2>
-
-<%= sub_catalogues(@catalogue) %>
-
-<%= link_to "сортировать по дате", catalogue_articles_path unless params[:action]=="per_date" || params[:action]=="index" %>
-<%= link_to "сортировать по рейтингу", per_rating_catalogue_articles_path unless params[:action]=="per_rating" %>
-
-<ul style="list-style:none;">
-<% @articles.each do |item| %>
-  <li>
-    <%= link_to item.name, catalogue_article_path(@catalogue,item) %>
-    <div>
-      <%= item.short %>
-    </div>
-  </li>
-<% end %>
-</li>
+<%= search_in(Catalogue) %>
 
 
 
-<% content_for :right do %>
-  <%= top_articles_of(@catalogue, @orders[:for_top]) %>
+<%= catalogue_breadcrumbs %>
+
+<div class="mfooter"></div>
+<%= "<h2>"+@catalogue.name+"</h2>" unless @catalogue.nil?%>
+<%= "<h2>Все статьи, опубликованные "+link_to(@user.name, user_path(@user))+"</h2>" unless @user.nil?%>
+
+<div class="links_box">
+  <%= sub_catalogues(@catalogue) %><br>
+</div>
+<div class="hr"><hr /></div>
+<% unless @articles.empty? %>
+  <div>
+  <%= link_to "сортировать по дате", (@catalogue.nil? ? (@user.nil? ? articles_path : user_articles_path(@user)) : catalogue_articles_path(@catalogue)) unless params[:action]=="per_date" || params[:action]=="index" %>
+  <%= link_to "сортировать по рейтингу", (@catalogue.nil? ? (@user.nil? ? per_rating_articles_path : per_rating_user_articles_path(@user)) : per_rating_catalogue_articles_path(@catalogue)) unless params[:action]=="per_rating" %>
+  </div>
+  <div id="common_article">
+    <div id="common_left">
+      <% @articles.each do |item| %>
+        <% unless item.temp? && !moderator? %>
+          <div class="article_<%=item.id%> <%= " need_moder_article" if item.temp? %>" >
+            <div>
+              <%= link_to image_tag("/images/edit_ico.gif"),edit_catalogue_article_path((@catalogue.nil? ? item.catalogue.id : @catalogue),item) if item.user==current_user || moderator?%>
+              <%= "| "+link_to(image_tag("/images/delete_ico.gif"), article_path(item), :rel=>"article_"+item.id.to_s, :class => "ajax_delete") if moderator?%>
+            </div>
+            <div class="user_time"><%= item.created_at.to_date %> <span><%= item.created_at.strftime("%H:%M") %></span></div>
+            <p class="font12" style="font-size:10px; margin-top:5px;">Автор: <%= link_to item.user.name, user_path(item.user.id) %></p>
+            <h4><%= link_to item.name, catalogue_article_path((@catalogue.nil? ? item.catalogue.id : @catalogue),item) %></h4>
+            <p class="article_text"><%= item.short %></p>
+            <%= item.stat_rating.rating_avg unless item.stat_rating.nil? %>
+            <div class="hr"><hr /></div>
+          </div>
+        <% end %>
+      <% end %>
+
+     </div>
+
+      <div id="rightbar">
+        <%= top_articles_of(@catalogue, @orders[:for_top]) %>
+      </div>
+  </div>
 <% end %>
 <br>
-<%= link_to 'редактировать', edit_admin_catalogue_path(@catalogue), :class => "admin_edit_link"  if admin? %>
+<%= link_to 'редактировать', edit_admin_catalogue_path(@catalogue), :class => "admin_edit_link"  if moderator? && !@catalogue.nil? %>

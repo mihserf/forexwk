@@ -1,7 +1,14 @@
 
-<ul style="list-style:none;">
+<p><span class="title">Похожие публикации</span> <%= "<br>в разделе “"+@catalogue.name+"”" unless @catalogue.nil? %></p>
+
 <% items.each do |item| %>
-  <li><%= link_to item.name, catalogue_article_path(@catalogue,item) %> <%= item.stat_rating.rating_avg unless item.stat_rating.nil? %></li>
+  <div class="user_time"><%= item.created_at.to_date %> <span><%= item.created_at.strftime("%H:%M") %></span></div>
+  <p class="font12" style="font-size:10px; margin-top:5px;">Автор: <a href="#"><%= item.user.name %></a></p>
+  <h4><%= link_to item.name, catalogue_article_path((@catalogue.nil? ? item.catalogue.id : @catalogue),item) %></h4>
+  <p class="article_text"><%= item.short %></p>
+  <%= item.stat_rating.rating_avg unless item.stat_rating.nil? %>
+  <div class="hr"><hr /></div>
 <% end %>
-</li>
+<div class="link"><%= link_to "Все похожие публикации", catalogue_articles_path(@catalogue) unless @catalogue.nil? %></div>
+
 

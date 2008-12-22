@@ -4,6 +4,12 @@ module CataloguesHelper
   end
 
   def sub_catalogues(catalogue)
-    render :partial => "catalogues/sub_catalogues", :locals => {:items => catalogue.children}
+    catalogues = catalogue.nil? ? Catalogue.roots : catalogue.children
+    render :partial => "catalogues/sub_catalogues", :locals => {:items => catalogues}
+  end
+
+  def catalogue_breadcrumbs
+    catalogues = @catalogue.nil? ? [] : @catalogue.self_and_ancestors
+    render :partial => "catalogues/breadcrumbs", :locals => { :items => catalogues }
   end
 end

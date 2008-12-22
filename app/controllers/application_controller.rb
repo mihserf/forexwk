@@ -28,8 +28,24 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def moderator_required
+      require_user
+
+      if moderator?
+        return true
+      else
+        store_location
+        flash[:notice] = "Должены иметь соответствующие права для доступа к этой странице"
+        redirect_to new_user_session_url
+      end
+    end
+
     def admin?
       current_user.admin?
+    end
+
+    def moderator?
+      current_user.moderator?
     end
 
     def current_user_session

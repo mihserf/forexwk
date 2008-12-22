@@ -1,9 +1,17 @@
-
-<ul class="sf-menu sf-vertical" style="padding-left:10px !important; margin-left:10px !important">
+<% nil_catalogue = true if @catalogue.nil? || (@catalogue.new_record? unless @catalogue.nil?)  %>
+<ul>
 <% for item in items %>
-  <li>
-      <%= link_to item.name, catalogue_articles_path(item), {:class => "sf-with-ul"} %>
-      <%= sub_items_menu(item){|i| render :partial=>"catalogues/catalogue_sub_item.html.erb", :locals =>{:it=>i} } unless item.leaf?%>
+  <li  <%  unless nil_catalogue %> 
+        <%= "class ='marked'" if item.is_ancestor_of? @catalogue %>
+        <%= "class ='active'" if item==@catalogue %>
+       <% end %> >
+  
+      <% unless item==@catalogue %>
+        <%= link_to item.name, catalogue_articles_path(item) %>
+        <%= sub_items_menu(item){|i| render :partial=>"catalogues/catalogue_sub_item.html.erb", :locals =>{:item=>i} } unless item.leaf? ||  nil_catalogue || (!item.is_ancestor_of?(@catalogue) unless nil_catalogue)%>
+      <% else %>
+        <%= item.name %>
+      <% end %>
   </li>
 <% end %>
 </ul>

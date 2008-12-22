@@ -1,18 +1,97 @@
+<%= search_in(Article) %>
+
+
+<%= catalogue_breadcrumbs %>
+
+<div class="mfooter"></div>
 
 <h2><%= @catalogue.name %></h2>
 
-<%= sub_catalogues(@catalogue) %>
+<div class="links_box">
+  <%= sub_catalogues(@catalogue) %><br>
+</div>
+
+<div class="info_box">
+<div class="info_article">
+        <p class="font12">Автор: <%= link_to @article.user.name, user_path(@article.user.id) %></p>
+        <p class="small">Дата публикации <span><%= @article.created_at.to_date %></span></p>
+        <p class="small">Последнее редактирование <span><%= @article.updated_at.to_date %></span></p>
+        <%= rating(@article) %>
+</div>
+<div class="info_autor"></div>
+</div>
+<div class="article_additional">
+        <div class="text"><%= link_to "Все статьи", user_articles_path(@article.user.id) %>, опубликованные <b><%= @article.user.name %></b></div>
+        <div class="additional"><p><b>Дополнений </b><%= @article.stat_additions %></p><p><b>Комментариев к дополнениям </b><%= @article.stat_comments %></p></div>
+</div>
+<div class="mfooter"></div>
+<div class="hr"><hr /></div>
+
+<div class="hr"><hr /></div>
+<div id="common_article">
+  <div id="common_left">
+   <% unless @article.temp? && !moderator? %>
+   <h3><%= @article.name %></h3>
+    <%= @article.content %>
+
+    <% if @article.has_additions? %>
+      <p style="margin:2px 5px; "><b>Дополнение</b></p>
+      <div class="mfooter"></div>
+      <% @article.additions.each do |addition| %>
+        <div class="addition_<%=addition.id%>">
+          <%= rating(addition) %>
+          <div class="comment_box ">
+              <div class="comm_title">
+                      <div class="user_name"><%= link_to addition.user.name, user_path(addition.user) %></div>
+                      <div class="user_time"><%= addition.created_at.to_date %>   <span><%=  addition.created_at.strftime("%H:%M")%></span></div>
+              </div>
+              <div class="mfooter"></div>
+              <p class="editable_<%= addition.id %>"><%=  addition.content %></p>
+              <%= link_to image_tag("/images/delete_ico.gif"), addition_path(addition), :rel=>"addition_"+addition.id.to_s, :class => "ajax_delete" if moderator?%>
+              <%= link_to image_tag("/images/edit_ico.gif"),article_addition_path(@article,addition), :rel=>"editable_"+addition.id.to_s, :class => "ajax_edit" if addition.user==current_user || moderator?%>
+          </div>
+          <% unless addition.stat_comments==0 %>
+            <div class="show_comments">
+              <div class="comments_col" ><a href="<%= addition_comments_path(addition) %>" class="show_comments_link">Комментарии</a> (<%= addition.stat_comments %>)</div>
+            </div>
+            <div class="hide_comments" style="display:none">
+              <div class="comments_col"><a href="#" class="hide_comments_link">Свернуть комментарии</a></div>
+            </div>
+          <% end %>
+          <div class="comments">
+          </div>
+          <% if current_user %>
+            <div style="height:17px;overflow:hidden "><a href="" class="broun add_comment" rel="<%= addition_comments_path(addition) %>">Добавить <%="первый" if addition.stat_comments==0%> комментарий</a></div>
+          <% else %>
+            <div style="height:17px;overflow:hidden "><p class="small">Для того, чтобы оставить комментарий вы должны <%= link_to 'зарегистрироваться', new_account_path, :style=>"color:#815646; text-decoration:underline" %></p></div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+    <% if current_user %>
+    <div class="comment" style="margin-top:5px; ">
+      <div style="margin:0px 0px 2px 5px; "><b>Дополнить статью</b></div>
+      <% form_for [@article,@addition], :class => "edit_form" do |f|%>
+        <%= f.text_area :content, :size => "2x2", :id=>"textarea" %>
+        <input type="image" src="/images/submit.gif" alt="">
+      <% end %>
+    </div>
+    <% else %>
+      <div class="mfooter" style="margin-bottom:5px; "></div>
+        <p class="small">Для того, чтобы дополнить статью вы должны <%= link_to 'зарегистрироваться', new_account_path, :style=>"color:#815646; text-decoration:underline" %></p>
+    <% end %>
+    <div class="mfooter" style="margin-bottom:5px; "></div>
+
+   <% else %>
+    <h3>Статья проходит модерацию.</h3>
+   <% end %>
+  </div>
+  <div id="rightbar">
+    <%= top_articles_of(@catalogue) %>
+  </div>
+
+</div>
 
 
-<h2><%= @article.name %></h2>
-<%= @article.content %>
 
-<%= rate(@article,5) if current_user%>
-
-
-<% content_for :right do %>
-  <%= top_articles_of(@catalogue) %>
-  <%= link_to "Все похожие публикации", per_rating_catalogue_articles_path(@catalogue) %>
-<% end %>
-<br>
-<%= link_to 'редактировать', edit_article_path(@article), :class => "admin_edit_link"  if admin? %>
+<%= link_to 'редактировать', edit_article_path(@article), :class => "admin_edit_link"  if moderator? %>

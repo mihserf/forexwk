@@ -44,4 +44,4 @@
 </p>
 
 
-<%= link_to 'Edit', edit_account_path %>
+<%= link_to 'Edit', edit_account_path if @user==current_user%>

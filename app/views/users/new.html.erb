@@ -1,7 +1,30 @@
-<h1>Register</h1>
-
+<div class="hr"><hr /></div>
+<h2 style="margin-top:30px; ">Регистрация</h2>
 <% form_for @user, :url => account_path do |f| %>
-  <%= f.error_messages %>
-  <%= render :partial => "form", :object => f %>
-  <%= f.submit "Register" %>
+<%= f.error_messages %>
+<div>
+  <div class="reg_form_line"><%= f.label :first_name, "Имя" %><%= f.text_field :first_name, :class => "reg_text" %></div>
+  <div class="reg_form_line"><%= f.label :last_name, "Фамилия" %><%= f.text_field :last_name, :class => "reg_text" %></div>
+  <div class="reg_form_line"><%= f.label :login, "Логин " %><%= f.text_field :login, :class => "reg_text" %> <%= link_to 'проверить', check_login_users_path, :class => 'check_unique', :rel => "user_login" %><div class="user_login"></div></div>
+  <div class="reg_form_line"><%= f.label :email, "E-mail " %><%= f.text_field :email, :class => "reg_text" %> <%= link_to 'проверить', check_email_users_path, :class => 'check_unique', :rel => "user_email" %><div class="user_email"></div></div>
+  <div class="reg_form_line"><%= f.label :password, f.object.new_record? ? "Пароль" : "Смена пароля" %><%= f.password_field :password, :class => "reg_text" %></div>
+  <div class="reg_form_line"><%= f.label :password_confirmation, "Подтверждение пароля" %><%= f.password_field :password_confirmation, :class => "reg_text" %></div>
+</div>
+<div class="additional"><b>Диллинговый центр</b></div>
+<div class="normal_text">Вибирая или предлагая диллинговый центр, вы получаете 20 баллов в персональный рейтинг активности.
+Вы можете внести его позже, или изменить, но при повторном изменении баллы, в соответствиии
+с правилами, не зачисляются.</div>
+
+<div class="reg_form_line"><label>Логин</label><select class="reg_text"><option>Евреи</option><option>Кулер</option><option>Кульман</option><option>Ватман</option></select></div>
+    <div style="float:left">
+            <div class="reg_form_line"><label>Логин</label><input type="text" class="reg_text"></div>
+            <div class="reg_form_line"><label>Логин</label><input type="text" class="reg_text"></div>
+    </div>
+    <div style="float:left; margin:0px 10px 0px 10px;"><img src="img/total.gif"></div>
+    <div style="float:left; color:#4d624d; font-size:11px; width:200px; margin-top:10px">При внесении своего центра, адрес его сайта обязателен</div>
+    <div class="mfooter"></div>
+    <div class="chekbox"><input type="checkbox" id="check"> Я ознакомлен с <a href="#" class="lblue" style="font-size:11px ">правилами</a></div>
+    <div style="margin-top:10px; "><input type="image" src="img/send.gif"></div>
+</div>
+<div class="mfooter" style="margin-bottom:5px; "></div>
 <% end %>

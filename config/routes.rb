@@ -4,7 +4,9 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => "user_sessions", :action => "new"
 
   map.resource :account, :controller => "users"
-  map.resources :users
+  map.resources :users, :collection => {:check_login => :get,:check_email => :get} do |user|
+    user.resources :articles, :collection => {:per_rating => :get}
+  end
 
   map.resources :password_resets
 
@@ -13,11 +15,14 @@ ActionController::Routing::Routes.draw do |map|
   end
 
 
-  map.resources :articles, :has_many => :ratings, :shallow => true do |article|
+  map.resources :articles, :collection => {:per_rating => :get}, :has_many => :ratings do |article|
     article.resources :additions, :has_many => :ratings do |addition|
       addition.resources :comments
     end
   end
+
+  map.resources :additions, :has_many => [:comments,:ratings]
+  map.resources :comments
 
   map.resources :ratings
   

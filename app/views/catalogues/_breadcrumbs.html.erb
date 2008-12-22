@@ -1,0 +1,13 @@
+<div class="hr"><hr/></div>
+<div class="links_path">
+  <div class="aaa"><%= link_to "Статьи", articles_path %></div>
+  <% items.each do |it| %>
+    <% class_name = it==@catalogue ? "bbb":"aaa" %>
+    <div class="aaa"><img src="/images/link_arrow.gif" alt=""></div>
+    <% link = it==@catalogue ? it.name : link_to(it.name, catalogue_articles_path(it.id)) %>
+    <div class="<%= class_name %>"><%= link %></div>
+  <% end %>
+</div>
+
+
+

@@ -39,6 +39,7 @@ doc\:clobber_plugins=Remove plugin documentation
 doc\:clobber_rails=Remove rdoc products
 doc\:guides=Generate Rails guides
 doc\:plugins=Generate documentation for all installed plugins
+doc\:plugins\:acts_as_taggable_on_steroids=Generate documentation for the acts_as_taggable_on_steroids plugin
 doc\:plugins\:atcs_as_rateable=Generate documentation for the atcs_as_rateable plugin
 doc\:plugins\:authlogic=Generate documentation for the authlogic plugin
 doc\:plugins\:awesome_nested_set=Generate documentation for the awesome_nested_set plugin

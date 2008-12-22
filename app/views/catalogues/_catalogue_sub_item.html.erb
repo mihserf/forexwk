@@ -1,6 +1,10 @@
 
 
-<li style="list-style:none; padding-left:<%= it.level*20 %>px;">
-<%= link_to it.name, catalogue_path(it) %>
-<%= sub_items_menu(it){|i| render :partial=>"catalogues/catalogue_sub_item.html.erb", :locals =>{:it=>i} } unless it.leaf? %>
+<li  <%= "class ='marked'" if item.is_ancestor_of? @catalogue %> <%=  "class ='active'" if item==@catalogue %>>
+  <% unless item==@catalogue %>
+    <%= link_to item.name, catalogue_articles_path(item) %>
+    <%= sub_items_menu(item){|i| render :partial=>"catalogues/catalogue_sub_item.html.erb", :locals =>{:item=>i} } unless item.leaf? || !item.is_ancestor_of?(@catalogue) %>
+  <% else %>
+    <%= item.name %>
+  <% end %>
 </li>

@@ -60,8 +60,15 @@ module Juixe
       # This module contains instance methods
       module InstanceMethods
         # Helper method that defaults the current time to the submitted field.
-        def add_rating(rating, current_user,reason=nil)
-          Rating.create(:user_id => current_user.id, :reason => reason, :rating => rating, :rateable_type => self.class.to_s, :rateable_id => self.id)
+        def add_rating(rating_val, current_user,reason=nil)
+          rate_section = 5
+          if rating_val.abs > rate_section
+            ((rating_val.abs/rate_section)>1 ? rating_val.abs/rate_section : 1).times do
+              Rating.create(:user_id => current_user.id, :reason => reason, :rating => (rating_val>0 ? rate_section : (rate_section-rate_section*2)), :rateable_type => self.class.to_s, :rateable_id => self.id)
+            end
+          else
+              Rating.create(:user_id => current_user.id, :reason => reason, :rating => rating_val, :rateable_type => self.class.to_s, :rateable_id => self.id)
+          end
           build_stat_rating(:stat_rateable_type => self.class, :stat_rateable_id => self.id) if stat_rating.nil?
           stat_rating.rating_total = rating_total
           stat_rating.rating_avg = rating

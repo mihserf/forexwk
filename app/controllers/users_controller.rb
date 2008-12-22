@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
-  before_filter :require_user, :only => [:show, :edit, :update]
+  before_filter :require_user, :only => [:edit, :update]
 
   # GET /users
   # GET /users.xml
@@ -19,18 +19,18 @@ class UsersController < ApplicationController
   end
 
   def show
-    if admin? && params[:id]
+    if params[:id]
       @user = User.find(params[:id])
     else
-      @user = @current_user
+      @user = current_user
     end
   end
 
   def edit
-    if admin?
+    if admin? && params[:id]
       @user = User.find(params[:id])
     else
-      @user = @current_user
+      @user = current_user
     end
   end
 
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     if admin?
       @user = User.find(params[:id])
     else
-      @user = @current_user # makes our views "cleaner" and more consistent
+      @user = current_user # makes our views "cleaner" and more consistent
     end
     unless params[:change_password]=="1"
       params[:user].delete(:password)
@@ -51,6 +51,18 @@ class UsersController < ApplicationController
     else
       render :action => :edit
     end
+  end
+
+  def check_email
+    result="занят"
+    result="свободен" if User.find(:all, :conditions => ["email=:email",{:email => params[:value]}]).empty?
+    render :inline => result
+  end
+
+  def check_login
+    result="занят"
+    result="свободен" if User.find(:all, :conditions => ["login=:login",{:login => params[:login]}]).empty?
+    render :inline => result
   end
 
 end

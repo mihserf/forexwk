@@ -3,18 +3,22 @@ class RatingsController < ApplicationController
   before_filter :require_user
   before_filter :admin_required, :only => :destroy
   def create
+    data ={"msg"=>nil,"rating_avg"=>nil,"rating_total"=>nil}
+    
     unless @master.rated_by_user?(current_user) && !current_user.admin?
       if params[:rating].to_i.abs==1 || current_user.can_add_rating?(params[:rating])
         @master.add_rating(params[:rating],current_user)
-        msg = "спасибо за оценку!"
+        data["rating_avg"]=@master.stat_rating.rating_avg
+        data["rating_total"]=@master.stat_rating.rating_total
+        data["msg"] = "спасибо за оценку!"
       else
-        msg = "Ваш рейтинг ещё не достаточен, чтобы ставить такую оценку"
+        data["msg"] = "Ваш рейтинг ещё не достаточен, чтобы ставить такую оценку"
       end
     else
-      msg = "вы уже ставили оценку"
+      data["msg"] = "вы уже ставили оценку"
     end
 
-    render :inline => msg
+    render :json => data.to_json
 
   end
 

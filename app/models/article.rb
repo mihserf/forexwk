@@ -5,5 +5,11 @@ class Article < ActiveRecord::Base
   has_many :additions, :dependent => :destroy
 
   acts_as_rateable
+  acts_as_taggable
+
   #acts_as_list :scope => :catalogue
+
+  def has_additions?
+    !additions.empty?
+  end
 end
