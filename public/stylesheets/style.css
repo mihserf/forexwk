@@ -983,6 +983,7 @@ a:hover.lblue {text-decoration: none}
 	}
 .need_moder_article {
         border:1px solid red;
+        padding: 4px;
 }
 .check_unique{
     float:right;
