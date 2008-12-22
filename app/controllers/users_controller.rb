@@ -10,7 +10,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    if @user.save
+
+    unless params[:dealing_center][:name]==""
+      params[:dealing_center][:temp]=true
+      @user.dealing_center = DealingCenter.new(params[:dealing_center])
+    end
+    if params[:agreement]=="true" && @user.save
       flash[:notice] = "Аккаунт создан!"
       redirect_back_or_default account_url
     else

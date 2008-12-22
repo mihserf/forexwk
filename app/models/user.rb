@@ -3,7 +3,10 @@ class User < ActiveRecord::Base
   has_many :additions
   has_many :comments
 
+  belongs_to :dealing_center
+
   validates_uniqueness_of :login
+
   acts_as_authentic
 
   has_attached_file :avatar,

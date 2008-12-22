@@ -1,0 +1,13 @@
+
+<ul>
+<% for dealing_center in @dealing_centers %>
+  <li style="list-style:none"><%= link_to dealing_center.name, dealing_center_path(dealing_center) %></li>
+  <div class='admin_edit_actions' style="font-size:10pt;  padding-bottom:7px">
+    <%= link_to image_tag("/images/edit_ico.gif",:alt=>"Редактировать"), edit_admin_dealing_center_path(dealing_center) %>
+     | <%=link_to image_tag("/images/delete_ico.gif",:alt=>"Удалить"), admin_dealing_center_path(dealing_center), :method => :delete, :confirm => 'подтвердите удаление'%>
+  </div>
+  </li>
+<%end%>
+</ul>
+
+<%= link_to 'Добавить ДЦ', new_admin_dealing_center_path %>

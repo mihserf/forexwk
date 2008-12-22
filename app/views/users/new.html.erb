@@ -15,17 +15,20 @@
 <div class="normal_text">Вибирая или предлагая диллинговый центр, вы получаете 20 баллов в персональный рейтинг активности.
 Вы можете внести его позже, или изменить, но при повторном изменении баллы, в соответствиии
 с правилами, не зачисляются.</div>
-
-<div class="reg_form_line"><label>Логин</label><select class="reg_text"><option>Евреи</option><option>Кулер</option><option>Кульман</option><option>Ватман</option></select></div>
+<div class="reg_form_line"><%= f.label "Диллинговый центр" %>
+<%= f.select :dealing_center_id, DealingCenter.find(:all, :select => "id,name", :conditions => {:temp => nil}, :order => "name").map{|i| [i.name,i.id]}, {:include_blank => true}, :class => "reg_text"   %>
+</div>
     <div style="float:left">
-            <div class="reg_form_line"><label>Логин</label><input type="text" class="reg_text"></div>
-            <div class="reg_form_line"><label>Логин</label><input type="text" class="reg_text"></div>
+            <% fields_for DealingCenter.new do |fd| %>
+              <div class="reg_form_line"><label>Название</label><%= fd.text_field :name, :class => "reg_text" %></div>
+              <div class="reg_form_line"><label>Адрес сайта</label><%= fd.text_field :url, :class => "reg_text"  %></div>
+            <% end %>
     </div>
-    <div style="float:left; margin:0px 10px 0px 10px;"><img src="img/total.gif"></div>
+    <div style="float:left; margin:0px 10px 0px 10px;"><img src="/images/total.gif"></div>
     <div style="float:left; color:#4d624d; font-size:11px; width:200px; margin-top:10px">При внесении своего центра, адрес его сайта обязателен</div>
     <div class="mfooter"></div>
-    <div class="chekbox"><input type="checkbox" id="check"> Я ознакомлен с <a href="#" class="lblue" style="font-size:11px ">правилами</a></div>
-    <div style="margin-top:10px; "><input type="image" src="img/send.gif"></div>
+    <div class="chekbox"><input type="checkbox" id="check" name="agreement" value="true"> Я ознакомлен с <a href="#" class="lblue" style="font-size:11px ">правилами</a></div>
+    <div style="margin-top:10px; "><input type="image" src="/images/send.gif"></div>
 </div>
 <div class="mfooter" style="margin-bottom:5px; "></div>
 <% end %>

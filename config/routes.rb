@@ -34,6 +34,7 @@ ActionController::Routing::Routes.draw do |map|
   map.namespace :admin do |admin|
     admin.resources :catalogues
     admin.resources :users, :only => [:index,:destroy]
+    admin.resources :dealing_centers
   end
 
 
