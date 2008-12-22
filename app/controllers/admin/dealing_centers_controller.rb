@@ -30,6 +30,7 @@ class Admin::DealingCentersController < ApplicationController
     @dealing_center=DealingCenter.find(params[:id])
 
     if  @dealing_center.update_attributes(params[:dealing_center])
+      if params[:rate]=="true" && current_user.moderator? && !@dealing_center.temp? then  User.find(:first, :conditions => {:id => @dealing_center.added_by_user}).add_rating(20,User.find(:first,:conditions=>{:admin=>true}),"за диллинговый центр") end
       flash[:notice]="Диллинговый центр обновлен"
       redirect_to admin_dealing_centers_path
     end

@@ -21,7 +21,6 @@ label {
 	font-size:12px;
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 	margin:0px;
-	float:left;
 	}
 
 img {
@@ -885,6 +884,9 @@ a.blue:hover {border-bottom: 0px dashed #275a7a;}
 	height:30px;
 	width:390px;
 	}
+.reg_form_line label{
+        float:left;
+        }
 	
 .reg_text {
 	border:1px solid #a49c75;
@@ -986,7 +988,7 @@ a:hover.lblue {text-decoration: none}
 	border:1px solid #aaa06f;
 	margin-bottom:5px;
 	}
-.need_moder_article {
+.need_moder {
         border:1px solid red;
         padding: 4px;
 }

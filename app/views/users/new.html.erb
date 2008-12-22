@@ -16,7 +16,7 @@
 Вы можете внести его позже, или изменить, но при повторном изменении баллы, в соответствиии
 с правилами, не зачисляются.</div>
 <div class="reg_form_line"><%= f.label "Диллинговый центр" %>
-<%= f.select :dealing_center_id, DealingCenter.find(:all, :select => "id,name", :conditions => {:temp => nil}, :order => "name").map{|i| [i.name,i.id]}, {:include_blank => true}, :class => "reg_text"   %>
+<%= f.select :dealing_center_id, DealingCenter.find(:all, :select => "id,name", :conditions => {:temp => false}, :order => "name").map{|i| [i.name,i.id]}, {:include_blank => true}, :class => "reg_text"   %>
 </div>
     <div style="float:left">
             <% fields_for DealingCenter.new do |fd| %>

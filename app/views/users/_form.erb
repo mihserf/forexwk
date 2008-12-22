@@ -9,20 +9,20 @@
   });
 </script>
 
-<%= form.label :login %><br />
+<%= form.label :login, "логин" %><br />
 <%= form.text_field :login %><br />
 
 <p><a href="#" id="change_password_link">изменить пароль</a></p>
 <div id="password">
-<%= form.label :password, form.object.new_record? ? nil : "Change password" %><br />
+<%= form.label :password, form.object.new_record? ? nil : "Новый пароль" %><br />
 <%= form.password_field :password %><br />
 <br />
-<%= form.label :password_confirmation %><br />
+<%= form.label :password_confirmation, "Повторите пароль" %><br />
 <%= form.password_field :password_confirmation %><br />
 
 <input type="hidden" name="change_password" id="change_password" value="0"/>
 </div>
 
-<%= form.label :email %><br />
+<%= form.label :email, "email" %><br />
 <%= form.text_field :email %><br />
 <br />

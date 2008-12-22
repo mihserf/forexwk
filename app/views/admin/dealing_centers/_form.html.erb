@@ -13,6 +13,19 @@
 </p>
 
 <p>
+  <%= f.label 'модерирована, показывать всем' %> да <%= f.radio_button :temp, "false", :checked => (@dealing_center.temp? ? false:true) %>
+  нет <%= f.radio_button :temp, "true" %></p>
+<p>
+
+<p>
+<%= "добавлено пользователем "+link_to(User.find(@dealing_center.added_by_user).name, user_path(User.find(@dealing_center.added_by_user).id)) unless @dealing_center.added_by_user.nil? %>
+</p>
+
+<% if @dealing_center.temp? %>
+  <p><%= f.label '20 баллов автору за статью' %> да <%= radio_button_tag :rate, "true" %>
+  нет <%= radio_button_tag :rate, "false", true %></p>
+<% end %>
+  
 <%=f.submit 'Сохранить изменения' %>
 </p>
 <%end%>

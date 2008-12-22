@@ -11,11 +11,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
 
-    unless params[:dealing_center][:name]==""
-      params[:dealing_center][:temp]=true
-      @user.dealing_center = DealingCenter.new(params[:dealing_center])
-    end
     if params[:agreement]=="true" && @user.save
+      add_dealing_center
       flash[:notice] = "Аккаунт создан!"
       redirect_back_or_default account_url
     else
@@ -68,6 +65,15 @@ class UsersController < ApplicationController
     result="занят"
     result="свободен" if User.find(:all, :conditions => ["login=:login",{:login => params[:login]}]).empty?
     render :inline => result
+  end
+
+  def add_dealing_center
+    unless params[:dealing_center][:name]==""
+      params[:dealing_center][:temp]=true
+      params[:dealing_center][:added_by_user]=@user.id
+      @user.dealing_center = DealingCenter.new(params[:dealing_center])
+      @user.save
+    end
   end
 
 end
