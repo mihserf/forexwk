@@ -10,9 +10,9 @@ class User < ActiveRecord::Base
   acts_as_authentic
 
   has_attached_file :avatar,
-                    :styles => { :thumb => ["29x29>",:jpg],
+                    :styles => { :thumb => "29x29>",
                                  :square => ["29x29#", :jpg],
-                                 :normal  => ["150x150>",:jpg] }
+                                 :normal  => "150x150>" }
 
   acts_as_rateable
 
