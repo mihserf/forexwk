@@ -3,7 +3,8 @@
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
-
+  before_filter :tags
+  
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery # :secret => 'e54cad79f615eb124e73f11ebeb067cc'
@@ -15,7 +16,15 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user
 
+
+  def tags
+    @tags = Article.tag_counts
+  end
+
   private
+
+    
+
     def admin_required
       if current_user && admin?
         return true

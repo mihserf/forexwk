@@ -86,12 +86,9 @@
 					</div>
 				</div>
 				<div class="ad">
-					<a href="" class="a">Обучение</a> <a href="" class="b">Обучение</a> <a href="" class="c">Обучение</a> <a href="" class="d">Обучение</a>
-					<a href="" class="b">Обучение</a> <a href="" class="c">Обучение</a> <a href="" class="d">Обучение</a> <a href="" class="a">Обучение</a>
-					<a href="" class="c">Обучение</a> <a href="" class="d">Обучение</a> <a href="" class="a">Обучение</a> <a href="" class="b">Обучение</a>
-					<a href="" class="d">Обучение</a> <a href="" class="a">Обучение</a> <a href="" class="b">Обучение</a> <a href="" class="c">Обучение</a>
-					<a href="" class="a">Обучение</a> <a href="" class="b">Обучение</a> <a href="" class="c">Обучение</a> <a href="" class="d">Обучение</a>
-					<a href="" class="b">Обучение</a> <a href="" class="c">Обучение</a> <a href="" class="d">Обучение</a> <a href="" class="a">Обучение</a>
+                                    <% tag_cloud @tags, %w(a b c d) do |tag, css_class| %>
+                                      <%= link_to tag.name, { :action => :tag, :id => tag.name }, :class => css_class %>
+                                    <% end %>
 				</div>
     		</div>
                 <div id="middlebar">

@@ -16,7 +16,10 @@
 <%= f.label 'Статья' %><br />
 <%=f.text_area :content%>
 </p>
-
+<p>
+<%= f.label 'Теги (через запятую)' %><br />
+<%=text_field_tag 'tags', (@article.tag_list unless @article.new_record?)%>
+</p>
 <% if moderator? %>
   <p><%= f.label 'модерирована, показывать всем' %> да <%= f.radio_button :temp, "false", :checked => (@article.temp? ? false:true)  %>
   нет <%= f.radio_button :temp, "true" %></p>

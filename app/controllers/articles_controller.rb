@@ -31,6 +31,9 @@ class ArticlesController < ApplicationController
     @article.user_id = current_user.id
     @article.temp = true
     @article.build_stat_rating(:rating_avg => 0,:rating_total => 0)
+
+    @article.tag_list=params[:tags] unless params[:tags]==""
+
     if @article.save
       flash[:notice]="Спасибо. Статья создана. Появится в ближайшее время, после проверки"
       redirect_back_or_default catalogue_articles_path(@catalogue)
@@ -45,6 +48,7 @@ class ArticlesController < ApplicationController
 
   def update
     @article = Article.find(params[:id])
+    @article.tag_list=params[:tags] unless params[:tags]==""
     if  @article.update_attributes(params[:article])
       if params[:rate]=="true" && current_user.moderator? && !@article.temp then @article.user.add_rating(Settings.rating.bonus.for_article,User.find(:first,:conditions => {:admin=>true},:select=>"admin,id").id,"за статью") end
       flash[:notice]="Статья обновлена."
@@ -77,6 +81,12 @@ class ArticlesController < ApplicationController
     else
       @orders[:for_all] = date; @orders[:for_top] = rating
     end
+  end
+
+  def tag
+    set_ordering :date unless defined? @orders
+    @articles = Article.find_tagged_with(params[:id])
+    render :action => "index"
   end
 
   def get_catalogue
