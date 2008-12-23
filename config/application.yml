@@ -1,0 +1,15 @@
+defaults: &defaults
+    rating:
+      bonus:
+        for_dealing_center: 20
+        for_article: 30
+      point: 5
+
+development:
+    <<: *defaults
+
+test:
+    <<: *defaults
+
+production:
+    <<: *defaults

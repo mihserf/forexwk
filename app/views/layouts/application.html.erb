@@ -38,7 +38,7 @@
                                 <% if !current_user %>
                                   <div class="exit"> <%= link_to "Войти", new_user_session_path, :style=>"margin-top:0px; padding-top:0px;" %> <%= link_to image_tag('/images/registration.gif'), new_account_path %></div>
                                 <% else %>
-                                  <div class="login_info"><%= link_to image_tag('/images/login_info.gif',:align=>"left"), account_path %><%= link_to current_user.name, account_path %></div>
+                                  <div class="login_info"><%= link_to image_tag(current_user.avatar.url(:thumb),:align=>"left"), account_path %><%= link_to current_user.name, account_path %></div>
                                   <div class="exit"><%= link_to "Выход", user_session_path, :method => :delete, :confirm => "Вы уверены, что хотите выйти?" %></div>
                                 <% end %>
 			</div>

@@ -46,7 +46,7 @@ class ArticlesController < ApplicationController
   def update
     @article = Article.find(params[:id])
     if  @article.update_attributes(params[:article])
-      if params[:rate]=="true" && current_user.moderator? && !@article.temp then @article.user.add_rating(5,User.find(:first,:conditions => {:admin=>true},:select=>"admin,id").id,"за статью") end
+      if params[:rate]=="true" && current_user.moderator? && !@article.temp then @article.user.add_rating(Settings.rating.bonus.for_article,User.find(:first,:conditions => {:admin=>true},:select=>"admin,id").id,"за статью") end
       flash[:notice]="Статья обновлена."
       redirect_back_or_default catalogue_articles_path(@catalogue)
     end

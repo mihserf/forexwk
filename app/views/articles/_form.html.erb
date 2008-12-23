@@ -21,7 +21,7 @@
   <p><%= f.label 'модерирована, показывать всем' %> да <%= f.radio_button :temp, "false", :checked => (@article.temp? ? false:true)  %>
   нет <%= f.radio_button :temp, "true" %></p>
   <% if @article.temp? %>
-    <p><%= f.label '5 баллов автору за статью' %> да <%= radio_button_tag :rate, "true" %>
+    <p><%= f.label Settings.rating.bonus.for_article.to_s+' баллов автору за статью' %> да <%= radio_button_tag :rate, "true" %>
     нет <%= radio_button_tag :rate, "false", true %></p>
   <% end %>
 <% end %>

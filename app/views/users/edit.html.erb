@@ -1,9 +1,7 @@
 <h1>Редактирование аккаунта</h1>
 
-<% form_for @user, :url => (admin? ? user_path(@user) : account_path)  do |f| %>
-  <%= f.error_messages %>
+<% form_for @user, :url => (admin? ? user_path(@user) : account_path), :html => { :multipart => true }  do |f| %>
   <%= render :partial => "form", :object => f %>
-  <%= f.submit "Обновить" %>
 <% end %>
 
 <br /><%= link_to "Мой профайл", account_path %>

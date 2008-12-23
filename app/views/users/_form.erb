@@ -1,13 +1,74 @@
-<script type="text/javascript">
-  $(document).ready(function(){
-	$("#password").hide();
-	$("#change_password_link").click(function(){
-          $(this).toggle("fast");
-          $("#password").toggle("fast");
-          $("#change_password").val(1);
-          return false});
-  });
-</script>
+<% unless form.object.new_record? %>
+  <script type="text/javascript">
+    $(document).ready(function(){
+          $("#password").hide();
+          $("#change_password_link").click(function(){
+            $(this).toggle("fast");
+            $("#password").toggle("fast");
+            $("#change_password").val(1);
+            return false});
+    });
+  </script>
+<% end %>
+
+<%= form.error_messages %>
+<div>
+  <div class="reg_form_line"><%= form.label :first_name, "Имя" %><%= form.text_field :first_name, :class => "reg_text" %></div>
+  <div class="reg_form_line"><%= form.label :last_name, "Фамилия" %><%= form.text_field :last_name, :class => "reg_text" %></div>
+  <div class="reg_form_line"><%= form.label :login, "Логин " %><%= form.text_field :login, :class => "reg_text" %> <%= link_to 'проверить', check_login_users_path, :class => 'check_unique', :rel => "user_login" %><div class="user_login"></div></div>
+  <div class="reg_form_line"><%= form.label :email, "E-mail " %><%= form.text_field :email, :class => "reg_text" %> <%= link_to 'проверить', check_email_users_path, :class => 'check_unique', :rel => "user_email" %><div class="user_email"></div></div>
+  
+
+  <% unless form.object.new_record? %>
+    <p><a href="#" id="change_password_link">изменить пароль</a></p>
+    <input type="hidden" name="change_password" id="change_password" value="0"/>
+  <% end %>
+  <div id="password">
+    <div class="reg_form_line"><%= form.label :password, form.object.new_record? ? "Пароль" : "Смена пароля" %><%= form.password_field :password, :class => "reg_text" %></div>
+    <div class="reg_form_line"><%= form.label :password_confirmation, "Подтверждение пароля" %><%= form.password_field :password_confirmation, :class => "reg_text" %></div>
+  </div>
+
+  <%= image_tag @user.avatar.url(:thumb), :style=>"padding:10px;"  unless form.object.new_record? %>
+  <div class="reg_form_line"><%= form.label :avatar, "Аватара " %><%= form.file_field :avatar, :class => "reg_text"  %></div>
+</div>
+
+<div class="additional additional_header"><b>Диллинговый центр</b></div>
+<div class="normal_text">Вибирая или предлагая диллинговый центр, вы получаете <%= Settings.rating.bonus.for_dealing_center %> баллов в персональный рейтинг активности.
+Вы можете внести его позже, или изменить, но при повторном изменении баллы, в соответствиии
+с правилами, не зачисляются.</div>
+<div class="reg_form_line"><%= form.label "Диллинговый центр" %>
+<%= form.select :dealing_center_id, DealingCenter.find(:all, :select => "id,name", :conditions => ["temp=:temp "+(form.object.new_record? ? "":"OR added_by_user=:user_id"),{:temp=>false,:user_id=>form.object.id}], :order => "name").map{|i| [i.name,i.id]}, {:include_blank => true}, :class => "reg_text"   %>
+</div>
+    <div style="float:left">
+            <% fields_for DealingCenter.new do |fd| %>
+              <div class="reg_form_line"><label>Название</label><%= fd.text_field :name, :class => "reg_text" %></div>
+              <div class="reg_form_line"><label>Адрес сайта</label><%= fd.text_field :url, :class => "reg_text"  %></div>
+            <% end %>
+    </div>
+    <div style="float:left; margin:0px 10px 0px 10px;"><img src="/images/total.gif"></div>
+    <div style="float:left; color:#4d624d; font-size:11px; width:200px; margin-top:10px">При внесении своего центра, адрес его сайта обязателен</div>
+    <div class="mfooter"></div>
+    <% if form.object.new_record? %>
+      <div class="chekbox"><input type="checkbox" id="check" name="agreement" value="true"> Я ознакомлен с <a href="#" class="lblue" style="font-size:11px ">правилами</a></div>
+    <% end %>
+    <div style="margin-top:10px; "><input type="image" src="/images/send.gif"></div>
+</div>
+<div class="mfooter" style="margin-bottom:5px; "></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <%= form.label :login, "логин" %><br />
 <%= form.text_field :login %><br />
@@ -25,4 +86,5 @@
 
 <%= form.label :email, "email" %><br />
 <%= form.text_field :email %><br />
+
 <br />

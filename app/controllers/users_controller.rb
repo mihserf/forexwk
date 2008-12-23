@@ -48,6 +48,7 @@ class UsersController < ApplicationController
     end
     if params[:user][:password]==@user.password then params[:user][:password_confirmation]=@user.password end
     if @user.update_attributes(params[:user])
+      add_dealing_center
       flash[:notice] = "Аккаунт обновлён!"
       redirect_to (admin? ? user_url(@user) : account_url)
     else

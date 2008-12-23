@@ -61,7 +61,7 @@ module Juixe
       module InstanceMethods
         # Helper method that defaults the current time to the submitted field.
         def add_rating(rating_val, current_user,reason=nil)
-          rate_section = 5
+          rate_section = rating < Settings.rating.point ? rating.floor+1 : Settings.rating.point
           if rating_val.abs > rate_section
             ((rating_val.abs/rate_section)>1 ? rating_val.abs/rate_section : 1).times do
               Rating.create(:user_id => current_user.id, :reason => reason, :rating => (rating_val>0 ? rate_section : (rate_section-rate_section*2)), :rateable_type => self.class.to_s, :rateable_id => self.id)
