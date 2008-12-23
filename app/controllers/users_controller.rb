@@ -64,7 +64,7 @@ class UsersController < ApplicationController
 
   def check_login
     result="занят"
-    result="свободен" if User.find(:all, :conditions => ["login=:login",{:login => params[:login]}]).empty?
+    result="свободен" if User.find(:all, :conditions => ["login=:login",{:login => params[:value]}]).empty?
     render :inline => result
   end
 

@@ -1,47 +1,68 @@
-<!--
-  The following is for OpenID, if you are not using OpenID in your app remove
-  the OpenID if statement and field below.
--->
+<h2 style="margin-top:30px; ">Профайл</h2>
+<div id="common_article">
+  <div id="common_left">
+    <div class="photo"><%= image_tag @user.avatar.url(:normal), :style=>"padding:10px;", :class=>"photo" %>
+    <h3><%= @user.name_or_login %></h3>
+    <% unless @user.dealing_center.nil? %>
+      <h3>Диллинговый центр <%= link_to @user.dealing_center.name, "http://"+@user.dealing_center.url %></h3>
+    <% end %>
+    <% article_count = Article.count(:conditions=>["user_id=:user_id",{:user_id=>current_user.id}]) %>
+    <% unless article_count==0 %>
+      <h3><%= link_to 'Статьи автора', user_articles_path(@user) %> (<%= article_count %>)</h3>
+    <% end %>
 
-  <p>
-    <b>Login:</b>
-    <%=h @user.login %>
-  </p>
+    </div>
+    <div class="mfooter"></div>
+    <div class="hr" style="margin-bottom:10px; "><hr /></div>
+    <% if admin? || current_user==@user %>
+    <div class="names"><b>Персональные данные</b></div>
+    <div class="mfooter"></div>
+    <div class="names">Имя</div>
+    <div class="values"><%= @user.first_name %></div>
+    <div class="mfooter"></div>
+    <div class="names">Фамилия</div>
+    <div class="values"><%= @user.last_name %></div>
+    <div class="mfooter"></div>
+    <div class="names">Логин</div>
+    <div class="values"><%= @user.login %></div>
+    <div class="mfooter"></div>
+    <div class="names">E-mail</div>
+    <div class="values"><%= @user.email %></div>
+    <div class="mfooter"></div>
+    <div class="names">Статус</div>
+    <div class="values"><%= @user.status_string %></div>
+    <div class="mfooter"></div>
+    <div class="names">Имя</div>
+    <div class="values"><%= @user.name %></div>
+    <div class="mfooter"></div>
+    <br>
+    <div class="names">ICQ</div>
+    <div class="values"><%= @user.icq %></div>
+    <div class="mfooter"></div>
+    <div class="names">Skype</div>
+    <div class="values"><%= @user.skype %></div>
+    <div class="mfooter"></div>
+    <div class="names">Yahoo messenger</div>
+    <div class="values"><%= @user.yahoo %></div>
+    <div class="mfooter"></div>
+    <div class="names">MSN</div>
+    <div class="values"><%= @user.msn %></div>
+    <% end %>
+  </div>
+  <div id="rightbar">
+          <div class="rate_box">
+                  <div style="margin-bottom:10px; "><b>Рейтинг</b></div>
+                  <div class="rate_total">Общий <span style="color:#3f843f "><%= current_user.stat_rating.rating_total %></span></div>
+                  <div class="rate_total">Средний балл <span style="color:#3f843f "><%= current_user.stat_rating.rating_avg %></span></div>
+          </div>
+          <div class="names">Дополнений <span style="color:#3f843f "><%= Addition.count(:conditions=>["user_id=:user_id",{:user_id=>current_user.id}]) %></span></div>
+          <div class="names">Комментариев <span style="color:#3f843f "><%= Comment.count(:conditions=>["user_id=:user_id",{:user_id=>current_user.id}]) %></span></div>
+          <div class="names">Статей <a href="#"><%= link_to article_count, user_articles_path(@user) %></a></div>
 
-<p>
-  <b>Email:</b>
-  <%=h @user.email %>
-</p>
+  </div>
+  <div class="mfooter" style="margin-bottom:5px; "></div>
+</div>
 
-<p>
-  <b>Login count:</b>
-  <%=h @user.login_count %>
-</p>
+<%= link_to 'Редактировать', edit_account_path if @user==current_user && !admin?%>
+<%= link_to 'Редактировать', edit_user_path(@user) if admin?%>
 
-<p>
-  <b>Last request at:</b>
-  <%=h @user.last_request_at %>
-</p>
-
-<p>
-  <b>Last login at:</b>
-  <%=h @user.last_login_at %>
-</p>
-
-<p>
-  <b>Current login at:</b>
-  <%=h @user.current_login_at %>
-</p>
-
-<p>
-  <b>Last login ip:</b>
-  <%=h @user.last_login_ip %>
-</p>
-
-<p>
-  <b>Current login ip:</b>
-  <%=h @user.current_login_ip %>
-</p>
-
-
-<%= link_to 'Edit', edit_account_path if @user==current_user%>

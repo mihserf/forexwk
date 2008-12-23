@@ -13,7 +13,7 @@
 
 <div class="info_box">
 <div class="info_article">
-        <p class="font12">Автор: <%= link_to @article.user.name, user_path(@article.user.id) %></p>
+        <p class="font12">Автор: <%= link_to @article.user.name_or_login, user_path(@article.user.id) %></p>
         <p class="small">Дата публикации <span><%= @article.created_at.to_date %></span></p>
         <p class="small">Последнее редактирование <span><%= @article.updated_at.to_date %></span></p>
         <%= rating(@article) %>
@@ -42,7 +42,7 @@
           <%= rating(addition) %>
           <div class="comment_box ">
               <div class="comm_title">
-                      <div class="user_name"><%= link_to addition.user.name, user_path(addition.user) %></div>
+                      <div class="user_name"><%= link_to addition.user.name_or_login, user_path(addition.user) %></div>
                       <div class="user_time"><%= addition.created_at.to_date %>   <span><%=  addition.created_at.strftime("%H:%M")%></span></div>
               </div>
               <div class="mfooter"></div>

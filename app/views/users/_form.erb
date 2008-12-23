@@ -1,35 +1,41 @@
 <% unless form.object.new_record? %>
   <script type="text/javascript">
     $(document).ready(function(){
-          $("#password").hide();
-          $("#change_password_link").click(function(){
-            $(this).toggle("fast");
-            $("#password").toggle("fast");
-            $("#change_password").val(1);
-            return false});
+            $("#change_password_link").click(function(e){
+              e.preventDefault;
+              $("#change_password").val(1);
+            });
     });
   </script>
 <% end %>
 
 <%= form.error_messages %>
 <div>
+  <% if admin? %>
+    <div class="reg_form_line"><%= form.label :admin, "Администратор?" %><%= form.check_box :admin%></div>
+    <div class="reg_form_line"><%= form.label :admin, "Модератор?" %><%= form.check_box :moderator%></div>
+  <% end %>
   <div class="reg_form_line"><%= form.label :first_name, "Имя" %><%= form.text_field :first_name, :class => "reg_text" %></div>
   <div class="reg_form_line"><%= form.label :last_name, "Фамилия" %><%= form.text_field :last_name, :class => "reg_text" %></div>
   <div class="reg_form_line"><%= form.label :login, "Логин " %><%= form.text_field :login, :class => "reg_text" %> <%= link_to 'проверить', check_login_users_path, :class => 'check_unique', :rel => "user_login" %><div class="user_login"></div></div>
   <div class="reg_form_line"><%= form.label :email, "E-mail " %><%= form.text_field :email, :class => "reg_text" %> <%= link_to 'проверить', check_email_users_path, :class => 'check_unique', :rel => "user_email" %><div class="user_email"></div></div>
-  
+  <div class="reg_form_line"><%= form.label :status_string, "Статус (подпись)" %><%= form.text_field :status_string, :class => "reg_text" %></div>
 
   <% unless form.object.new_record? %>
-    <p><a href="#" id="change_password_link">изменить пароль</a></p>
-    <input type="hidden" name="change_password" id="change_password" value="0"/>
+    <div class="show_field"><img src="/images/change_icon.gif"> <a href="#" id="change_password_link" class="lbroun show_field">Изменить пароль</a></div>
   <% end %>
-  <div id="password">
-    <div class="reg_form_line"><%= form.label :password, form.object.new_record? ? "Пароль" : "Смена пароля" %><%= form.password_field :password, :class => "reg_text" %></div>
+  <div  <%="class='hidden_field'" unless form.object.new_record?%>>
+    <div class="reg_form_line"><%= form.label :password, form.object.new_record? ? "Пароль" : "Новый пароль" %><%= form.password_field :password, :class => "reg_text" %></div>
     <div class="reg_form_line"><%= form.label :password_confirmation, "Подтверждение пароля" %><%= form.password_field :password_confirmation, :class => "reg_text" %></div>
+    <input type="hidden" name="change_password" id="change_password" value="0"/>
   </div>
 
-  <%= image_tag @user.avatar.url(:thumb), :style=>"padding:10px;"  unless form.object.new_record? %>
-  <div class="reg_form_line"><%= form.label :avatar, "Аватара " %><%= form.file_field :avatar, :class => "reg_text"  %></div>
+  
+  <div class="photo"><%= image_tag @user.avatar.url(:normal), :style=>"padding:10px;"  unless form.object.new_record? %></div>
+  <%  unless form.object.new_record? %>
+    <div class="show_field"><img src="/images/change_icon.gif"> <a href="#" class="lbroun show_field">Изменить изображение</a></div>
+  <% end %>
+  <div class="reg_form_line <%=" hidden_field" unless form.object.new_record?%>"><%= form.label :avatar, "Аватара " %><%= form.file_field :avatar, :class => "reg_text"  %></div>
 </div>
 
 <div class="additional additional_header"><b>Диллинговый центр</b></div>
@@ -47,6 +53,15 @@
     </div>
     <div style="float:left; margin:0px 10px 0px 10px;"><img src="/images/total.gif"></div>
     <div style="float:left; color:#4d624d; font-size:11px; width:200px; margin-top:10px">При внесении своего центра, адрес его сайта обязателен</div>
+
+    <div class="additional_fields">
+      <div class="reg_form_line"><%= form.label :show_name, "Показывать имя?" %><%= form.check_box :show_name%></div>
+      <div class="mfooter"></div><br>
+      <div class="reg_form_line"><%= form.label :icq, "ICQ" %><%= form.text_field :icq, :class => "reg_text" %></div>
+      <div class="reg_form_line"><%= form.label :skype, "Skype" %><%= form.text_field :skype, :class => "reg_text" %></div>
+      <div class="reg_form_line"><%= form.label :yahoo, "Yahoo messenger" %><%= form.text_field :yahoo, :class => "reg_text" %></div>
+      <div class="reg_form_line"><%= form.label :msn, "MSN" %><%= form.text_field :msn, :class => "reg_text" %></div>
+    </div>
     <div class="mfooter"></div>
     <% if form.object.new_record? %>
       <div class="chekbox"><input type="checkbox" id="check" name="agreement" value="true"> Я ознакомлен с <a href="#" class="lblue" style="font-size:11px ">правилами</a></div>

@@ -71,7 +71,9 @@ $(document).ready(function(){
                     comments="";
                     $.each(data,function(i,item){
                         comments+="<div class='comment comment_"+item.comment.id+"' style='margin-top:5px; '><div class='comm_title'>";
-                        comments+="<div class='user_name'><a href='/users/"+item.comment.user.id+"'>"+item.comment.user.first_name+" "+item.comment.user.last_name+"</a></div>";
+                        if (item.comment.user.show_name=="true") {user_name = item.comment.user.first_name+" "+item.comment.user.last_name;}
+                        else{user_name = item.comment.user.login}
+                        comments+="<div class='user_name'><a href='/users/"+item.comment.user.id+"'>"+user_name+"</a></div>";
                         comments+="<div class='user_time'>"+item.comment.created_at+"<span>07:47</span></div>";
                         comments+="</div><div class='mfooter'></div>";
                         comments+="<p>"+item.comment.content+"</p>";
@@ -107,6 +109,13 @@ $(document).ready(function(){
                 });
          });
 
+   $("a.show_field").click( function(e) {
+      e.preventDefault();
+      $(this).parent().next(".hidden_field").fadeIn("slow");
+      $(this).parent().fadeOut("slow");
+   });
+
+ $(".hidden_field").hide();
  ajax_delete();
 });
 

@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
     last_name+" "+first_name
   end
 
+  def name_or_login
+    show_name? ? name : login
+  end
+
   # Cheks if user has enaugh own rating to rate objects with such rate value. Anyway user can add rating -1 to 1.  Admin can add any possible rating
   # ==Params
   # val - rating value.
