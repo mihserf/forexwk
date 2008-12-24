@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   has_many :additions
   has_many :comments
 
+  has_many :user_actions, :dependent => :destroy
+  has_many :actions, :through => :user_actions
+
   belongs_to :dealing_center
 
   validates_uniqueness_of :login
@@ -12,7 +15,10 @@ class User < ActiveRecord::Base
   has_attached_file :avatar,
                     :styles => { :thumb => "29x29>",
                                  :square => ["29x29#", :jpg],
-                                 :normal  => "150x150>" }
+                                 :normal  => "150x150>" },
+                    :url => "/attachments/:class/:id/:style_:basename.:extension",
+                    :path => ":rails_root/public/attachments/:class/:id/:style_:basename.:extension"
+
 
   acts_as_rateable
 
