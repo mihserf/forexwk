@@ -31,13 +31,13 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :video
   map.resources :events
 
-  map.resources:actions
+  map.resources:contests
 
   map.namespace :admin do |admin|
     admin.resources :catalogues
     admin.resources :users, :only => [:index,:destroy]
     admin.resources :dealing_centers
-    admin.resources :actions
+    admin.resources :contests
   end
 
 

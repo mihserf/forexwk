@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user: 
+  contest: 
+  rating_total: 1
+  rating_avg: 9.99
+
+two:
+  user: 
+  contest: 
+  rating_total: 1
+  rating_avg: 9.99

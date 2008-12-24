@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   has_many :additions
   has_many :comments
 
-  has_many :user_actions, :dependent => :destroy
-  has_many :actions, :through => :user_actions
+  has_many :user_contests, :dependent => :destroy
+  has_many :contests, :through => :user_contests
 
   belongs_to :dealing_center
 
