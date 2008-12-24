@@ -26,6 +26,7 @@ class UsersController < ApplicationController
     else
       @user = current_user
     end
+    @user_tags = Article.tag_counts(:conditions => {:user_id => @user.id})
   end
 
   def edit

@@ -87,7 +87,7 @@
 				</div>
 				<div class="ad">
                                     <% tag_cloud @tags, %w(a b c d) do |tag, css_class| %>
-                                      <%= link_to tag.name, { :action => :tag, :id => tag.name }, :class => css_class %>
+                                      <%= link_to tag.name, { :controller => :articles,  :action => :tag, :id => tag.name }, :class => css_class %>
                                     <% end %>
 				</div>
     		</div>
