@@ -54,12 +54,12 @@
   <div id="rightbar">
           <div class="rate_box">
                   <div style="margin-bottom:10px; "><b>Рейтинг</b></div>
-                  <div class="rate_total">Общий <span style="color:#3f843f "><%= current_user.stat_rating.rating_total %></span></div>
-                  <div class="rate_total">Средний балл <span style="color:#3f843f "><%= current_user.stat_rating.rating_avg %></span></div>
+                  <div class="rate_total">Общий <span style="color:#3f843f "><%= (current_user.stat_rating.nil? ? 0 : current_user.stat_rating.rating_total) %></span></div>
+                  <div class="rate_total">Средний балл <span style="color:#3f843f "><%= (current_user.stat_rating.nil? ? 0 : current_user.stat_rating.rating_avg) %></span></div>
           </div>
           <div class="names">Дополнений <span style="color:#3f843f "><%= Addition.count(:conditions=>["user_id=:user_id",{:user_id=>current_user.id}]) %></span></div>
           <div class="names">Комментариев <span style="color:#3f843f "><%= Comment.count(:conditions=>["user_id=:user_id",{:user_id=>current_user.id}]) %></span></div>
-          <div class="names">Статей <a href="#"><%= link_to article_count, user_articles_path(@user) %></a></div>
+          <div class="names">Статей <%= (article_count==0 ? 0 : link_to(article_count, user_articles_path(@user)) )%></div>
           <div class="mfooter" style="margin-bottom:5px; "></div>
           <% unless @user_tags.empty? %>
             <div class="ad">
