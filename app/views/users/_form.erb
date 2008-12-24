@@ -43,7 +43,7 @@
 Вы можете внести его позже, или изменить, но при повторном изменении баллы, в соответствиии
 с правилами, не зачисляются.</div>
 <div class="reg_form_line"><%= form.label "Диллинговый центр" %>
-<%= form.select :dealing_center_id, DealingCenter.find(:all, :select => "id,name", :conditions => ["temp=:temp "+(form.object.new_record? ? "":"OR added_by_user=:user_id"),{:temp=>false,:user_id=>form.object.id}], :order => "name").map{|i| [i.name,i.id]}, {:include_blank => true}, :class => "reg_text"   %>
+<%= form.select :dealing_center_id, DealingCenter.find(:all, :select => "id,name", :conditions => ["temp=:temp OR temp='nil'"+(form.object.new_record? ? "":"OR added_by_user=:user_id"),{:temp=>false,:user_id=>form.object.id}], :order => "name").map{|i| [i.name,i.id]}, {:include_blank => true}, :class => "reg_text"   %>
 </div>
     <div style="float:left">
             <% fields_for DealingCenter.new do |fd| %>
