@@ -13,7 +13,6 @@
 </head>
 <body>
 
-<p style="color: green"><%= flash[:notice] %></p>
 
 <div id="page">
 
@@ -92,6 +91,7 @@
 				</div>
     		</div>
                 <div id="middlebar">
+                  <p style="color: green"><%= flash[:notice] %></p>
                   <div class="hr"><hr /></div>
                   <%= yield  %>
     		</div>
