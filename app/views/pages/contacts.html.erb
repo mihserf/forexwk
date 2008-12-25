@@ -1,0 +1,29 @@
+
+<%=@page.content%>
+
+<% if flash[:notice] %>
+  <h3><%=flash[:notice]%></h3>
+<% else %>
+  <% form_tag('/send_message') do %>
+
+  <dl>
+    <dt>Ваше сообщение:</dt>
+    <dd><%= text_area_tag 'message', nil, :size =>"40x4" %></dd>
+    <dt>Контактное лицо:</dt>
+    <dd><%= text_field_tag 'name' %></dd>
+    <dt>Телефон:</dt>
+    <dd><%= text_field_tag 'phone' %></dd>
+    <dt>email:</dt>
+    <dd><%= text_field_tag 'email' %></dd>
+  </dl>
+
+
+  <p>
+  <%= submit_tag 'Отправить' %>
+  </p>
+  <% end %>
+<% end %>
+
+<% if flash[:error] %>
+  <h3><%=flash[:error]%></h3>
+<% end %>

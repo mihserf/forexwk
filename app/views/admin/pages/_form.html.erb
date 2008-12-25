@@ -1,15 +1,16 @@
 <%= javascript_include_tag :fckeditor %>
 
-<%= error_messages_for :event %>
+<%= error_messages_for :page %>
 <%form_for [:admin,@page] do |f|%>
-Язык <b><%=lang_id(@lang)%></b>
+
 <p>
 <%= f.label 'Заголовок' %><br />
 <%=f.text_field :name%>
 </p>
 <p>
-    <%=ident_choice(@page)%>
- </p>
+  <%= f.label 'Пермалинк(указывается в URL)' %><br />
+  <%=text_field :permalink%>
+</p>
 <p>
 <%= f.label 'Контент' %><br />
 <%= fckeditor_textarea(:page, :content, :toolbarSet => 'Simple', :width => '98%', :height => '300px') %>
