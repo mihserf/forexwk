@@ -10,11 +10,9 @@
     <dt>Ваше сообщение:</dt>
     <dd><%= text_area_tag 'message', nil, :size =>"40x4" %></dd>
     <dt>Контактное лицо:</dt>
-    <dd><%= text_field_tag 'name' %></dd>
-    <dt>Телефон:</dt>
-    <dd><%= text_field_tag 'phone' %></dd>
+    <dd><%= text_field_tag 'name', (current_user ? current_user.name : "") %></dd>
     <dt>email:</dt>
-    <dd><%= text_field_tag 'email' %></dd>
+    <dd><%= text_field_tag 'email', (current_user ? current_user.email : "") %></dd>
   </dl>
 
 
@@ -22,8 +20,4 @@
   <%= submit_tag 'Отправить' %>
   </p>
   <% end %>
-<% end %>
-
-<% if flash[:error] %>
-  <h3><%=flash[:error]%></h3>
 <% end %>

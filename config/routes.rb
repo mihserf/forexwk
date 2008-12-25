@@ -3,6 +3,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :user_session
   map.root :controller => "user_sessions", :action => "new"
 
+  map.resources :send_message, :only => :create
+  
   map.resource :account, :controller => "users"
   map.resources :users, :collection => {:check_login => :get,:check_email => :get} do |user|
     user.resources :articles, :collection => {:per_rating => :get}
