@@ -6,9 +6,11 @@
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title><%= controller.action_name %></title>
   <%= stylesheet_link_tag 'style' %>
+  <%= stylesheet_link_tag 'facebox' %>
   <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
   <%= javascript_tag "var MODERATOR = true;" if moderator? %>
   <script type="text/javascript" src="/javascripts/jquery-1.2.6.pack.js"></script>
+  <script type="text/javascript" src="/javascripts/facebox/facebox.js"></script>
   <script type="text/javascript" src="/javascripts/own.js"></script>
 </head>
 <body>

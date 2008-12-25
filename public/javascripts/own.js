@@ -3,16 +3,7 @@ $.postJSON = function(url, data, callback) {
 };
 
 $(document).ready(function(){
-  /* $.getJSON("/differences",{accommodation_type_id:accommodation_type_id},get_differences);
-      function get_differences(differences) {
-            differences_options="";
-            $.each(differences,function(i,val){
-                differences_options+="<option value="+val.id+">"+val.name+"</option>";
-                })
-            $(".differences_selection").html(differences_options);
-            set_price();
-          }
-    */
+  $('a[rel*=facebox]').facebox();
   $("a.rjs").click(  function() {
             $.ajax({
                 //type: "POST",

@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   # GET /users.xml
   def new
     @user = User.new
+    @rules = Page.find_by_permalink("rules")
   end
 
   def create

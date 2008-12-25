@@ -64,9 +64,15 @@
     </div>
     <div class="mfooter"></div>
     <% if form.object.new_record? %>
-      <div class="chekbox"><input type="checkbox" id="check" name="agreement" value="true"> Я ознакомлен с <a href="#" class="lblue" style="font-size:11px ">правилами</a></div>
+      <div class="chekbox"><input type="checkbox" id="check" name="agreement" value="true"> Я ознакомлен с <a href="#rules" class="lblue" style="font-size:11px " rel="facebox">правилами</a></div>
     <% end %>
     <div style="margin-top:10px; "><input type="image" src="/images/send.gif"></div>
 </div>
 <div class="mfooter" style="margin-bottom:5px; "></div>
 
+<a name="rules"></a>
+<div id="rules">
+  <%= javascript_tag "$('#rules').hide();" %>
+  <h3><%= @rules.name %></h3>
+  <%= @rules.content %>
+</div>
