@@ -34,10 +34,16 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :contests, :member => {:users => :get}
 
   map.namespace :admin do |admin|
+    admin.resources :pages
     admin.resources :catalogues
     admin.resources :users, :only => [:index,:destroy]
     admin.resources :dealing_centers
     admin.resources :contests
+  end
+
+  map.with_options :controller => "pages" do |page|
+    page.home "/", :action =>  "home"
+    page.home "/:id", :action => "show"
   end
 
 

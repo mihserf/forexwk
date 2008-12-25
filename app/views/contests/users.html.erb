@@ -2,7 +2,7 @@
 <p><%= @contest.description %></p>
 <p><%= @contest.prize %></p>
 
-<h3>Топ участников</h3>
+<h3>Топ участников акции</h3>
 <ul>
 <% for user in @users %>
   <li style="list-style:none"><%= link_to user.name_or_login, user_path(user) %>
