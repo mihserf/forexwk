@@ -55,6 +55,9 @@
           <div class="rate_box">
                   <div style="margin-bottom:10px; "><b>Рейтинг</b></div>
                   <div class="rate_total">Общий <span style="color:#3f843f "><%= (current_user.stat_rating.nil? ? 0 : current_user.stat_rating.rating_total) %></span></div>
+                  <% if current_contest %>
+                    <div class="rate_total">За текущую акцию <span style="color:#3f843f "><%= current_user.stat_rating_total_for_contest(current_contest) %></span></div>
+                  <% end %>
                   <div class="rate_total">Средний балл <span style="color:#3f843f "><%= (current_user.stat_rating.nil? ? 0 : current_user.stat_rating.rating_avg) %></span></div>
           </div>
           <div class="names">Дополнений <span style="color:#3f843f "><%= Addition.count(:conditions=>["user_id=:user_id",{:user_id=>current_user.id}]) %></span></div>

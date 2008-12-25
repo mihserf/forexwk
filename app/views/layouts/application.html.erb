@@ -32,7 +32,7 @@
 		</div>
 		<div id="common_menu">
 			<div id="menu_top">
-				<div class="menu_links"><a href="#">О проекте</a><a href="#">Конкурс рейтингов</a><a href="#">Карта сайта</a><a href="#">Обратная связь</a></div>
+				<div class="menu_links"><a href="#">О проекте</a><%= link_to 'Конкурс рейтингов', (current_contest ? users_contest_path(current_contest.id) : contests_path)%><a href="#">Карта сайта</a><a href="#">Обратная связь</a></div>
 				<div class="vert_line"></div>
 				
                                 <% if !current_user %>

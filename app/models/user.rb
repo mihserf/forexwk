@@ -45,4 +45,21 @@ class User < ActiveRecord::Base
     return true if admin || (val.abs>=0 && val.abs<=1)
     stat_rating.nil? ? false : stat_rating.rating_total.abs >= val.to_i.abs
   end
+
+  def stat_ratings_for_contest(contest=current_contest)
+    UserContest.find(:first, :select => "rating_total, rating_avg", :conditions => ["user_id = :user_id AND contest_id = :contest_id",{:user_id => id, :contest_id => contest.id}])
+  end
+
+  def stat_rating_total_for_contest(contest=current_contest)
+       stat_ratings_for_contest(contest).rating_total rescue 0
+  end
+
+  def stat_rating_avg_for_contest(contest=current_contest)
+       stat_ratings_for_contest(contest).rating_avg rescue 0
+  end
+
+  def rating_for_contest(contest=current_contest)
+    rating_in_dates(contest.date_start,contest.date_end)
+  end
+
 end

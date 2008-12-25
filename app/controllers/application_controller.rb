@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   # from your application log (in this case, all fields with names like "password"). 
 
   filter_parameter_logging :password, :password_confirmation
-  helper_method :current_user_session, :current_user
+  helper_method :current_user_session, :current_user, :current_contest
 
 
   def tags
@@ -23,7 +23,10 @@ class ApplicationController < ActionController::Base
 
   private
 
-    
+    def current_contest
+      return @current_contest if defined?(@current_contest)
+      @current_contest = Contest.find(:first, :conditions => ["date_start<='#{Time.now.to_date}' AND '#{Time.now.to_date}'<=date_end"])
+    end
 
     def admin_required
       if current_user && admin?

@@ -964,7 +964,7 @@ a:hover.lblue {text-decoration: none}
 
 .rate_box {
 	width:171px;
-	height:48px;
+	overflow:hidden;
 	padding:13px;
 	background-color:#f7ede9;
 	margin-bottom:15px;

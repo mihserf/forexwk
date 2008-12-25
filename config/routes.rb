@@ -31,7 +31,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :video
   map.resources :events
 
-  map.resources:contests
+  map.resources :contests, :member => {:users => :get}
 
   map.namespace :admin do |admin|
     admin.resources :catalogues

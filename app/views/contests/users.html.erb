@@ -1,0 +1,17 @@
+<h2><%= @contest.name %></h2>
+<p><%= @contest.description %></p>
+<p><%= @contest.prize %></p>
+
+<h3>Топ участников</h3>
+<ul>
+<% for user in @users %>
+  <li style="list-style:none"><%= link_to user.name_or_login, user_path(user) %>
+  <div class="rate_box">
+          <div style="margin-bottom:10px; "><b>Рейтинг</b></div>
+          <div class="rate_total">Общий <span style="color:#3f843f "><%= (user.stat_rating.nil? ? 0 : user.stat_rating.rating_total) %></span></div>
+          <div class="rate_total">За текущую акцию <span style="color:#3f843f "><%= user.stat_rating_total_for_contest(@contest) %></span></div>
+          <div class="rate_total">Средний балл <span style="color:#3f843f "><%= (user.stat_rating.nil? ? 0 : user.stat_rating.rating_avg) %></span></div>
+  </div>
+  </li>
+<%end%>
+</ul>

@@ -61,18 +61,41 @@ module Juixe
       module InstanceMethods
         # Helper method that defaults the current time to the submitted field.
         def add_rating(rating_val, current_user,reason=nil)
+          
           rate_section = rating < Settings.rating.point ? rating.floor+1 : Settings.rating.point
-          if rating_val.abs > rate_section
+          if rating_val.abs > Settings.rating.point
             ((rating_val.abs/rate_section)>1 ? rating_val.abs/rate_section : 1).times do
               Rating.create(:user_id => current_user.id, :reason => reason, :rating => (rating_val>0 ? rate_section : (rate_section-rate_section*2)), :rateable_type => self.class.to_s, :rateable_id => self.id)
+#              unless self.class.to_s=="User"
+#                Rating.create(:user_id => current_user.id, :reason => reason, :rating => (rating_val>0 ? rate_section : (rate_section-rate_section*2)), :rateable_type => 'User', :rateable_id => self.user.id)
+#              end
             end
           else
               Rating.create(:user_id => current_user.id, :reason => reason, :rating => rating_val, :rateable_type => self.class.to_s, :rateable_id => self.id)
+#              unless self.class.to_s=="User"
+#                Rating.create(:user_id => current_user.id, :reason => reason, :rating => rating_val, :rateable_type => 'User', :rateable_id => self.user.id)
+#              end
           end
-          build_stat_rating(:stat_rateable_type => self.class, :stat_rateable_id => self.id) if stat_rating.nil?
+          build_stat_rating(:stat_rateable_type => self.class.to_s, :stat_rateable_id => self.id) if stat_rating.nil?
           stat_rating.rating_total = rating_total
           stat_rating.rating_avg = rating
           stat_rating.save
+
+#          unless self.class.to_s=="User"
+#            user.build_stat_rating(:stat_rateable_type => "User", :stat_rateable_id => user.id) if user.stat_rating.nil?
+#            user.stat_rating.rating_total = user.rating_total
+#            user.stat_rating.rating_avg = user.rating
+#            user.stat_rating.save
+#          end
+          self.user.add_rating(rating_val, User.find(:first,:conditions => {:admin => true}),self.class.to_s) unless self.class.to_s=="User"
+          # writing rating data of rated user for current contest
+          if self.class.to_s=="User" && current_contest = Contest.find(:first, :conditions => ["date_start<='#{Time.now.to_date}' AND '#{Time.now.to_date}'<=date_end"])
+            user_contest = UserContest.find_or_create_by_contest_id_and_user_id(current_contest.id,id)
+            user_contest.rating_total = Rating.sum(:rating,:conditions => "rateable_id=#{id} AND rateable_type='User' AND created_at >= '#{current_contest.date_start}' AND created_at <= '#{current_contest.date_end}'")
+            user_contest_rating_amount = Rating.count(:conditions => "rateable_id=#{id} AND rateable_type='User' AND created_at >= '#{current_contest.date_start}' AND created_at <= '#{current_contest.date_end}'")
+            user_contest.rating_avg = user_contest_rating_amount==0 ? 0.0 : user_contest.rating_total/user_contest_rating_amount
+            user_contest.save
+          end
           #ratings << rating
         end
         
@@ -92,7 +115,7 @@ module Juixe
         # Helper method that returns total rating
         #
         def rating_total
-          Rating.sum(:rating,:conditions => "rateable_id=#{self.id} AND rateable_type='#{self.class}'")
+          Rating.sum(:rating,:conditions => "rateable_id=#{self.id} AND rateable_type='#{self.class.to_s}'")
         end
 
         # Helper method that returns rating amount

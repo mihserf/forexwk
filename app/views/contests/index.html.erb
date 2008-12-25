@@ -1,0 +1,6 @@
+
+<ul>
+<% for contest in @contests %>
+  <li style="list-style:none"><%= link_to contest.name, users_contest_path(contest) %></li>
+<%end%>
+</ul>
