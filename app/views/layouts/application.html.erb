@@ -45,13 +45,8 @@
 			</div>
 			<div id="menu_bottom">
 				<ul class="menu">
-					<li><a href="">HOME</a></li>
-					<li class="active">Статьи</li>
-					<li><a href="">PORTFOLIO</a></li>
-					<li><a href="">ABOUT US</a></li>
-					<li><a href="">CONTACTS</a></li>
-					<li><a href="">ABOUT US</a></li>
-					<li><a href="">CONTACTS</a></li>
+					<li <%= "class='active'" if request.path=="/" %> ><%= request.path=="/" ? "Главная" : link_to("Главная", "/") %></li>
+					<li <%= "class='active'" if params[:controller]=="articles" %> ><%= params[:controller]=="articles" ? "Статьи" : link_to("Статьи", articles_path) %></li>
 				</ul>
                                 <% if admin? %>
                                   <ul class="menu">
