@@ -1,3 +1,4 @@
+<%= javascript_include_tag :fckeditor %>
 
 <%= error_messages_for :article %>
 <%form_for [@catalogue,@article], :html => { :multipart => true } do |f|%>
@@ -14,7 +15,7 @@
 
 <p>
 <%= f.label 'Статья' %><br />
-<%=f.text_area :content%>
+<%= fckeditor_textarea(:article, :content, :toolbarSet => 'Simple', :width => '98%', :height => '300px') %>
 </p>
 <p>
 <%= f.label 'Теги (через запятую)' %><br />

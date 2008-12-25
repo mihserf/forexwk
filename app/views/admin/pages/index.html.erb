@@ -1,16 +1,12 @@
-<%@locales=Localedb.find(:all)%>
-
 <ul>
 <% for page in @pages %>
-  <li style="list-style:none"><a href="<%="/"+Localedb.global.short rescue ""%>/<%=page.permalink%>"><%=page.name%></a>
+  <li style="list-style:none"><a href="/<%=page.permalink%>"><%=page.name%></a>
   <div class='admin_edit_actions' style="font-size:10pt;  padding-bottom:7px">
-    <%@locales.each do |loc|%>
-        <%=loc.short%><%= link_to image_tag("/images/edit_ico.gif",:alt=>"Редактировать"), edit_admin_l_page_path(loc.short,page) %>
-    <%end%>
+    <%= link_to image_tag("/images/edit_ico.gif",:alt=>"Редактировать"), edit_admin_page_path(page) %>
      | <%=link_to image_tag("/images/delete_ico.gif",:alt=>"Удалить"), admin_page_path(page), :method => :delete, :confirm => 'подтвердите удаление'%>
   </div>
   </li>
 <%end%>
 </ul>
 
-<%= link_to 'Добавить страницу', new_admin_l_page_path(lang_id(@lang)) %>
+<%= link_to 'Добавить страницу', new_admin_page_path %>
