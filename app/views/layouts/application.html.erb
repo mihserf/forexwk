@@ -53,6 +53,15 @@
 					<li><a href="">ABOUT US</a></li>
 					<li><a href="">CONTACTS</a></li>
 				</ul>
+                                <% if admin? %>
+                                  <ul class="menu">
+                                          <li <%= "class='active'" if params[:controller]=="admin/catalogues" %> ><%= link_to "Каталоги", admin_catalogues_path %></li>
+                                          <li <%= "class='active'" if params[:controller]=="admin/users" %> ><%= link_to "Пользователи", admin_users_path %></li>
+                                          <li <%= "class='active'" if params[:controller]=="admin/dealing_centers" %> ><%= link_to "Диллинговые центры", admin_dealing_centers_path %></li>
+                                          <li <%= "class='active'" if params[:controller]=="admin/pages" %> ><%= link_to "Страницы", admin_pages_path %></li>
+                                          <li <%= "class='active'" if params[:controller]=="admin/contests" %> ><%= link_to "Акции", admin_contests_path %></li>
+                                  </ul>
+                                <% end %>
 			</div>
 			<div class="mfooter"></div>
 			<div class="hr"><hr /></div>
@@ -96,6 +105,7 @@
                   <p style="color: green"><%= flash[:notice] %></p>
                   <p style="color: red"><%= flash[:error] if flash[:error] %></p>
                   <div class="hr"><hr /></div>
+                  <span class="buffer"></span>
                   <%= yield  %>
     		</div>
 	</div>
