@@ -101,10 +101,12 @@ h4 a:hover {color:#666666; text-decoration: none;}
 	width: 173px;
 	margin: 10px 0px 0px 35px;
 	}
-	
+.search_text {
+    float: left;
+}
 .search_text input{
 	height: 19px;
-	width: 147px;
+	width: 137px;
 	color: #666666;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 10px;
