@@ -15,7 +15,7 @@ class Notifier < ActionMailer::Base
     from          "ForexWK <noreply@forexwk.com>"
     recipients    user.email
     sent_on       Time.now
-    body({:raing_val => rating_val,:reason => reason})
+    body({:user => user,:rating_val => rating_val,:reason => reason})
   end
 
   def message_addition_added(user, addition)

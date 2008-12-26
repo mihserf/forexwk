@@ -1,4 +1,4 @@
-<p>Вашу статью <%= @addition.article.name %> дополнили</p>
+<p>Вашу статью <%= link_to @addition.article.name, catalogue_article_url(@addition.article.catalogue.id, @addition.article.id) %> дополнили</p>
 
 
 

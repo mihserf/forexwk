@@ -61,7 +61,7 @@ module Juixe
       module InstanceMethods
         # Helper method that defaults the current time to the submitted field.
         def add_rating(rating_val, current_user,reason=nil)
-          
+          rating_val = rating_val.to_i
           rate_section = rating < Settings.rating.point ? rating.floor+1 : Settings.rating.point
           if rating_val.abs > Settings.rating.point
             ((rating_val.abs/rate_section)>1 ? rating_val.abs/rate_section : 1).times do
@@ -81,13 +81,27 @@ module Juixe
           stat_rating.rating_avg = rating
           stat_rating.save
 
+
 #          unless self.class.to_s=="User"
 #            user.build_stat_rating(:stat_rateable_type => "User", :stat_rateable_id => user.id) if user.stat_rating.nil?
 #            user.stat_rating.rating_total = user.rating_total
 #            user.stat_rating.rating_avg = user.rating
 #            user.stat_rating.save
 #          end
-          self.user.add_rating(rating_val, User.find(:first,:conditions => {:admin => true}),self.class.to_s) unless self.class.to_s=="User"
+          
+
+          case self.class.to_s
+            when "Article"
+              reason_str="Оценили статью"
+            when "Addition"
+              reason_str="Оценили дополнение"
+            else
+              reason_str=reason
+          end
+
+          
+          
+          self.user.add_rating(rating_val, User.find(:first,:conditions => {:admin => true}),reason_str) unless self.class.to_s=="User"
           # writing rating data of rated user for current contest
           if self.class.to_s=="User" && current_contest = Contest.find(:first, :conditions => ["date_start<='#{Time.now.to_date}' AND '#{Time.now.to_date}'<=date_end"])
             user_contest = UserContest.find_or_create_by_contest_id_and_user_id(current_contest.id,id)
@@ -96,6 +110,12 @@ module Juixe
             user_contest.rating_avg = user_contest_rating_amount==0 ? 0.0 : user_contest.rating_total/user_contest_rating_amount
             user_contest.save
           end
+
+          #sending notifiation about rating changing
+          if self.class.to_s == "User"
+            Notifier.deliver_message_rating_changed(self, rating_val, reason_str)
+          end
+
           #ratings << rating
         end
         

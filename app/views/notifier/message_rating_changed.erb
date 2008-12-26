@@ -1,5 +1,14 @@
-<p>Ваш рейтинг изменён на <%= @rating_val %> баллов</p>
+<%
+  if @rating_val.to_s.last.to_i.abs == 1
+    point="балл"
+  elsif ((@rating_val.to_s.last.to_i.abs > 1) && (@rating_val.to_s.last.to_i.abs < 5) && (@rating_val.to_i.abs > 14)) || ((@rating_val.to_i.abs > 1) && (@rating_val.to_i.abs < 5))
+    point="балла"
+  else
+    point="баллов"
+  end
+%>
+<p>Ваш рейтинг изменён на <%= @rating_val %> <%= point %></p>
 <p>Причина изменения: <%= @reason %></p>
-
+<p><%= link_to 'Ваша персональная страница', user_url(@user) %></p>
 
 
