@@ -6,12 +6,15 @@ class UsersController < ApplicationController
   # GET /users.xml
   def new
     @user = User.new
+    @messaging_rule = MessagingRule.new
     @rules = Page.find_by_permalink("rules")
   end
 
   def create
     @user = User.new(params[:user])
-
+    @messaging_rule = MessagingRule.new(params[:messaging_rule])
+    @rules = Page.find_by_permalink("rules")
+    @user.messaging_rule=@messaging_rule
     if params[:agreement]=="true" && @user.save
       add_dealing_center
       flash[:notice] = "Аккаунт создан!"
@@ -36,6 +39,7 @@ class UsersController < ApplicationController
     else
       @user = current_user
     end
+    @messaging_rule = @user.messaging_rule
   end
 
   def update
@@ -49,6 +53,8 @@ class UsersController < ApplicationController
       params[:user].delete(:password_confirmation)
     end
     if params[:user][:password]==@user.password then params[:user][:password_confirmation]=@user.password end
+    @user.messaging_rule.update_attributes(params[:messaging_rule])
+    @user.save
     if @user.update_attributes(params[:user])
       add_dealing_center
       flash[:notice] = "Аккаунт обновлён!"

@@ -15,12 +15,14 @@
     <div class="reg_form_line"><%= form.label :admin, "Администратор?" %><%= form.check_box :admin%></div>
     <div class="reg_form_line"><%= form.label :admin, "Модератор?" %><%= form.check_box :moderator%></div>
   <% end %>
-  <div class="reg_form_line"><%= form.label :first_name, "Имя" %><%= form.text_field :first_name, :class => "reg_text" %></div>
-  <div class="reg_form_line"><%= form.label :last_name, "Фамилия" %><%= form.text_field :last_name, :class => "reg_text" %></div>
-  <div class="reg_form_line"><%= form.label :login, "Логин " %><%= form.text_field :login, :class => "reg_text" %> <%= link_to 'проверить', check_login_users_path, :class => 'check_unique', :rel => "user_login" %><div class="user_login"></div></div>
-  <div class="reg_form_line"><%= form.label :email, "E-mail " %><%= form.text_field :email, :class => "reg_text" %> <%= link_to 'проверить', check_email_users_path, :class => 'check_unique', :rel => "user_email" %><div class="user_email"></div></div>
-  <div class="reg_form_line"><%= form.label :status_string, "Статус (подпись)" %><%= form.text_field :status_string, :class => "reg_text" %></div>
 
+  <% if form.object.new_record? %>
+    Для регистрации <span class="marked_text">необходимо ввести только основные данные</span> (Логин, E-mail, пароль и подтверждение пароля). Остальные данные Вы можете ввести позже при редактировании своего профайла.
+  <% end %>
+  <div class="additional additional_header"><b>Основные данные</b></div>
+  <div class="reg_form_line"><%= form.label :login, "Логин " %><%= form.text_field :login, :class => "reg_text" %> <%= link_to 'проверить', check_login_users_path, :class => 'check_unique', :rel => "user_login" %><div class="user_login check_result"></div></div>
+  <div class="reg_form_line"><%= form.label :email, "E-mail " %><%= form.text_field :email, :class => "reg_text" %> <%= link_to 'проверить', check_email_users_path, :class => 'check_unique', :rel => "user_email" %><div class="user_email check_result"></div></div>
+  
   <% unless form.object.new_record? %>
     <div class="show_field"><img src="/images/change_icon.gif"> <a href="#" id="change_password_link" class="lbroun show_field">Изменить пароль</a></div>
   <% end %>
@@ -30,13 +32,7 @@
     <input type="hidden" name="change_password" id="change_password" value="0"/>
   </div>
 
-  
-  <div class="photo"><%= image_tag @user.avatar.url(:normal), :style=>"padding:10px;"  unless form.object.new_record? %></div>
-  <%  unless form.object.new_record? %>
-    <div class="show_field"><img src="/images/change_icon.gif"> <a href="#" class="lbroun show_field">Изменить изображение</a></div>
-  <% end %>
-  <div class="reg_form_line <%=" hidden_field" unless form.object.new_record?%>"><%= form.label :avatar, "Аватара " %><%= form.file_field :avatar, :class => "reg_text"  %></div>
-</div>
+ </div>
 
 <div class="additional additional_header"><b>Диллинговый центр</b></div>
 <div class="normal_text">Вибирая или предлагая диллинговый центр, вы получаете <%= Settings.rating.bonus.for_dealing_center %> баллов в персональный рейтинг активности.
@@ -55,13 +51,36 @@
     <div style="float:left; color:#4d624d; font-size:11px; width:200px; margin-top:10px">При внесении своего центра, адрес его сайта обязателен</div>
 
     <div class="additional_fields">
-      <div class="reg_form_line"><%= form.label :show_name, "Показывать имя?" %><%= form.check_box :show_name%></div>
+      <div class="additional additional_header"><b>Дополнительные данные</b></div>
+      <div class="reg_form_line"><%= form.label :first_name, "Имя" %><%= form.text_field :first_name, :class => "reg_text" %></div>
+      <div class="reg_form_line"><%= form.label :last_name, "Фамилия" %><%= form.text_field :last_name, :class => "reg_text" %></div>
+      <div class="reg_form_line"><%= form.label :show_name, "Показывать имя и фамилию?" %><%= form.check_box :show_name, :class => "reg_checkbox"%></div>
+      <div class="reg_form_line"><%= form.label :status_string, "Статус (подпись)" %><%= form.text_field :status_string, :class => "reg_text" %></div>
+      <div class="photo"><%= image_tag @user.avatar.url(:normal), :style=>"padding:10px;"  unless form.object.new_record? %></div>
+      <% unless form.object.new_record? %>
+        <div class="show_field"><img src="/images/change_icon.gif"> <a href="#" class="lbroun show_field">Изменить изображение</a></div>
+      <% end %>
+      <div class="reg_form_line <%=" hidden_field" unless form.object.new_record?%>"><%= form.label :avatar, "Аватара " %><%= form.file_field :avatar, :class => "reg_text"  %></div>
+
       <div class="mfooter"></div><br>
+      <div class="additional additional_header"><b>Средства связи</b></div>
       <div class="reg_form_line"><%= form.label :icq, "ICQ" %><%= form.text_field :icq, :class => "reg_text" %></div>
       <div class="reg_form_line"><%= form.label :skype, "Skype" %><%= form.text_field :skype, :class => "reg_text" %></div>
       <div class="reg_form_line"><%= form.label :yahoo, "Yahoo messenger" %><%= form.text_field :yahoo, :class => "reg_text" %></div>
       <div class="reg_form_line"><%= form.label :msn, "MSN" %><%= form.text_field :msn, :class => "reg_text" %></div>
     </div>
+    <div class="mfooter"></div>
+    <% fields_for @messaging_rule do |fm|%>
+      <div class="messaging_rules">
+        <div class="additional additional_header"><b>Уведомления</b></div>
+        <p>Отметьте какие уведомления Вы хотели бы получать на E-mail</p>
+        <div class="buffer"></div>
+        <div class="reg_form_line"><%= fm.label :rating_changed, "Изменение рейтинга" %> <%= fm.check_box :rating_changed, :class => "reg_checkbox" %></div>
+        <div class="reg_form_line"><%= fm.label :addition_added, "Дополнение к Вашей статье" %> <%= fm.check_box :addition_added, :class => "reg_checkbox" %></div>
+        <div class="reg_form_line"><%= fm.label :comment_added, "Комментарий к Вашему дополнению" %> <%= fm.check_box :comment_added, :class => "reg_checkbox" %></div>
+        <div class="reg_form_line"><%= fm.label :new_contest, "Новая акция" %> <%= fm.check_box :new_contest, :class => "reg_checkbox" %></div>
+      </div>
+    <% end %>
     <div class="mfooter"></div>
     <% if form.object.new_record? %>
       <div class="chekbox"><input type="checkbox" id="check" name="agreement" value="true"> Я ознакомлен с <a href="#rules" class="lblue" style="font-size:11px " rel="facebox">правилами</a></div>
@@ -70,9 +89,11 @@
 </div>
 <div class="mfooter" style="margin-bottom:5px; "></div>
 
-<a name="rules"></a>
-<div id="rules">
-  <%= javascript_tag "$('#rules').hide();" %>
-  <h3><%= @rules.name %></h3>
-  <%= @rules.content %>
-</div>
+<% if form.object.new_record? %>
+  <a name="rules"></a>
+  <div id="rules">
+    <%= javascript_tag "$('#rules').hide();" %>
+    <h3><%= @rules.name %></h3>
+    <%= @rules.content %>
+  </div>
+<% end %>

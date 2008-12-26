@@ -6,9 +6,19 @@ class User < ActiveRecord::Base
   has_many :user_contests, :dependent => :destroy
   has_many :contests, :through => :user_contests
 
+  has_one :messaging_rule
+
   belongs_to :dealing_center
 
-  validates_uniqueness_of :login
+  validates_uniqueness_of :login, :message => "Извините, но этот логин занят"
+  validates_uniqueness_of :login, :message => "Извините, но этот email занят"
+  validates_presence_of :login, :message => "Логин необходим для регистрации"
+  validates_presence_of :password, :message => "Пароль необходим для регистрации", :on => :create
+  validates_presence_of :email, :message => "E-mail необходим для регистрации"
+
+
+
+
 
   acts_as_authentic
 
@@ -27,6 +37,7 @@ class User < ActiveRecord::Base
     reset_perishable_token!
     Notifier.deliver_password_reset_instructions(self)
   end
+
 
   def name
     last_name+" "+first_name

@@ -896,6 +896,11 @@ a.blue:hover {border-bottom: 0px dashed #275a7a;}
 	height:19px;
 	float:right;
 	}
+.reg_checkbox{
+        display:block;
+        float:right;
+        margin-right:100px;
+}
 	
 .additional {
 	color:#000000;
@@ -1003,10 +1008,19 @@ a:hover.lblue {text-decoration: none}
 .additional_header{
     clear:both;
     padding-top:10px;
+    padding-bottom:10px;
 }
 .buffer{
     display:block;
     width:100%;
     clear:both;
     height:20px;
+}
+
+.marked_text{
+    background: #ebebeb; olor:#000;
+}
+
+.check_result{
+    margin-left:57px;
 }

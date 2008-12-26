@@ -3,5 +3,3 @@
 <% form_for @user, :url => (admin? ? user_path(@user) : account_path), :html => { :multipart => true }  do |f| %>
   <%= render :partial => "form", :object => f %>
 <% end %>
-
-<br /><%= link_to "Мой профайл", account_path %>
