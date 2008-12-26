@@ -8,6 +8,8 @@ class AdditionsController < ApplicationController
     @addition.build_stat_rating(:rating_avg => 0,:rating_total => 0)
 
     if @addition.save
+      Notifier.deliver_message_addition_added(@addition.article.user, @addition)
+      Notifier.deliver_message_to_moderator_new_addition(@addition)
       flash[:notice] = "Спасибо за дополнение!"
       redirect_back_or_default user_article_path(current_user,params[:article_id])
     else

@@ -57,9 +57,21 @@ $(document).ready(function(){
             e.preventDefault();
             url = '/'+this.href.replace(/http:\/\/.+?\//,'');
             link=$(this);
-            $.get(url,{},
+            $.getJSON(url,{},
                 function(data){
-                    comments=data;
+                    comments="";
+                    $.each(data,function(i,item){
+                        comments+="<div class='comment comment_"+item.comment.id+"' style='margin-top:5px; '><div class='comm_title'>";
+                        if (item.comment.user.show_name=="true") {user_name = item.comment.user.first_name+" "+item.comment.user.last_name;}
+                        else{user_name = item.comment.user.login}
+                        comments+="<div class='user_name'><a href='/users/"+item.comment.user.id+"'>"+user_name+"</a></div>";
+                        comments+="<div class='user_time'>"+item.comment.created_at+"<span>07:47</span></div>";
+                        comments+="</div><div class='mfooter'></div>";
+                        comments+="<p>"+item.comment.content+"</p>";
+                        if (MODERATOR==true) { comments+="<a href='/comments/"+item.comment.id+"' rel='comment_"+item.comment.id+"' class='ajax_delete'><img src='/images/delete_ico.gif'/></a>"; }
+                        comments+="</div>";
+                        
+                    });
                     addition=link.parents("div[class^='addition']");
                     addition.find(".comments").html(comments);
                     addition.find(".show_comments").toggle("slow");

@@ -35,6 +35,7 @@ class ArticlesController < ApplicationController
     @article.tag_list=params[:tags] unless params[:tags]==""
 
     if @article.save
+      Notifier.deliver_message_to_moderator_new_article(@article)
       flash[:notice]="Спасибо. Статья создана. Появится в ближайшее время, после проверки"
       redirect_back_or_default catalogue_articles_path(@catalogue)
     else

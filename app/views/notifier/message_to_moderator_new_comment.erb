@@ -1,0 +1,6 @@
+<p>Добавлен новый комментарий к дополнению статьи <%= link_to @comment.addition.article.name, catalogue_articles_url(@comment.addition.article.catalogue.id,@comment.addition.article.id) %></p>
+<h3>Содержание комментария</h3>
+<p>
+  <%=  simple_format(@comment.content) %>
+</p>
+

@@ -2,6 +2,9 @@ class Notifier < ActionMailer::Base
   def get_admin_email
     User.find(:first, :conditions => {:admin => true}).email
   end
+  def get_moderator_emails
+    User.find(:all, :conditions => {:moderator => true}).map{|i| i.email}
+  end
   
   default_url_options[:host] = "forexwk.com"
 
@@ -24,7 +27,7 @@ class Notifier < ActionMailer::Base
 
   def message_addition_added(user, addition)
     subject       "Дополнение к Вашей статье"
-    from          @get_admin_email
+    from          get_admin_email
     recipients    user.email
     sent_on       Time.now
     body({:addition => addition})
@@ -41,11 +44,42 @@ class Notifier < ActionMailer::Base
   end
 
   def message_new_contest(user, contest)
-    subject       "Изменение рейтинга"
+    subject       "Новая акция!"
     from          get_admin_email
     recipients    user.email
     sent_on       Time.now
     body({:contest => contest})
+    content_type 'text/html'
+  end
+
+
+
+
+
+  def message_to_moderator_new_article(article)
+    subject       "Новая статья"
+    from          get_admin_email
+    recipients    get_moderator_emails
+    sent_on       Time.now
+    body({:article => article})
+    content_type 'text/html'
+  end
+
+  def message_to_moderator_new_addition(addition)
+    subject       "Новое дополнение"
+    from          get_admin_email
+    recipients    get_moderator_emails
+    sent_on       Time.now
+    body({:addition => addition })
+    content_type 'text/html'
+  end
+
+  def message_to_moderator_new_comment(comment)
+    subject       "Новый комментарий"
+    from          get_admin_email
+    recipients    get_moderator_emails
+    sent_on       Time.now
+    body({:comment => comment })
     content_type 'text/html'
   end
 

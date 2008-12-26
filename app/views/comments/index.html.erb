@@ -1,0 +1,9 @@
+<%  @comments.each do |comment| %>
+<div class='comment comment_<%= comment.id %>' style='margin-top:5px; '><div class='comm_title'>
+<div class='user_name'><%= link_to comment.user.name_or_login, user_path(comment.user.id) %></div>
+<div class='user_time'><%= comment.created_at.to_date %><span><%= comment.created_at.strftime("%H:%M") %></span></div>
+</div><div class='mfooter'></div>
+<p><%= comment.content %></p>
+<%= link_to(image_tag('/images/delete_ico.gif'), comment_path(comment.id), :class => "ajax_delete", :rel => "comment_"+comment.id.to_s) if moderator? %>
+</div>
+<% end %>

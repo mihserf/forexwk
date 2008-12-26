@@ -1,0 +1,6 @@
+<p>Новое дополнение к статье <%= link_to @addition.article.name, catalogue_article_url(@addition.article.catalogue.id,@addition.article.id) %></p>
+<h3>Содержание дополнения</h3>
+<p>
+  <%=  simple_format(@addition.content) %>
+</p>
+
