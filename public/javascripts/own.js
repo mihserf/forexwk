@@ -22,6 +22,7 @@ $(document).ready(function(){
             rating_avg = $(this).parent().parent().find(".rating_avg");
             rating_total = $(this).parent().parent().find(".rating_total");
             url = '/'+this.href.replace(/http:\/\/.+?\//,'')+ "&authenticity_token=" + encodeURIComponent(AUTH_TOKEN);
+            own_preloader(true);
             $.postJSON(url,{},
                 function(data){
                     rate_box.fadeOut("slow",function(){rate_box.html(data.msg); rate_box.fadeIn("slow")})
@@ -31,6 +32,7 @@ $(document).ready(function(){
                     if (data.rating_total!=null){
                         rating_total.fadeOut("slow",function(){rating_total.html(data.rating_total); rating_total.fadeIn("slow")})
                     }
+                    own_preloader(false);
 
                 });
             return false;
@@ -57,6 +59,7 @@ $(document).ready(function(){
             e.preventDefault();
             url = '/'+this.href.replace(/http:\/\/.+?\//,'');
             link=$(this);
+            own_preloader(true);
             $.get(url,{},
                 function(data){
                     comments=data;
@@ -65,10 +68,11 @@ $(document).ready(function(){
                     addition.find(".show_comments").toggle("slow");
                     addition.find(".hide_comments").toggle("slow");
                     ajax_delete();
+                    own_preloader(false);
                 });
             
          });
-         
+
    $("a.hide_comments_link").click(  function(e) {
             e.preventDefault();
             addition=link.parents("div[class^='addition']");
@@ -82,9 +86,11 @@ $(document).ready(function(){
             url = '/'+this.href.replace(/http:\/\/.+?\//,'');
             link=$(this);
             value=$("#"+link.attr("rel")).val();
+            own_preloader(true);
             $.get(url,{value:value},
                 function(data){
                     $("."+link.attr("rel")).html(data);
+                    own_preloader(false);
                 });
          });
 
@@ -104,8 +110,10 @@ function ajax_delete(){
         if (typeof(AUTH_TOKEN) == "undefined") return;
         target = $("."+$(this).attr("rel"));
         url = '/'+this.href.replace(/http:\/\/.+?\//,'');
+        own_preloader(true);
         $.post(url,{authenticity_token:AUTH_TOKEN,_method:"delete"}, function(data){
             target.fadeOut("slow", function(){target.html(data); target.fadeIn("slow", function(){target.fadeOut(3000, function(){target.remove()})})});
+            own_preloader(false);
         });
    });
 
