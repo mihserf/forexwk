@@ -19,6 +19,7 @@ class Notifier < ActionMailer::Base
     recipients    user.email
     sent_on       Time.now
     body({:user => user,:rating_val => rating_val,:reason => reason})
+    content_type 'text/html'
   end
 
   def message_addition_added(user, addition)
@@ -27,6 +28,7 @@ class Notifier < ActionMailer::Base
     recipients    user.email
     sent_on       Time.now
     body({:addition => addition})
+    content_type 'text/html'
   end
 
   def message_comment_added(user, comment)
@@ -35,6 +37,7 @@ class Notifier < ActionMailer::Base
     recipients    user.email
     sent_on       Time.now
     body({:comment => comment})
+    content_type 'text/html'
   end
 
   def message_new_contest(user, contest)
@@ -43,6 +46,7 @@ class Notifier < ActionMailer::Base
     recipients    user.email
     sent_on       Time.now
     body({:contest => contest})
+    content_type 'text/html'
   end
 
 end
