@@ -53,7 +53,8 @@ class UsersController < ApplicationController
       params[:user].delete(:password_confirmation)
     end
     if params[:user][:password]==@user.password then params[:user][:password_confirmation]=@user.password end
-    @user.messaging_rule.update_attributes(params[:messaging_rule])
+    messaging_rule=find_or_create_by_user_id(@user.id)
+    messaging_rule.update_attributes(params[:messaging_rule])
     @user.save
     if @user.update_attributes(params[:user])
       add_dealing_center
