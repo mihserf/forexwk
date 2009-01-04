@@ -15,11 +15,9 @@
       where = "На страницах"
   end
   %>
-  <% unless result.empty? %>
     <%= "<h3>"+where+"</h3>" unless result_class==dom_class(result) %>
     <%  result_class=dom_class(result) %>
     <%= render :partial => "searches/#{dom_class(result)}", :locals=>{:result=>result} %>
-  <% end %>
 <% end %>
 
 
