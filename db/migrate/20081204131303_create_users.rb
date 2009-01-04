@@ -30,6 +30,7 @@ class CreateUsers < ActiveRecord::Migration
     add_index :users, :login, :unique => true
     add_index :users, :perishable_token
     add_index :users, :email
+
   end
 
   def self.down

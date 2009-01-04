@@ -1024,3 +1024,11 @@ a:hover.lblue {text-decoration: none}
 .check_result{
     margin-left:57px;
 }
+
+ul#therms {
+    list-style:none;
+}
+ul#therms li{
+    padding-top:10px;
+}
+

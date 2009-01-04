@@ -51,12 +51,11 @@ class ApplicationController < ActionController::Base
     end
 
     def admin?
-      #debugger
-      current_user.admin?
+      current_user && current_user.admin?
     end
 
     def moderator?
-      current_user.moderator?
+      current_user && current_user.moderator?
     end
 
     def current_user_session

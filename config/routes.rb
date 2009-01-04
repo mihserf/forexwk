@@ -2,7 +2,7 @@ ActionController::Routing::Routes.draw do |map|
     
   map.resource :user_session
   #map.root :controller => "user_sessions", :action => "new"
-
+  map.resources :searches
   map.resources :send_message, :only => :create
   
   map.resource :account, :controller => "users"
@@ -32,6 +32,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :books
   map.resources :video
   map.resources :events
+  map.resources :therms
 
   map.resources :contests, :member => {:users => :get}
 
@@ -41,6 +42,8 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :users, :only => [:index,:destroy]
     admin.resources :dealing_centers
     admin.resources :contests
+    admin.resources :therms
+    admin.resources :queries
   end
 
   map.with_options :controller => "pages" do |page|

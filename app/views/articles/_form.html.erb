@@ -4,6 +4,11 @@
 <%form_for [@catalogue,@article], :html => { :multipart => true } do |f|%>
 
 <p>
+    <%= f.label 'относится к каталогу:' %><br />
+    <%= f.select :catalogue_id, nested_set_options(Catalogue) {|i| "#{'--' * i.level} #{i.name}" } %>
+</p>
+
+<p>
 <%= f.label 'Название' %><br />
 <%=f.text_field :name%>
 </p>

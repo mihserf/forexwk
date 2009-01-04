@@ -1,0 +1,12 @@
+<ul>
+<% for therm in @therms %>
+  <li style="list-style:none"><%= link_to therm.name, therm_path(therm.id) %></a>
+  <div class='admin_edit_actions' style="font-size:10pt;  padding-bottom:7px">
+    <%= link_to image_tag("/images/edit_ico.gif",:alt=>"Редактировать"), edit_admin_therm_path(therm) %>
+     | <%=link_to image_tag("/images/delete_ico.gif",:alt=>"Удалить"), admin_therm_path(therm), :method => :delete, :confirm => 'подтвердите удаление'%>
+  </div>
+  </li>
+<%end%>
+</ul>
+
+<%= link_to 'Добавить термин', new_admin_therm_path %>

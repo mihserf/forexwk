@@ -1,0 +1,23 @@
+<%  result_class="" %>
+
+<% @results.each do |result| %>
+  <%
+  case dom_class(result)
+    when  "article"
+      where = "В статьях"
+    when  "addition"
+      where = "В дополнениях к статьям"
+    when  "therm"
+      where = "В терминах"
+    when  "user"
+      where = "Пользователи"
+    else
+      where = "На страницах"
+  end
+  %>
+  <%= "<h3>"+where+"</h3>" unless result_class==dom_class(result) %>
+  <%  result_class=dom_class(result) %>
+  <%= render :partial => "searches/#{dom_class(result)}", :locals=>{:result=>result} %>
+<% end %>
+
+

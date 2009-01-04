@@ -1,0 +1,2 @@
+module ThermsHelper
+end

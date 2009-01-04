@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
 
 
   acts_as_authentic
+  acts_as_ferret :fields => [:first_name, :last_name, :login]
+  acts_as_rateable
 
   has_attached_file :avatar,
                     :styles => { :thumb => "29x29>",
@@ -30,7 +32,6 @@ class User < ActiveRecord::Base
                     :path => ":rails_root/public/attachments/:class/:id/:style_:basename.:extension"
 
 
-  acts_as_rateable
 
 
   def deliver_password_reset_instructions!

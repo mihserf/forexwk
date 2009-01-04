@@ -1,0 +1,18 @@
+<%= javascript_include_tag :fckeditor %>
+
+<%= error_messages_for :therm %>
+<%form_for [:admin,@therm] do |f|%>
+
+<p>
+<%= f.label 'Термин' %><br />
+<%=f.text_field :name%>
+</p>
+<p>
+<%= f.label 'Описание термина' %><br />
+<%= fckeditor_textarea(:therm, :description, :toolbarSet => 'Simple', :width => '98%', :height => '300px') %>
+</p>
+<p>
+<%=f.submit 'Сохранить изменения' %>
+</p>
+<%end%>
+

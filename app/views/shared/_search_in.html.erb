@@ -1,9 +1,10 @@
 <div class="search_add">
             <div class="search">
-                  <form action="">
-                    <div class="search_text"><input type="text" value="SEARCH"></div>
+                  <% form_tag(searches_path, :method => 'get') do %>
+                    <div class="search_text"><%= text_field_tag :q, params[:q], :id => :q %></div>
+                    <input type="hidden" name="type" value="articles"/>
                     <div class="search_submit"><input type="image" src="/images/search_button_light.gif"></div>
-                  </form>
+                  <% end %>
                     <div class="add_article">
                       <% form_tag new_catalogue_article_path((@catalogue.nil? ? Catalogue.first.id : @catalogue.id )), :method => :get do%>
                       <input type="image" src="/images/add_article.gif" alt="">

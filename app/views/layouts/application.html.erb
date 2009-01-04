@@ -25,16 +25,21 @@
 	<div id="header_menu">
 		<div id="logo_search">
 			<div id="logo"><a href="#"><img src="/images/logo.gif" alt=""></a></div>
-			<form action="">
-				<div class="search">
-					<div class="search_text"><input type="text" value="SEARCH"></div>
-					<div class="search_submit"><input type="image" src="/images/search_button.gif"></div>
-				</div>
-			</form>
+                        <div class="search">
+                              <% form_tag(searches_path, :method => 'get') do %>
+                                <div class="search_text"><%= text_field_tag :q, params[:q], :id => :q %></div>
+                                <div class="search_submit"><input type="image" src="/images/search_button_light.gif"></div>
+                              <% end %>
+                        </div>
 		</div>
 		<div id="common_menu">
 			<div id="menu_top">
-				<div class="menu_links"><a href="/about_us">О проекте</a><%= link_to 'Конкурс рейтингов', (current_contest ? users_contest_path(current_contest.id) : contests_path)%><a href="#">Карта сайта</a><a href="/contacts">Обратная связь</a></div>
+				<div class="menu_links">
+                                  <a href="/about_us">О проекте</a>
+                                  <%= link_to 'Конкурс рейтингов', (current_contest ? users_contest_path(current_contest.id) : contests_path)%>
+                                  <a href="#">Карта сайта</a>
+                                  <a href="/contacts">Обратная связь</a>
+                                </div>
 				<div class="vert_line"></div>
 				
                                 <% if !current_user %>
@@ -48,10 +53,13 @@
 				<ul class="menu">
 					<li <%= "class='active'" if request.path=="/" %> ><%= request.path=="/" ? "Главная" : link_to("Главная", "/") %></li>
 					<li <%= "class='active'" if params[:controller]=="articles" %> ><%= params[:controller]=="articles" ? "Статьи" : link_to("Статьи", articles_path) %></li>
+                                        <li <%= "class='active'" if params[:controller]=="therms" %> ><%= params[:controller]=="therms" ? "Термины" : link_to("Термины", therms_path) %></li>
 				</ul>
                                 <% if admin? %>
                                   <ul class="menu">
                                           <li <%= "class='active'" if params[:controller]=="admin/catalogues" %> ><%= link_to "Каталоги", admin_catalogues_path %></li>
+                                          <li <%= "class='active'" if params[:controller]=="admin/therms" %> ><%= link_to "Термины", admin_therms_path %></li>
+                                          <li <%= "class='active'" if params[:controller]=="admin/queries" %> ><%= link_to "Запросы", admin_queries_path %></li>
                                           <li <%= "class='active'" if params[:controller]=="admin/users" %> ><%= link_to "Пользователи", admin_users_path %></li>
                                           <li <%= "class='active'" if params[:controller]=="admin/dealing_centers" %> ><%= link_to "Диллинговые центры", admin_dealing_centers_path %></li>
                                           <li <%= "class='active'" if params[:controller]=="admin/pages" %> ><%= link_to "Страницы", admin_pages_path %></li>
