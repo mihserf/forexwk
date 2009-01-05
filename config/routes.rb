@@ -32,7 +32,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :books
   map.resources :video
   map.resources :events
-  map.resources :therms
+  map.resources :therms, :collection => [:search]
 
   map.resources :contests, :member => {:users => :get}
 

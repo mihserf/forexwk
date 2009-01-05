@@ -6,7 +6,7 @@ class Article < ActiveRecord::Base
 
   acts_as_rateable
   acts_as_taggable
-  acts_as_ferret :fields =>[:name, :content]
+  acts_as_ferret :fields =>{:name=>{:boost=>4}, :content=>{}, :cached_tag_list=>{:boost=>3}},:store_class_name => true
 
   #acts_as_list :scope => :catalogue
 

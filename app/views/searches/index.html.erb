@@ -1,7 +1,14 @@
+
+<% if params[:type] %>
+  <%= search_in(params[:type].classify.constantize) %>
+<% end %>
+
 <%  result_class="" %>
 
+
+
 <% unless @results.empty? %>
-  <p>результатов: <%= @results.size %></p>
+  <p>результатов: <%= @results.total_hits %></p>
   <% @results.each do |result| %>
     <%
     case dom_class(result)
@@ -21,6 +28,8 @@
       <%  result_class=dom_class(result) %>
       <%= render :partial => "searches/#{dom_class(result)}", :locals=>{:result=>result} %>
   <% end %>
+
+  <%= will_paginate @results%>
 <% else %>
   По вашему запросу ничего не найдено. Попробуйте изменить запрос.
 <% end %>
