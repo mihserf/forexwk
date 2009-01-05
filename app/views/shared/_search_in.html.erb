@@ -2,7 +2,7 @@
             <div class="search">
                   <% form_tag(searches_path, :method => 'get') do %>
                     <div class="search_text"><%= text_field_tag :q, params[:q], :id => :q %></div>
-                    <input type="hidden" name="type" value="articles"/>
+                    <input type="hidden" name="type" value="<%= model.to_s.tableize %>"/>
                     <div class="search_submit"><input type="image" src="/images/search_button_light.gif"></div>
                   <% end %>
                     <div class="add_article">

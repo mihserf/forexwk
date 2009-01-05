@@ -1,6 +1,6 @@
 class ThermsController < ApplicationController
   def index
-    @therms=Therm.find(:all, :order => "name DESC")
+    @therms=Therm.find(:all, :order => "name")
     #render(:layout=>"admin")
   end
 

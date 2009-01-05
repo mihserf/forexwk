@@ -1,3 +1,5 @@
+<%= search_in(Therm) %>
+
 <ul id="therms">
 <% @therms.each do |therm| %>
   <li><%= link_to therm.name, therm_path(therm.id) %></li>
