@@ -24,7 +24,7 @@
           <div class="article_<%=item.id%> <%= " need_moder" if item.temp? %>" >
             <div>
               <%= link_to image_tag("/images/edit_ico.gif"),edit_catalogue_article_path((@catalogue.nil? ? item.catalogue.id : @catalogue),item) if item.user==current_user || moderator?%>
-              <%= "| "+link_to(image_tag("/images/delete_ico.gif"), article_path(item), :rel=>"article_"+item.id.to_s, :class => "ajax_delete") if moderator?%>
+              <%= "| "+link_to_ajax_delete(article_path(item),item)  if moderator?%>
             </div>
             <div class="user_time"><%= item.created_at.to_date %> <span><%= item.created_at.strftime("%H:%M") %></span></div>
             <p class="font12" style="font-size:10px; margin-top:5px;">Автор: <%= link_to item.user.name_or_login, user_path(item.user.id) %></p>

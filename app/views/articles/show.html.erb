@@ -47,7 +47,7 @@
               </div>
               <div class="mfooter"></div>
               <p class="editable_<%= addition.id %>"><%=  addition.content %></p>
-              <%= link_to image_tag("/images/delete_ico.gif"), addition_path(addition), :rel=>"addition_"+addition.id.to_s, :class => "ajax_delete" if moderator?%>
+              <%= link_to_ajax_delete(addition_path(addition),addition) if moderator? %>
               <%= link_to image_tag("/images/edit_ico.gif"),article_addition_path(@article,addition), :rel=>"editable_"+addition.id.to_s, :class => "ajax_edit" if addition.user==current_user || moderator?%>
           </div>
           <% unless addition.stat_comments==0 %>

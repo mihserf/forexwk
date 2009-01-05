@@ -108,13 +108,15 @@ function ajax_delete(){
    $("a.ajax_delete").click( function(e){
         e.preventDefault();
         if (typeof(AUTH_TOKEN) == "undefined") return;
-        target = $("."+$(this).attr("rel"));
-        url = '/'+this.href.replace(/http:\/\/.+?\//,'');
-        own_preloader(true);
-        $.post(url,{authenticity_token:AUTH_TOKEN,_method:"delete"}, function(data){
-            target.fadeOut("slow", function(){target.html(data); target.fadeIn("slow", function(){target.fadeOut(3000, function(){target.remove()})})});
-            own_preloader(false);
-        });
+        if (confirm('подтвердите удаление')) {
+            target = $("."+$(this).attr("rel"));
+            url = '/'+this.href.replace(/http:\/\/.+?\//,'');
+            own_preloader(true);
+            $.post(url,{authenticity_token:AUTH_TOKEN,_method:"delete"}, function(data){
+                target.fadeOut("slow", function(){target.html(data); target.fadeIn("slow", function(){target.fadeOut(3000, function(){target.remove()})})});
+                own_preloader(false);
+            });
+        }
    });
 
 }

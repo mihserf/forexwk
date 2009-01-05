@@ -2,7 +2,9 @@
 module ApplicationHelper
   include TagsHelper
 
-  
+  def link_to_ajax_delete(path,obj)
+    link_to(image_tag("/images/delete_ico.gif"),path, :rel=>obj.class.to_s.underscore+"_"+obj.id.to_s, :class => "ajax_delete")
+  end
   def admin?
     current_user.admin? if current_user
   end
