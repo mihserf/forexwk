@@ -19,8 +19,7 @@ class SearchesController < ApplicationController
           {} # find options
         )
       end
-#      @results = class_name.find_with_ferret(params[:q])
-#      @results.concat Addition.find_with_ferret(params[:q]) if class_name == "Article"
+
     else
       #@results = ActsAsFerret.find(params[:q],'shared')
       @results = ActsAsFerret::find(
@@ -30,14 +29,10 @@ class SearchesController < ApplicationController
         {} # find options
       )
 
-#      @results.concat Article.find_with_ferret(params[:q])
-#      @results.concat Addition.find_with_ferret(params[:q])
-#      @results.concat Therm.find_with_ferret(params[:q])
-#      @results.concat User.find_with_ferret(params[:q])
-#      @results.concat Page.find_with_ferret(params[:q])
     end
       query = Query.find_or_create_by_query(params[:q])
-      query.results = @results.size
+      query.results = @results.total_hits
+      query.queries+=1
       query.save
   end
 end

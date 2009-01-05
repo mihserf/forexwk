@@ -1,7 +1,11 @@
-<ul>
-<% for query in @queries %>
-  <li class="query_<%=query.id%>" style="list-style:none"><%= query.query %></a> | <%= query.results %>
-  <%= "| "+link_to_ajax_delete(admin_query_path(query), query) %>
-  </li>
+<table>
+  <th>запрос&nbsp;</th><th>&nbsp;результатов&nbsp;</th><th>&nbsp;запросов&nbsp;</th><th></th>
+  <% for query in @queries %>
+  <tr class="query_<%=query.id%>">
+    <td style="width:100px"><%= query.query %></td>
+    <td style="text-align:center"><%= query.results %></td>
+    <td style="text-align:center"><%= query.queries %></td>
+    <td><%= link_to_ajax_delete(admin_query_path(query), query) %></td>
+  </tr>
 <%end%>
-</ul>
+</table>
