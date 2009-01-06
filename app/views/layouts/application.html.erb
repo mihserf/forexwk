@@ -56,7 +56,7 @@
                                         <li <%= "class='active'" if params[:controller]=="therms" %> ><%= params[:controller]=="therms" ? "Термины" : link_to("Термины", therms_path) %></li>
 				</ul>
                                 <% if admin? %>
-                                  <ul class="menu">
+                                  <ul class="menu admin_menu">
                                           <li <%= "class='active'" if params[:controller]=="admin/catalogues" %> ><%= link_to "Каталоги", admin_catalogues_path %></li>
                                           <li <%= "class='active'" if params[:controller]=="admin/therms" %> ><%= link_to "Термины", admin_therms_path %></li>
                                           <li <%= "class='active'" if params[:controller]=="admin/queries" %> ><%= link_to "Запросы", admin_queries_path %></li>
