@@ -7,11 +7,11 @@
 <!--div class="hr"><hr /></div-->
 <div style="height:170px; width: 655px">
         <div class="left">
-                <h4 class="title" style="margin-left:0px; ">Текущий конкурс</h4>
-                <p class="small">Начало <%= "текущего" if current_contest %> конкурса <span>21.12.1980</span></p>
-                <p class="small">Окончание <span><%=  %></span></p>
-                <p class="small">Подведение итогов <span>21.12.1980</span></p>
-                <p class="small">Приз <span>21.12.1980</span></p>
+                <h4 class="title" style="margin-left:0px; "><%= current_contest ? "Текущий конкурс" : "Прошедший конкурс" %></h4>
+                <p class="small">Начало <%= "текущего" if current_contest %> конкурса <span><%= @contest.date_start.to_date %></span></p>
+                <p class="small">Окончание <span><%= @contest.date_end.to_date %></span></p>
+                <p class="small">Подведение итогов <span><%= @contest.date_total.to_date %></span></p>
+                <p class="small">Приз <span>$<%= @contest.prize %></span></p>
         </div>
         <div class="right_box">
                 <div class="right">

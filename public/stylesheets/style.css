@@ -1035,3 +1035,116 @@ ul#therms li{
 ul.admin_menu{
     font-size:10px;
 }
+
+
+.title_middle {
+	width:655px;
+	height:20px;
+	font-size:13px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	color:#999271;
+	background:#f0eee1;
+	text-decoration:underline;
+	font-weight:bold;
+	padding-left:10px;
+	clear:both;
+	margin:10px 0px;
+	}
+
+.left {
+	width:250px;
+	height:124px;
+	float:left;
+	padding:18px 10px 18px 10px;
+	}
+
+.left .small {
+	margin-bottom:7px;
+	}
+
+.left img {
+	float:left;
+	margin-right:5px;
+	}
+
+.teamlead {
+	color:#76422e;
+	font-weight:bold;
+	font-size:11px;
+	margin: 0px 0px 5px 0px;
+	}
+
+.left .bold {
+	font-weight:bold;
+	color:#275a7a;
+	margin:5px 0px 15px 0px;
+	}
+
+.right_box {
+	float: right;
+	width: 330px;
+	*width: 310px;
+	}
+
+.right {
+	width:307px;
+	height:126px;
+	border:1px solid #f0eee1;
+	float:right;
+	margin:8px 0px 0px 0px;
+	padding:7px 9px;
+	background:url('/images/left_news_item_bg.gif') repeat-x top;
+	}
+
+.right .rate1,
+.rate_name {
+	background:url('/images/block_bg.gif') top repeat-x;
+	width: 200px;
+	float:left;
+	}
+
+.right .rate2,
+.rate_rate {
+	background:url('/images/block_bg.gif') top repeat-x;
+	width: 93px;
+	*width: 80px;
+	float:right;
+	}
+
+.rate_name,
+.rate_rate {
+	background:none;
+	}
+
+.rate1,
+.rate2,
+.rate_name,
+.rate_rate {
+	height:18px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#949075;
+	text-align:center;
+	padding-top:2px;
+	border-bottom:1px solid #dad6be;
+	}
+
+.rate_name {
+	color:#275a7a;
+	text-align:left;
+	}
+
+.rate_name a {
+	color:#275a7a;
+	}
+
+.rate_name a:link {text-decoration: underline}
+.rate_name a:visited {text-decoration: underline}
+.rate_name a:active {text-decoration: underline}
+.rate_name a:hover {text-decoration: none}
+
+.rate_rate div {
+	background:url('/images/rate_rate.gif');
+	height:15px;
+	float: left;
+	}
