@@ -5,6 +5,10 @@ class Therm < ActiveRecord::Base
   def set_ru
     bytes=[]
     self.name.first.each_byte{|i| bytes<<i}
-    self.ru=true if (bytes.first>=128 && bytes.first<=209)
+    if (bytes.first>=128 && bytes.first<=209)
+      self.ru=true
+    else
+      self.ru=false
+    end
   end
 end
