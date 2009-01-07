@@ -39,9 +39,11 @@
 </div>
 
 <div id="archive"></div>
-<a name="rules"></a>
-<div id="rules">
-  <%= javascript_tag "$('#rules').hide();" %>
-  <h3><%= @rules.name %></h3>
-  <%= @rules.content %>
-</div>
+<% unless @rules.nil? %>
+  <a name="rules"></a>
+  <div id="rules">
+    <%= javascript_tag "$('#rules').hide();" %>
+    <h3><%= @rules.name %></h3>
+    <%= @rules.content %>
+  </div>
+<% end %>
