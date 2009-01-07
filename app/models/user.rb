@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
   end
 
   def stat_ratings_for_contest(contest=current_contest)
-    UserContest.find(:first, :select => "rating_total, rating_avg", :conditions => ["user_id = :user_id AND contest_id = :contest_id",{:user_id => id, :contest_id => contest.id}])
+    UserContest.find(:first, :select => "rating_total, rating_avg, articles, additions", :conditions => ["user_id = :user_id AND contest_id = :contest_id",{:user_id => id, :contest_id => contest.id}])
   end
 
   def articles_for_contest(contest=current_contest)
