@@ -109,6 +109,9 @@ module Juixe
             user_contest_rating_amount = Rating.count(:conditions => "rateable_id=#{id} AND rateable_type='User' AND created_at >= '#{current_contest.date_start}' AND created_at <= '#{current_contest.date_end}'")
             user_contest.rating_avg = user_contest_rating_amount==0 ? 0.0 : user_contest.rating_total/user_contest_rating_amount
             user_contest.save
+            maximum_total_rating=UserContest.maximum(:rating_total, :conditions => ["contest_id=?", current_contest.id])
+            current_contest.max_user_total_rating = maximum_total_rating
+            current_contest.save!
           end
 
           #sending notifiation about rating changing

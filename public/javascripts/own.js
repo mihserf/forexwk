@@ -100,9 +100,63 @@ $(document).ready(function(){
       $(this).parent().fadeOut("slow");
    });
 
+
+
+
+ 
  $(".hidden_field").hide();
  ajax_delete();
 });
+
+function page_link(pages_number,current_page){
+            $("#search_results").show();
+            $(".page_link").click(function(e){
+            e.preventDefault();
+            list_archive($(this).attr("rel"));
+            pages_number=pages_number-0;
+            if (($(this).attr("rel")-0)<pages_number)
+            { $("#next_page").attr("rel",$(this).html()-0+1); }
+            else
+            { $("#next_page").attr("rel",$(this).html()-0); }
+            });
+
+            $("#next_page").click(function(e){
+            e.preventDefault();
+            list_archive($(this).attr("rel"));
+            });
+            $("#next_page").attr("rel",current_page-0+1);
+    }
+function pagination(){
+    $(".pagination a").click(function(e){
+            e.preventDefault();
+            url=$(this).attr("href");
+            get_archive(false,url);
+    });
+  }
+function get_archive(page,url){
+    own_preloader(true);
+    url= page!=false ? "/contests/archive?page="+page : url
+
+    $.get(url,{}, function(data){
+              archive_table=data;
+              $("#archive").html(archive_table);
+              own_preloader(false);
+              pagination();
+              make_tooltip();
+              /*make_tooltip();
+              links="";
+              for (i=1; i<=data.pages_number; i++)
+              {
+                    link = i==data.current_page-0 ? i+" " : "<a href='#' class='page_link' rel="+i+">"+i+"</a> ";
+                    links+=link;
+              }
+              $("#pages span").html(links);
+              page_link(data.pages_number,data.current_page);*/
+            });
+
+    return false;
+}
+
 
 function ajax_delete(){
    $("a.ajax_delete").click( function(e){

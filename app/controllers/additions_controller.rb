@@ -10,6 +10,11 @@ class AdditionsController < ApplicationController
     if @addition.save
       Notifier.deliver_message_addition_added(@addition.article.user, @addition)
       Notifier.deliver_message_to_moderator_new_addition(@addition)
+      if current_contest
+        user_contest=UserContest.find_or_create_by_contest_id_and_user_id(current_contest.id,@addition.user_id)
+        user_contest.additions += 1
+        user_contest.save!
+      end
       flash[:notice] = "Спасибо за дополнение!"
       redirect_back_or_default user_article_path(current_user,params[:article_id])
     else

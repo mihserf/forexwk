@@ -1088,7 +1088,7 @@ ul.admin_menu{
 
 .right {
 	width:307px;
-	height:126px;
+	eight:126px;
 	border:1px solid #f0eee1;
 	float:right;
 	margin:8px 0px 0px 0px;
@@ -1148,3 +1148,262 @@ ul.admin_menu{
 	height:15px;
 	float: left;
 	}
+
+
+#mainpage {
+	margin-left:10px;
+	}
+
+#mainpage .links_row a {
+	font-weight:normal;
+	margin-bottom:7px;
+	}
+
+#mainpage .links_row div {
+	margin-bottom:7px;
+	}
+
+.banner_sm {
+	width:470px;
+	height:60px;
+	background:#7c98ad;
+	}
+
+.news_mainpage {
+	margin:20px 0px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#000000;
+	width:663px;
+	height:40px;
+	clear:both;
+	}
+
+.news_mainpage a {
+	font-size:12px;
+	color:#356482;
+	}
+.news_mainpage a:link {text-decoration: underline}
+.news_mainpage a:visited {text-decoration: underline}
+.news_mainpage a:active {text-decoration: underline}
+.news_mainpage a:hover {text-decoration: none}
+
+.news_mainpage .user_time {
+	float:left;
+	}
+
+.dashdot {
+	width:650px;
+	padding:5px;
+	border: 1px dashed #cdc6ac;
+	font-size:11px;
+	margin:20px 0px;
+	}
+
+.dashdot p {
+	margin-bottom:7px;
+	}
+
+.dashdot a {
+	color:#2a2a2a;
+
+	}
+
+.dashdot a:link {text-decoration: underline}
+.dashdot a:visited {text-decoration: underline}
+.dashdot a:active {text-decoration: underline}
+.dashdot a:hover {text-decoration: none}
+
+.library_also {
+	float:right;
+	width:315px;
+	border:0px solid red;
+	margin-right:30px;
+	}
+
+.library_also .line {
+	width:315px;
+	height:18px;
+	padding-top:2px;
+	border-bottom:1px solid #dad6be;
+	}
+
+.library_also .rate_name {
+	width:155px;
+	}
+
+.library_also .rate_rate {
+	width:160px;
+	color:#000000;
+	}
+
+a.broun1 {
+	height:15px;
+	font-size:10px;
+	color:#883527;
+	text-decoration: underline;
+	margin-bottom:5px;
+	display:inline-block;
+	overflow:hidden;
+	}
+
+a.brou1n:link {text-decoration: underline;}
+a.broun1:visited {text-decoration: underline;}
+a.broun1:active {text-decoration: underline;}
+a.broun1:hover {text-decoration: none;}
+
+#span2 {
+	width: 230px;
+	height: 118px;
+	background-color: #FFFFFF;
+	color: #000000;
+	}
+
+.tooltip {
+	float: left;
+	}
+
+.toolinfo {
+	float: right;
+	margin-left: 5px;
+	width: 90px;
+	}
+
+.tooltip img {
+	border: 1px solid #a5a18e;
+	}
+
+.video {
+	width:640px;
+	height:385px;
+	background:#ededed;
+	}
+
+.video_info {
+	border:1px dashed #dad6be;
+	width:630px;
+	margin:5px 0px;
+	padding-left:5px;
+	padding-right:5px;
+	}
+
+.video_info p.links_row {
+	width:625px;
+	}
+
+p.links_row span {
+	font-weight:bold;
+	color:#815646;
+	}
+
+.pages {
+	float:right;
+	margin:-10px 35px 10px 0px;
+	color:#000000;
+	width:180px;
+	}
+
+.font11 {
+	font-size:11px;
+	}
+
+.link_blue a:link {color:#275a7a;text-decoration: underline}
+.link_blue a:visited {color:#275a7a;text-decoration: underline}
+.link_blue a:active {color:#275a7a;text-decoration: underline}
+.link_blue a:hover {color:#666666;text-decoration: none}
+
+.run_time {
+	font-size:11px;
+	text-decoration:none;
+	border-bottom:0px;
+	border-right:1px solid white;
+	padding-top:2px;
+	font-weight:normal;
+	width:150px;
+	height:18px;
+	text-align:center;
+	float:left;
+	margin-left:0px;
+	}
+
+.width251 {
+	width:251px;
+	float:left;
+	}
+
+.width150 {
+	width:150px;
+	margin-left:0px;
+	float:left;
+	}
+
+.width100 {
+	width:100px;
+	float:left;
+	}
+
+.text_align {
+	text-align:center;
+	}
+
+.text_align .rate_rate {
+	float:left;
+	margin-left:20px;
+	border:0px;
+	}
+
+.color815646 {
+	color:#815646;
+	}
+
+.height25px {
+	width:665px;
+	height:25px;
+	border-bottom:1px solid #f0efe5;
+	margin:8px 35px 0px 0px;
+	}
+
+.links_path .aaa,
+.links_path .bbb {
+	margin:0px 2px;
+	}
+
+
+
+
+
+
+
+
+.contest_users {
+	width:607px;
+	eight:126px;
+	border:1px solid #f0eee1;
+	margin:8px 0px 0px 0px;
+	padding:7px 9px;
+	background:url('/images/left_news_item_bg.gif') repeat-x top;
+	}
+    .contest_users th{
+        font-weight:normal;
+        background:url('/images/block_bg.gif') top repeat-x;
+        padding: 2px 2px;
+    }
+    .rate_cell {
+        width: 93px;
+    }
+    .rate_cell div{
+        background:url('/images/rate_rate.gif');
+	height:15px;
+    }
+    .article_cell{
+        width:100px;
+        text-align:center;
+    }
+    .addition_cell{
+        width:100px;
+        text-align:center;
+    }
+
+.pagination a.prev_page, .pagination a.next_page{
+    text-decoration:none;
+}

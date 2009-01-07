@@ -1,17 +1,19 @@
-<h2><%= @contest.name %></h2>
-<p><%= @contest.description %></p>
-<p><%= @contest.prize %></p>
 
-<h3>Топ участников акции</h3>
-<ul>
-<% for user in @users %>
-  <li style="list-style:none"><%= link_to user.name_or_login, user_path(user) %>
-  <div class="rate_box">
-          <div style="margin-bottom:10px; "><b>Рейтинг</b></div>
-          <div class="rate_total">Общий <span style="color:#3f843f "><%= (user.stat_rating.nil? ? 0 : user.stat_rating.rating_total) %></span></div>
-          <div class="rate_total">За текущую акцию <span style="color:#3f843f "><%= user.stat_rating_total_for_contest(@contest) %></span></div>
-          <div class="rate_total">Средний балл <span style="color:#3f843f "><%= (user.stat_rating.nil? ? 0 : user.stat_rating.rating_avg) %></span></div>
-  </div>
-  </li>
-<%end%>
-</ul>
+<h3>Участники акции</h3>
+
+<h4>*Данные за период акции</h4>
+<table class="contest_users">
+  <tr><th>Участники</th><th>Рейтинг</th><th>Статей</th><th>Дополнений</th></tr>
+  <% for user in @users %>
+  <tr>
+    <td><%= link_to user.name_or_login, user_path(user), :class => "short_info", :rel => "user_"+user.id.to_s %>
+    <div style="display:none" id="user_<%= user.id.to_s %>"><%= short_info(user) %></div>
+    </td>
+    <td class="rate_cell"><div style="width:<%= user.percent_rating_for_contest(@contest)%>% "></div></td>
+    <td class="article_cell"><%= user.articles_for_contest(@contest) %></td>
+    <td class="addition_cell"><%= user.additions_for_contest(@contest)%></td>
+  </tr>
+  <% end %>
+</table>
+<%= will_paginate @users %>
+<br><br><%= link_to 'Вернуться на страницу "Конкурс рейтингов"', contest_path(@contest) %>

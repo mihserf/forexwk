@@ -31,7 +31,9 @@ class User < ActiveRecord::Base
                     :url => "/attachments/:class/:id/:style_:basename.:extension",
                     :path => ":rails_root/public/attachments/:class/:id/:style_:basename.:extension"
 
-
+  named_scope :top, lambda { |contest_id|
+    {:joins => :user_contests, :conditions =>["user_contests.contest_id=:contest_id",{:contest_id => contest_id}], :order => "user_contests.rating_total DESC" }
+  }
 
 
   def deliver_password_reset_instructions!
@@ -39,9 +41,8 @@ class User < ActiveRecord::Base
     Notifier.deliver_password_reset_instructions(self)
   end
 
-
   def name
-    last_name+" "+first_name
+    (last_name || "")+" "+(first_name || "")
   end
 
   def name_or_login
@@ -60,6 +61,18 @@ class User < ActiveRecord::Base
 
   def stat_ratings_for_contest(contest=current_contest)
     UserContest.find(:first, :select => "rating_total, rating_avg", :conditions => ["user_id = :user_id AND contest_id = :contest_id",{:user_id => id, :contest_id => contest.id}])
+  end
+
+  def articles_for_contest(contest=current_contest)
+    stat_ratings_for_contest(contest).articles rescue 0
+  end
+
+  def additions_for_contest(contest=current_contest)
+    stat_ratings_for_contest(contest).additions rescue 0
+  end
+
+  def percent_rating_for_contest(contest=current_contest)
+    ((stat_rating_total_for_contest(contest).to_f/contest.max_user_total_rating.to_f)*100).round rescue 0
   end
 
   def stat_rating_total_for_contest(contest=current_contest)

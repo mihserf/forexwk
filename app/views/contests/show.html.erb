@@ -1,7 +1,15 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+    get_archive(1,false);
+  });
+
+</script>
+
+
 <h2 style="margin-top:30px; ">Конкурс рейтингов</h2>
 <div style="width:667px; height:40px;">
-        <div class="text" style="margin:10px; float:left"><a href="">Правила участия</a></div>
-        <div class="additional" style="float:right; *margin-right:10px;"><p><b>Сумма призов на 22.09 составила  <span style="color:#815646">$2000</span></b></div>
+        <div class="text" style="margin:10px; float:left"><a href="#rules" class="lblue" style="font-size:11px " rel="facebox">Правила участия</a></div>
+        <div class="additional" style="float:right; *margin-right:10px;"><p><b>Сумма призов на <%= Date.today.to_date %> составила  <span style="color:#815646">$<%= @total_prize %></span></b></div>
 </div>
 <div class="hr"><hr /></div>
 <!--div class="hr"><hr /></div-->
@@ -17,23 +25,23 @@
                 <div class="right">
                         <div class="rate1">Лидеры (TOP 5)</div>
                         <div class="rate2">Рейтинг</div>
-                        <div class="rate_name">1. <a href="#" onmouseover="TagToTip('span2', BGCOLOR, '#FFFFFF')" onmouseout="UnTip()">Home page </a></div>
-                        <div class="rate_rate"><div style="width:80% "></div></div>
-                        <div class="rate_name">1. <a href="#" onmouseover="TagToTip('span2', BGCOLOR, '#FFFFFF')" onmouseout="UnTip()">Home page </a></div>
-                        <div class="rate_rate"><div style="width:50% "></div></div>
-                        <div class="rate_name">1. <a href="#" onmouseover="TagToTip('span2', BGCOLOR, '#FFFFFF')" onmouseout="UnTip()">Home page </a></div>
-                        <div class="rate_rate"><div style="width:90% "></div></div>
-                        <div class="rate_name">1. <a href="#" onmouseover="TagToTip('span2', BGCOLOR, '#FFFFFF')" onmouseout="UnTip()">Home page </a></div>
-                        <div class="rate_rate"><div style="width:100% "></div></div>
-                        <div class="rate_name">1. <a href="#" onmouseover="TagToTip('span2', BGCOLOR, '#FFFFFF')" onmouseout="UnTip()">Home page </a></div>
-                        <div class="rate_rate"><div style="width:10% "></div></div>
+                        <% i=0 %>
+                        <% @top_users.each do |user| %>
+                          <% i+=1 %>
+                          <div class="rate_name"><%=i%>. <%= link_to user.name_or_login, user_path(user), :class => "short_info", :rel => "user_"+user.id.to_s %></div>
+                          <div class="rate_rate"><div style="width:<%= user.percent_rating_for_contest(@contest)%>% "></div></div>
+                          <div style="display:none" id="user_<%= user.id.to_s %>"><%= short_info(user) %></div>
+                        <% end %>
                 </div>
-        <div class="rate_name" style="margin-left: 20px;*margin-left: 10px;border: 0px"><a href="">Все участники</a></div>
+        <div class="rate_name" style="margin-left: 20px;*margin-left: 10px;border: 0px"><%= link_to "Все участники", users_contest_path(@contest) %></div>
         </div>
         <div class="mfooter"></div>
 </div>
-<ul>
-<% for contest in @contests %>
-  <li style="list-style:none"><%= link_to contest.name, users_contest_path(contest) %></li>
-<%end%>
-</ul>
+
+<div id="archive"></div>
+<a name="rules"></a>
+<div id="rules">
+  <%= javascript_tag "$('#rules').hide();" %>
+  <h3><%= @rules.name %></h3>
+  <%= @rules.content %>
+</div>

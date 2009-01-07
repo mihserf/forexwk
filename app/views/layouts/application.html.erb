@@ -7,11 +7,14 @@
   <title><%= controller.action_name %></title>
   <%= stylesheet_link_tag 'style' %>
   <%= stylesheet_link_tag 'facebox' %>
+  <%= stylesheet_link_tag 'tooltip' %>
   <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
   <%= javascript_tag "var MODERATOR = true;" if moderator? %>
   <script type="text/javascript" src="/javascripts/jquery-1.2.6.pack.js"></script>
   <script type="text/javascript" src="/javascripts/preloader.js"></script>
   <script type="text/javascript" src="/javascripts/facebox/facebox.js"></script>
+  <script type="text/javascript" src="/javascripts/jquery.tooltip.js"></script>
+  <script type="text/javascript" src="/javascripts/own.tooltip.js"></script>
   <script type="text/javascript" src="/javascripts/own.js"></script>
 </head>
 <body>
@@ -36,7 +39,7 @@
 			<div id="menu_top">
 				<div class="menu_links">
                                   <a href="/about_us">О проекте</a>
-                                  <%= link_to 'Конкурс рейтингов', contest_path((current_contest.id rescue "last"))%>
+                                  <%= link_to 'Конкурс рейтингов', contest_path((current_contest.id rescue Contest.last.id))%>
                                   <a href="#">Карта сайта</a>
                                   <a href="/contacts">Обратная связь</a>
                                 </div>

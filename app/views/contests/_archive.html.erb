@@ -1,0 +1,37 @@
+<div class="hr" style="margin:10px 0px; "><hr /></div>
+  <h4 class="title">Архив конкурсов</h4>
+  <div class="links_path pages">
+          <div class="aaa">Страницы: </div>
+          <%= will_paginate contests %>
+  </div>
+
+  <div class="title_middle" style="padding-left:0px;width:665px;">
+          <div class="run_time">Время проведения</div>
+          <div class="run_time" style="width:100px;">Призовой фонд</div>
+          <div class="run_time" style="width:261px;*width:265px;">Победитель</div>
+          <div class="run_time">Рейтинг победителя</div>
+  </div>
+  <div class="mfooter"></div>
+  <div class="text_align font11 link_blue color815646">
+
+
+  <% for contest in contests %>
+    <div class="height25px">
+            <div class="width150"><%= link_to contest.date_start.to_date.to_s+" - "+contest.date_end.to_date.to_s, contest_path(contest) %></div>
+            <div class="width100">$<%= contest.prize %></div>
+            <div class="width251"><% winner=contest.winner %><%= link_to(winner.name_or_login, user_path(winner.id), :class => "short_info", :rel => "user_"+winner.id.to_s) unless winner.nil?  %></div>
+            <div class="rate_rate"><div style="width:<%= winner.percent_rating_for_contest(contest) unless winner.nil?%>% "></div></div>
+            <% unless winner.nil? %>
+              <div style="display:none" id="user_<%= winner.id.to_s %>"><%= short_info(winner) %></div>
+            <% end %>
+    </div>
+  <%end%>
+
+</div>
+<div class="links_path pages" style="margin-top:10px; ">
+        <div class="aaa">Страницы: </div>
+        <%= will_paginate contests %>
+</div>
+<div class="mfooter" style="margin-bottom:5px; "></div>
+
+

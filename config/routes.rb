@@ -6,7 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :send_message, :only => :create
   
   map.resource :account, :controller => "users"
-  map.resources :users, :collection => {:check_login => :get,:check_email => :get} do |user|
+  map.resources :users, :collection => {:check_login => :get,:check_email => :get}, :member =>{:short_info => :get} do |user|
     user.resources :articles, :collection => {:per_rating => :get}
   end
 
@@ -34,7 +34,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :events
   map.resources :therms, :collection => [:search]
 
-  map.resources :contests, :member => {:users => :get}
+  map.resources :contests, :member => {:users => :get}, :collection => {:archive => :get}
 
   map.namespace :admin do |admin|
     admin.resources :pages
