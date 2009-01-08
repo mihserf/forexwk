@@ -1287,6 +1287,7 @@ a.broun1:hover {text-decoration: none;}
 	padding-right:5px;
 	}
 
+
 .video_info p.links_row {
 	width:625px;
 	}
@@ -1295,6 +1296,14 @@ p.links_row span {
 	font-weight:bold;
 	color:#815646;
 	}
+
+div.video_row{
+    clear:both; float:left; padding-top:10px;
+}
+
+div.video_row img{
+    padding:0px 5px; float:left;
+}
 
 .pages {
 	float:right;

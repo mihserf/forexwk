@@ -1,0 +1,8 @@
+<h2 style="margin-top:30px; ">Видео</h2>
+<%= will_paginate(@videos) %>
+
+<% for video in @videos %>
+  <div class="video_row" ><%= image_tag video.screenshot.url(:thumb) %> <%= video==@video ? "<span>"+video.name+"</span>" : link_to(video.name, video_path(video)) %> <%= video.description %></div>
+<%end%>
+
+<%= will_paginate(@videos) %>

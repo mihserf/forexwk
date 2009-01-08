@@ -1,0 +1,8 @@
+
+<div class="title_left"><%= link_to video.name, video_path(video)  %></div>
+<div class="analize_left">
+       <%= image_tag video.screenshot.url(:medium) %>
+       <%= link_to video.description, video_path(video) %>
+       <div class="mfooter" style="margin-bottom:10px; "></div>
+</div>
+

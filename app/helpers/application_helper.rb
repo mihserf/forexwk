@@ -46,4 +46,10 @@ module ApplicationHelper
   def search_in(model)
     render :partial => "shared/search_in", :locals => { :model => model }
   end
+
+  def random_video
+    videos_ids = Video.all(:select=>"id").map{|i| i.id}
+    video = Video.find(:first, :conditions=>["id = ?",videos_ids[rand(videos_ids.size)]])
+    render :partial => "videos/random_video", :locals => { :video => video }
+  end
 end

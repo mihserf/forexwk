@@ -60,7 +60,9 @@
       <% unless form.object.new_record? %>
         <div class="show_field"><img src="/images/change_icon.gif"> <a href="#" class="lbroun show_field">Изменить изображение</a></div>
       <% end %>
-      <div class="reg_form_line <%=" hidden_field" unless form.object.new_record?%>"><%= form.label :avatar, "Аватара " %><%= form.file_field :avatar, :class => "reg_text"  %></div>
+      <div class="reg_form_line <%=" hidden_field" unless form.object.new_record?%>">
+        <%= form.label :avatar, "Аватара " %><%= form.file_field :avatar, :class => "reg_text"  %>
+      </div>
 
       <div class="mfooter"></div><br>
       <div class="additional additional_header"><b>Средства связи</b></div>

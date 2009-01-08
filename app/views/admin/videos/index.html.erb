@@ -1,0 +1,13 @@
+
+<ul>
+<% for video in @videos %>
+  <li style="list-style:none"><%= link_to video.name, video_path(video) %>
+  <div class='admin_edit_actions' style="font-size:10pt;  padding-bottom:7px">
+    <%= link_to image_tag("/images/edit_ico.gif",:alt=>"Редактировать"), edit_admin_video_path(video) %>
+     | <%=link_to image_tag("/images/delete_ico.gif",:alt=>"Удалить"), admin_video_path(video), :method => :delete, :confirm => 'подтвердите удаление'%>
+  </div>
+  </li>
+<%end%>
+</ul>
+
+<%= link_to 'Добавить видео', new_admin_video_path %>

@@ -30,7 +30,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :dealing_centers
   map.resources :books
-  map.resources :video
+  map.resources :videos
   map.resources :events
   map.resources :therms, :collection => [:search]
 
@@ -44,6 +44,8 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :contests
     admin.resources :therms
     admin.resources :queries
+    admin.resources :videos
+    admin.resources :events
   end
 
   map.with_options :controller => "pages" do |page|
