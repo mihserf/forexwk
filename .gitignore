@@ -10,4 +10,5 @@ doc/app
 doc/plugins
 doc/rails
 index/**/*
+public/attachments/**/*
 config/database.yml

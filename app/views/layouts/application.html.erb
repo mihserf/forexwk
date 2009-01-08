@@ -57,8 +57,8 @@
 					<li <%= "class='active'" if request.path=="/" %> ><%= request.path=="/" ? "Главная" : link_to("Главная", "/") %></li>
 					<li <%= "class='active'" if params[:controller]=="articles" %> ><%= params[:controller]=="articles" ? "Статьи" : link_to("Статьи", articles_path) %></li>
                                         <li <%= "class='active'" if params[:controller]=="therms" %> ><%= params[:controller]=="therms" ? "Термины" : link_to("Термины", therms_path) %></li>
-                                        <li <%= "class='active'" if params[:controller]=="videos" %> ><%= params[:controller]=="videos" ? "Видео" : link_to("Видео", videos_path) %></li>
-                                        <li <%= "class='active'" if params[:controller]=="events" %> ><%= params[:controller]=="events" ? "События" : link_to("События", events_path) %></li>
+                                         <li <%= "class='active'" if params[:controller]=="videos" %> ><%= params[:controller]=="videos" ? "Видео" : link_to("Видео", videos_path) %></li>
+                                         <li <%= "class='active'" if params[:controller]=="events" %> ><%= params[:controller]=="events" ? "События" : link_to("События", events_path) %></li>
 				</ul>
                                 <% if admin? %>
                                   <ul class="menu admin_menu">
@@ -69,8 +69,8 @@
                                           <li <%= "class='active'" if params[:controller]=="admin/dealing_centers" %> ><%= link_to "Диллинговые центры", admin_dealing_centers_path %></li>
                                           <li <%= "class='active'" if params[:controller]=="admin/pages" %> ><%= link_to "Страницы", admin_pages_path %></li>
                                           <li <%= "class='active'" if params[:controller]=="admin/contests" %> ><%= link_to "Акции", admin_contests_path %></li>
-                                          <li <%= "class='active'" if params[:controller]=="admin/videos" %> ><%= link_to "Видео", admin_videos_path %></li>
-                                          <li <%= "class='active'" if params[:controller]=="admin/events" %> ><%= link_to "События", admin_events_path %></li>
+                                           <li <%= "class='active'" if params[:controller]=="admin/videos" %> ><%= link_to "Видео", admin_videos_path %></li>
+                                           <li <%= "class='active'" if params[:controller]=="admin/events" %> ><%= link_to "События", admin_events_path %></li>
                                   </ul>
                                 <% end %>
 			</div>
@@ -99,7 +99,7 @@
 					</div>
 				</div>
 				<div class="news_block">
-					<%= random_video %>
+                                    <%= random_video %>
 				</div>
 				<div class="ad">
                                     <% tag_cloud @tags, %w(a b c d) do |tag, css_class| %>
