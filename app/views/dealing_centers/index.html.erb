@@ -1,0 +1,24 @@
+<%= search_in(DealingCenter) %>
+
+
+<h2>Диллинговые центры</h2>
+
+<ul class="blocked_list">
+<% @dealing_centers.each do |dc| %>
+  <li>
+      <p class="bold"><%= dc.name %></p>
+      <p><%= link_to dc.url, dc.url unless dc.url.nil?%></p>
+      <p><%= dc.description %></p>
+      <% users = dc.users %>
+      <% unless users.empty? %>
+        <%= "<p><a href='#' class='toggle_hidden'>#{users.size} человек</a>, используют данный ДЦ</p>" unless users.empty? %>
+        <ul class="blocked_list hidden">
+        <% users.each do |user| %>
+          <li><%= link_to user.name_or_login, user_path(user) %></li>
+        <% end %>
+        </ul>
+      <% end %>
+  </li>
+<% end %>
+</ul>
+<%= will_paginate(@dealing_centers) %>

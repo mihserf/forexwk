@@ -218,7 +218,9 @@ ul.menu li {
 ul.menu li.active {
   background:url('../images/bottom_menu_bg.gif') no-repeat center;
   color:#815646;
-  text-decoration:underline;
+}
+ul.menu li.active a{
+    text-decoration:none;
 }
 
 ul.menu li a {
@@ -1420,4 +1422,25 @@ div.video_row img{
 
 .pagination a.prev_page, .pagination a.next_page{
     text-decoration:none;
+}
+ul.blocked_list{
+    list-style:none;
+}
+    ul.blocked_list li{
+        display:block;
+        clear:both;
+        padding-bottom:10px;
+    }
+        ul.blocked_list li img{
+            float:left;
+            padding: 0px 3px 5px 0px;
+        }
+        ul.blocked_list li div.blocked_list_info{
+            
+        }
+span.date{
+    color:#ccc;
+    font-weight:bold;
+    display:inline;
+    padding-top:5px;
 }

@@ -1,0 +1,17 @@
+<%= search_in(Book) %>
+
+<h2>Книги</h2>
+
+<ul class="blocked_list">
+<% @books.each do |book| %>
+  <li>
+    <%= image_tag book.cover.url(:thumb) %>
+    <div class="blocked_list_info" style="margin-left:85px">
+      <%= book.author %>
+      <p class="bold"><%= link_to book.name, book_path(book) %></p>
+      <p><%= book.description %></p>
+    </div>
+  </li>
+<% end %>
+</ul>
+<%= will_paginate(@books) %>

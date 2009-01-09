@@ -100,11 +100,14 @@ $(document).ready(function(){
       $(this).parent().fadeOut("slow");
    });
 
+   $("a.toggle_hidden").click( function(e) {
+      e.preventDefault();
+      $(this).parent().next(".hidden").toggle("slow");
+   });
 
-
-
- 
- $(".hidden_field").hide();
+   $(".hidden").hide();
+   $(".hidden_field").hide();
+   
  ajax_delete();
 });
 

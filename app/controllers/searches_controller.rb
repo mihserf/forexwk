@@ -24,7 +24,7 @@ class SearchesController < ApplicationController
       #@results = ActsAsFerret.find(params[:q],'shared')
       @results = ActsAsFerret::find(
         params[:q],
-        [User, Article, Addition, Page, Therm],
+        [User, Article, Addition, Page, Therm, Book, Video, Event, DealingCenter],
         { :page => params[:page], :per_page => 15 },
         {} # find options
       )

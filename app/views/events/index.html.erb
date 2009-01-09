@@ -1,0 +1,14 @@
+<%= search_in(Event) %>
+
+<h2>События</h2>
+
+<ul class="blocked_list">
+<% @events.each do |event| %>
+  <li>
+      <%= event.created_at.to_date %>
+      <p class="bold"><%= link_to event.name, event_path(event) %></p>
+      <p><%= event.short_description %></p>
+  </li>
+<% end %>
+</ul>
+<%= will_paginate(@events) %>

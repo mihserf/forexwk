@@ -1,4 +1,5 @@
 class Video < ActiveRecord::Base
+  acts_as_ferret :fields =>{:name=>{:boost=>4},:description=>{}},:store_class_name => true
   has_attached_file :video,
                     :url => "/attachments/:class/video/:id/:style_:basename.:extension",
                     :path => ":rails_root/public/attachments/:class/video/:id/:style_:basename.:extension"
