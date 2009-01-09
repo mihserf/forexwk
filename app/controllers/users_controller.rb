@@ -43,6 +43,9 @@ class UsersController < ApplicationController
   end
 
   def update
+    file_name = RAILS_ROOT + '/public/attachments/test.log'
+    file1=File.new(file_name,"w")
+    file1.close
     if admin?
       @user = User.find(params[:id])
     else
