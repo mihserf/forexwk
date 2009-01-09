@@ -45,6 +45,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :therms
     admin.resources :queries
     admin.resources :videos
+    admin.resources :books
     admin.resources :events
   end
 

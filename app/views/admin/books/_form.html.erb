@@ -1,0 +1,44 @@
+<%= javascript_include_tag :fckeditor %>
+
+<%= error_messages_for :books %>
+<%form_for [:admin,@book], :html => { :multipart => true } do |f|%>
+
+<p>
+<%= f.label 'Автор' %><br />
+<%=f.text_field :author%>
+</p>
+
+<p>
+<%= f.label 'Название' %><br />
+<%=f.text_field :name%>
+</p>
+
+<p>
+<%= f.label 'Описание' %><br />
+<%=f.text_area :description, :size=>"70x6"%>
+</p>
+
+<p>
+<%= f.label 'Содержание' %><br />
+<%= fckeditor_textarea(:book, :contents, :toolbarSet => 'Simple', :width => '98%', :height => '300px') %>
+</p>
+
+<p>
+<%= f.label 'Лидер' %>
+<%=f.check_box :leader%>
+</p>
+<br>
+
+<% unless @book.new_record? && @book.cover.nil? %>
+  <%= image_tag @book.cover.url(:thumb)  %>
+<% end %>
+<p>
+<%= f.label :cover, "Обложка " %><%= f.file_field :cover %>
+</p>
+
+
+
+<p>
+<%=f.submit 'Сохранить изменения' %>
+</p>
+<%end%>

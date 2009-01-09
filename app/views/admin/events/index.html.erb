@@ -1,0 +1,12 @@
+<ul>
+<% for event in @events %>
+  <li style="list-style:none"><%= link_to event.name, event_path(event) %>
+  <div class='admin_edit_actions' style="font-size:10pt;  padding-bottom:7px">
+    <%= link_to image_tag("/images/edit_ico.gif",:alt=>"Редактировать"), edit_admin_event_path(event) %>
+     | <%=link_to image_tag("/images/delete_ico.gif",:alt=>"Удалить"), admin_event_path(event), :method => :delete, :confirm => 'подтвердите удаление'%>
+  </div>
+  </li>
+<%end%>
+</ul>
+
+<%= link_to 'Добавить событие', new_admin_event_path %>
