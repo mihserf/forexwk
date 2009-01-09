@@ -1298,8 +1298,13 @@ p.links_row span {
 	}
 
 div.video_row{
-    clear:both; float:left; padding-top:10px;
+    clear:both; float:left; padding-top:10px !important;
 }
+
+div.video_row span {
+	font-weight:bold;
+	color:#815646;
+	}
 
 div.video_row img{
     padding:0px 5px; float:left;

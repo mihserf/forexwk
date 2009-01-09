@@ -2,7 +2,7 @@
 <%= will_paginate(@videos) %>
 
 <% for video in @videos %>
-  <div class="video_row" ><%= image_tag video.screenshot.url(:thumb) %> <%= video==@video ? "<span>"+video.name+"</span>" : link_to(video.name, video_path(video)) %> <%= video.description %></div>
+  <div class="links_row video_row" ><%= image_tag video.screenshot.url(:thumb) %><%= video==@video ? "<span>"+video.name+"</span>" : link_to(video.name, video_path(video)) %><p><%= video.description %></p></div>
 <%end%>
 
 <%= will_paginate(@videos) %>

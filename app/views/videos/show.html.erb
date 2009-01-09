@@ -10,6 +10,6 @@
 </div>
 
 <% for video in @videos %>
-  <p class="links_row"><%= video==@video ? "<span>"+video.name+"</span>" : link_to(video.name, video_path(video)) %> <%= video.description %></p><br>
+  <div class="links_row video_row"><%= video==@video ? "<span>"+video.name+"</span>" : link_to(video.name, video_path(video)) %> <%= video.description %></div>
 <%end%>
 
