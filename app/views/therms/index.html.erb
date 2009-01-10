@@ -13,7 +13,7 @@
   <%=  "<span class='first_letter'><a name='#{current_first_letter}' >#{current_first_letter}</span>" unless first_letter == current_first_letter %>
   
  
-  <li><%= link_to therm.name, therm_path(therm.id) %></li>
+  <li><%= link_to therm.name, therm_path(therm.name) %></li>
   <% first_letter = current_first_letter %>
 <% end %>
 </ul>
