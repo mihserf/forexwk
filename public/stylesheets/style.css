@@ -1031,7 +1031,12 @@ ul#therms {
     list-style:none;
 }
 ul#therms li{
-    padding-top:10px;
+    padding-bottom:10px;
+    padding-top:5px;
+}
+
+.letters_links{
+    padding-bottom:30px;
 }
 
 ul.admin_menu{
@@ -1420,6 +1425,12 @@ div.video_row img{
         text-align:center;
     }
 
+.first_letter{
+    font-weight:bold;
+}
+.pagination {
+    padding:20px 0px 20px 0px;
+}
 .pagination a.prev_page, .pagination a.next_page{
     text-decoration:none;
 }

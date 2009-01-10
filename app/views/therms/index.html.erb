@@ -1,7 +1,17 @@
 <%= search_in(Therm) %>
-
+<div class="letters_links">
+  <div><%= @ru_links %></div>
+  <div><%= @en_links %></div>
+</div>
+<%= will_paginate(@therms) %>
 <ul id="therms">
+<% first_letter=nil %>
 <% @therms.each do |therm| %>
+  <%=  "<span class='first_letter'>#{therm.name.first.mb_chars.upcase.to_s}</span>" unless first_letter == therm.name.first.mb_chars.upcase.to_s %>
+  
+ 
   <li><%= link_to therm.name, therm_path(therm.id) %></li>
+  <% first_letter = therm.name.first.mb_chars.upcase.to_s %>
 <% end %>
 </ul>
+<%= will_paginate(@therms) %>
