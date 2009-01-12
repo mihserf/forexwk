@@ -3,10 +3,10 @@ class ThermsController < ApplicationController
     per_page = 5
     
     alphabet=%w(А Б В Г Д Е Ё Ж З И Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Э Ю Я A B C D E F G H I J K L M N O P Q R S T U V W X Y Z)
-      l,k,p,pk="",0,1,per_page;
+      l,k,p="",0,1;
       letter_p=nil;
       uniq_therms_letters = []
-      Therm.find(:all, :select => "name", :order => "ru DESC,name").each{|i| unless (l==i.name.first) then letter_p=p end; if (pk==k) then p+=1; pk+=per_page end; k+=1; nil; unless (l==i) then uniq_therms_letters << {:p=>letter_p,:l=>i.name.first} end; l=i.name.first;  }
+      Therm.find(:all, :select => "name", :order => "ru DESC,name").each{|i| unless (l==i.name.first) then letter_p=p end; k+=1; p+=1 if k%per_page==0;    unless (l==i) then uniq_therms_letters << {:p=>letter_p,:l=>i.name.first} end; l=i.name.first;  }
       links = []
       links = alphabet.collect do |l|
         r="<span>#{l}</span>"

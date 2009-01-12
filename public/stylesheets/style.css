@@ -1057,6 +1057,9 @@ ul.admin_menu{
 	clear:both;
 	margin:10px 0px;
 	}
+.title_middle a{
+    color:#999271;
+}
 
 .left {
 	width:250px;

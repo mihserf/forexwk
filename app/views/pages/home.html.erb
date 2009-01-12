@@ -1,6 +1,51 @@
 
-
  <%=@page.content%>
 
+<div class="title_middle"><%= link_to 'Конкурс рейтингов', contest_path((current_contest.id rescue Contest.find(:first, :order => "date_end DESC").id)) %></div>
+<%= contest_info(@contest) %>
 
-            
+<div class="title_middle"><%= link_to 'Диллинговые центры', dealing_centers_path %></div>
+<div class="links_box" id="mainpage">
+  <%  @dealing_centers.in_groups(3, false) do |group| %>
+     <div class="links_row">
+      <% group.each do |dealing_center| %>
+        <div><%= link_to dealing_center.name, dealing_centers_path(:anchor=>dealing_center.id) %></div>
+      <% end %>
+      <div class="mfooter"></div>
+    </div>
+  <% end %>
+    <div class="mfooter"></div>
+</div>
+
+<div class="banner_sm"></div>
+
+<div class="title_middle"><%= link_to 'Новости', events_path %></div>
+<% @events.each do |event| %>
+  <div class="news_mainpage">
+        <%= link_to event.name, event_path(event) %>, <%= event.short_description %> <div class="user_time"><%= event.created_at.to_date %></div>
+        <div class="mfooter"></div>
+  </div>
+<% end %>
+
+<div class="dashdot">
+      <p><a href="#">Фондовые торги в Японии 8 апреля 2008г. завершились снижением индекса Nikkei..</a></p>
+      <p><a href="#">Фондовые торги в Японии 8 апреля 2008г. завершились снижением индекса Nikkei..</a></p>
+      <p><a href="#">Фондовые торги в Японии 8 апреля 2008г. завершились снижением индекса Nikkei..</a></p>
+      <p><a href="#">Фондовые торги в Японии 8 апреля 2008г. завершились снижением индекса Nikkei..</a></p>
+      <p><a href="#">Фондовые торги в Японии 8 апреля 2008г. завершились снижением индекса Nikkei..</a></p>
+</div>
+<div class="banner_sm"></div>
+
+<div class="title_middle"><%= link_to 'Книги', books_path %></div>
+<div class="left" style="padding-top:0px;">
+        <div class="teamlead">Лидер</div>
+        <div class="small"><%= image_tag @leader_book.cover.url(:thumb) %> <%= @leader_book.author %><br> <p class="bold"><%= link_to @leader_book.name, book_path(@leader_book) %></p> <%= link_to @leader_book.description, book_path(@leader_book) %></div>
+</div>
+<div class="library_also">
+        <div class="line small">Читайте также:</div>
+        <% @fresh_books.each do |book| %>
+          <div class="rate_name"><%= link_to book.name %></div>
+          <div class="rate_rate"><%= book.author %></div>
+        <% end %>
+</div>
+<div class="mfooter" style="margin-bottom:5px; "></div>

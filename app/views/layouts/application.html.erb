@@ -39,14 +39,33 @@
 			<div id="menu_top">
 				<div class="menu_links">
                                   <a href="/about_us">О проекте</a>
-                                  <%= link_to 'Конкурс рейтингов', contest_path((current_contest.id rescue Contest.last.id))%>
+                                  <%= link_to 'Конкурс рейтингов', contest_path((current_contest.id rescue Contest.find(:first, :order => "date_end DESC").id))%>
                                   <a href="#">Карта сайта</a>
                                   <a href="/contacts">Обратная связь</a>
                                 </div>
 				<div class="vert_line"></div>
 				
                                 <% if !current_user %>
-                                  <div class="exit"> <%= link_to "Войти", new_user_session_path, :style=>"margin-top:0px; padding-top:0px;" %> <%= link_to image_tag('/images/registration.gif'), new_account_path %></div>
+                                  <div class="exit"> <%= link_to "Войти", "#login", :style=>"margin-top:0px; padding-top:0px;", :rel => "facebox" %> <%= link_to image_tag('/images/registration.gif'), new_account_path %></div>
+                                  <div id="login">
+                                  <%= javascript_tag "$('#login').hide();" %>
+                                  <h1>Вход</h1>
+                                    <% form_for UserSession.new, :url => user_session_path do |f| %>
+                                      <%= f.error_messages %>
+                                      <div id="login_container">
+                                        <%= f.label :login, "логин" %><br />
+                                        <%= f.text_field :login %><br />
+                                        <br />
+                                        <%= f.label :password, "пароль" %><br />
+                                        <%= f.password_field :password %><br />
+                                      </div>
+
+                                      <br />
+                                      <%= f.submit "Войти" %>
+                                      <p><%= link_to "Забыл пароль", new_password_reset_path %></p>
+                                    <% end %>
+                                  </div>
+
                                 <% else %>
                                   <div class="login_info"><%= link_to image_tag(current_user.avatar.url(:thumb),:align=>"left"), account_path %><%= link_to current_user.name_or_login, account_path %></div>
                                   <div class="exit"><%= link_to "Выход", user_session_path, :method => :delete, :confirm => "Вы уверены, что хотите выйти?" %></div>
