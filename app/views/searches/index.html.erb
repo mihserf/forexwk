@@ -8,7 +8,7 @@
 
 
 <% unless @results.empty? %>
-  <p>результатов: <%= @results.total_hits %></p>
+  <p>результатов: <%= @results.count %></p>
   <% @results.each do |result| %>
     <%
     case dom_class(result)
@@ -26,6 +26,8 @@
         where = "Видео"
       when  "events"
         where = "События"
+      when  "dealing_centers"
+        where = "Диллинговые центры"
       else
         where = "На страницах"
     end

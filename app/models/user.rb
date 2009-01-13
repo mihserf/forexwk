@@ -21,7 +21,8 @@ class User < ActiveRecord::Base
 
 
   acts_as_authentic
-  acts_as_ferret :fields => {:first_name=>{}, :last_name=>{}, :login=>{}},:store_class_name => true
+  acts_as_indexed :fields => [:first_name, :last_name, :login]
+  #acts_as_ferret :fields => {:first_name=>{}, :last_name=>{}, :login=>{}},:store_class_name => true
   acts_as_rateable
 
   has_attached_file :avatar,

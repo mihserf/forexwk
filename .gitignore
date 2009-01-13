@@ -13,3 +13,7 @@ doc/rails
 index/**/*
 public/attachments/**/*
 config/database.yml
+
+db/sphinx
+config/development.sphinx.conf
+log/*.pid

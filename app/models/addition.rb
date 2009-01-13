@@ -3,7 +3,8 @@ class Addition < ActiveRecord::Base
   belongs_to :user
   has_many :comments, :dependent => :destroy
 
-  acts_as_ferret :fields =>{:name=>{:boost=>4},:content=>{}},:store_class_name => true
+  acts_as_indexed :fields => [:name, :content]
+  #acts_as_ferret :fields =>{:name=>{:boost=>4},:content=>{}},:store_class_name => true
 
   acts_as_rateable
   
