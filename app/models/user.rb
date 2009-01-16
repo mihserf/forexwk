@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include SavageBeast::UserInit
+
   has_many :articles
   has_many :additions
   has_many :comments

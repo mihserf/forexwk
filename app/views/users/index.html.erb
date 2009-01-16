@@ -1,8 +1,9 @@
-
+<%= will_paginate(@users) %>
 <table>
 <% @users.each do |user| %>
   <tr>
-    <td><%= link_to user.name, user_path(user) %></td> <td><%= user.login %></td>
+    <td><%= link_to image_tag(user.avatar.url(:thumb)), user_path(user) %></td> <td><%= user.name_or_login %></td>
   </tr>
 <% end %>
 </table>
+<%= will_paginate(@users) %>

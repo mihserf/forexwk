@@ -2,6 +2,10 @@ class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => [:edit, :update]
 
+  def index
+    @users = User.paginate(:page => params[:page], :per_page => 10, :order=>"login")
+  end
+  
   # GET /users
   # GET /users.xml
   def new

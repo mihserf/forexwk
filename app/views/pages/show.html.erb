@@ -6,4 +6,4 @@
       <h3>Запрашиваемой страницы не существует.</h3>
 <% end %>
 
-<%= link_to 'редактировать', edit_admin_page_path(@page), :class => "admin_edit_link"  if admin? %>
+<%= link_to 'редактировать', edit_admin_page_path(@page), :class => "admin_edit_link"  if !@page.nil? && admin? %>

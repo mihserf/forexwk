@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   # from your application log (in this case, all fields with names like "password"). 
 
   filter_parameter_logging :password, :password_confirmation
-  helper_method :current_user_session, :current_user, :current_contest
+  helper_method :current_user_session, :current_user, :current_contest, :logged_in?, :admin?, :moderator?
 
 
   def tags
@@ -95,6 +95,50 @@ class ApplicationController < ActionController::Base
       session[:return_to] = nil
     end
 
+    # FORUM methods:
+
+    # this is used to keep track of the last time a user has been seen (reading a topic)
+    # it is used to know when topics are new or old and which should have the green
+    # activity light next to them
+    #
+    # we cheat by not calling it all the time, but rather only when a user views a topic
+    # which means it isn't truly "last seen at" but it does serve it's intended purpose
+    #
+    # this could be a filter for the entire app and keep with it's true meaning, but that 
+    # would just slow things down without any forseeable benefit since we already know 
+    # who is online from the user/session connection 
+    #
+    # This is now also used to show which users are online... not at accurate as the
+    # session based approach, but less code and less overhead.
+    def update_last_seen_at
+      return unless logged_in?
+      User.update_all ['last_seen_at = ?', Time.now.utc], ['id = ?', current_user.id] 
+      current_user.last_seen_at = Time.now.utc
+    end
+    
+    def login_required
+      require_user
+      #attempt_login
+      #respond_to do |format| 
+      #  format.html { redirect_to login_path }
+      #  format.js   { render(:update) { |p| p.redirect_to login_path } }
+      #  format.xml  do
+      #    headers["WWW-Authenticate"] = %(Basic realm="Beast")
+      #    render :text => "HTTP Basic: Access denied.\n", :status => :unauthorized
+      #  end
+      #end unless logged_in? && authorized?
+    end
+    
+    def authorized?() 
+	    admin? 
+	    # in your code, redirect to an appropriate page if not an admin
+    end
+    
+    def logged_in?
+      #defined?(@current_user)
+      current_user
+      #current_user != 0
+    end
 
 
 end

@@ -1,6 +1,6 @@
 class SearchesController < ApplicationController
   def index
-      @results = []
+    @results = []
     if params[:type]
       class_name=params[:type].classify.constantize
 
@@ -25,12 +25,11 @@ class SearchesController < ApplicationController
     else
       #@results = ThinkingSphinx::Search.search(params[:q], :page => params[:page], :per_page => 15).reject(&:nil?)
       classes = [User, Article, Addition, Page, Therm, Book, Video, Event, DealingCenter]
-       @results = []
        classes.each do |i|
          result = i.find_with_index params[:q]
          @results+= result unless result.empty?
        end
-       @results=@results.paginate_result(params[:page] || 1,15)
+       @results=@results.paginate_result(params[:page] || 1, 15)
 #      @results = ActsAsFerret::find(
 #        params[:q],
 #        [User, Article, Addition, Page, Therm, Book, Video, Event, DealingCenter],

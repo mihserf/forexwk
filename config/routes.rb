@@ -1,4 +1,18 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :posts, :name_prefix => 'all_', :collection => { :search => :get }
+	map.resources :forums, :topics, :posts, :monitorship
+
+  %w(forum).each do |attr|
+    map.resources :posts, :name_prefix => "#{attr}_", :path_prefix => "/#{attr.pluralize}/:#{attr}_id"
+  end
+  
+  map.resources :forums do |forum|
+    forum.resources :topics do |topic|
+      topic.resources :posts
+      topic.resource :monitorship, :controller => :monitorships
+    end
+  end
+
     
   map.resource :user_session
   #map.root :controller => "user_sessions", :action => "new"
@@ -36,6 +50,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :contests, :member => {:users => :get}, :collection => {:archive => :get}
 
+  
   map.namespace :admin do |admin|
     admin.resources :pages
     admin.resources :catalogues
@@ -51,7 +66,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.with_options :controller => "pages" do |page|
     page.home "/", :action =>  "home"
-    page.home "/:id", :action => "show"
+    page.map ":id", :action => "show"
   end
 
 

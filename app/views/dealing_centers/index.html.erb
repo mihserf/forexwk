@@ -6,7 +6,7 @@
 <ul class="blocked_list">
 <% @dealing_centers.each do |dc| %>
   <li>
-      <a name="<%= dc.id %>"/>
+      <a name="<%= dc.id %>"></a>
       <h3><%= dc.name %></h3>
       <p><%= "сайт: "+link_to(dc.url, dc.url) unless dc.url.nil?%></p>
       <p><%= dc.description %></p>
