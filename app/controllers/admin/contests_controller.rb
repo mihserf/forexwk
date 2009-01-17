@@ -43,6 +43,16 @@ class Admin::ContestsController < ApplicationController
     end
   end
 
+  def finish
+    User.recount_rate
+    @contest=Contest.find(params[:id])
+    @contest.finished = true
+    if @contest.save!
+      flash[:notice]="Акция завершена. Баллы добавлены."
+      redirect_to admin_contests_path
+    end
+
+  end
   
 
 end

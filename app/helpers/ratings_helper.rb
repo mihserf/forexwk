@@ -21,7 +21,7 @@ module RatingsHelper
         link_name = (i>0 ? "+":"")+i.to_s
         rate_class = i>0 ? "rate_plus" : "rate_minus"
         if current_user.can_add_rating?(i) || current_user.admin?
-          links +=link_to(link_name, eval("#{obj.class.to_s.underscore}_ratings_path(#{obj.id},:rating=>#{i})"), :class => "rate #{rate_class}")  unless i==0
+          links +="&nbsp;"+link_to(link_name, eval("#{obj.class.to_s.underscore}_ratings_path(#{obj.id},:rating=>#{i})"), :class => "rate #{rate_class}")+"&nbsp;"  unless i==0
         else
         links +="<span class='rate'>&nbsp;"+link_name+"&nbsp;</span>" unless i==0
         end

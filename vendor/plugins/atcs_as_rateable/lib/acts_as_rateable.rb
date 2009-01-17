@@ -76,10 +76,14 @@ module Juixe
 #                Rating.create(:user_id => current_user.id, :reason => reason, :rating => rating_val, :rateable_type => 'User', :rateable_id => self.user.id)
 #              end
           end
-          build_stat_rating(:stat_rateable_type => self.class.to_s, :stat_rateable_id => self.id) if stat_rating.nil?
-          stat_rating.rating_total = rating_total
-          stat_rating.rating_avg = rating
-          stat_rating.save
+          
+          current_contest = Contest.find(:first, :conditions => ["date_start<='#{Time.now.to_date}' AND '#{Time.now.to_date}'<=date_end"])
+          unless current_contest && self.class.to_s=="User"
+            build_stat_rating(:stat_rateable_type => self.class.to_s, :stat_rateable_id => self.id) if stat_rating.nil?
+            stat_rating.rating_total = rating_total
+            stat_rating.rating_avg = rating
+            stat_rating.save
+          end
 
 
 #          unless self.class.to_s=="User"
@@ -103,7 +107,7 @@ module Juixe
           
           self.user.add_rating(rating_val, User.find(:first,:conditions => {:admin => true}),reason_str) unless self.class.to_s=="User"
           # writing rating data of rated user for current contest
-          if self.class.to_s=="User" && current_contest = Contest.find(:first, :conditions => ["date_start<='#{Time.now.to_date}' AND '#{Time.now.to_date}'<=date_end"])
+          if self.class.to_s=="User" && current_contest
             user_contest = UserContest.find_or_create_by_contest_id_and_user_id(current_contest.id,id)
             user_contest.rating_total = Rating.sum(:rating,:conditions => "rateable_id=#{id} AND rateable_type='User' AND created_at >= '#{current_contest.date_start}' AND created_at <= '#{current_contest.date_end}'")
             user_contest_rating_amount = Rating.count(:conditions => "rateable_id=#{id} AND rateable_type='User' AND created_at >= '#{current_contest.date_start}' AND created_at <= '#{current_contest.date_end}'")

@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
   # current_user.can_add_rating? 5
   def can_add_rating?(val)
     return true if admin || (val.abs>=0 && val.abs<=1)
-    stat_rating.nil? ? false : stat_rating.rating_total.abs >= val.to_i.abs
+    stat_rating.nil? ? false : stat_rating.rating_avg.round.abs >= val.to_i.abs
   end
 
   def stat_ratings_for_contest(contest=current_contest)
@@ -88,6 +88,16 @@ class User < ActiveRecord::Base
 
   def rating_for_contest(contest=current_contest)
     rating_in_dates(contest.date_start,contest.date_end)
+  end
+
+  def self.recount_rate
+    users = User.all(:select => "id")
+    users.each do |user|
+      user.build_stat_rating(:stat_rateable_type => "User", :stat_rateable_id => user.id) if user.stat_rating.nil?
+      user.stat_rating.rating_total = user.rating_total
+      user.stat_rating.rating_avg = user.rating
+      user.stat_rating.save
+    end
   end
 
 end

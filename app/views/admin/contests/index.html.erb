@@ -5,6 +5,7 @@
   <div class='admin_edit_contests' style="font-size:10pt;  padding-bottom:7px">
     <%= link_to image_tag("/images/edit_ico.gif",:alt=>"Редактировать"), edit_admin_contest_path(contest) %>
      | <%=link_to image_tag("/images/delete_ico.gif",:alt=>"Удалить"), admin_contest_path(contest), :method => :delete, :confirm => 'подтвердите удаление'%>
+     | <%= contest.finished? ? 'завершена' : link_to('завершить', finish_admin_contest_path(contest)) %>
   </div>
   </li>
 <%end%>

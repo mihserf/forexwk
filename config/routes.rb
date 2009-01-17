@@ -57,7 +57,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :catalogues
     admin.resources :users, :only => [:index,:destroy]
     admin.resources :dealing_centers
-    admin.resources :contests
+    admin.resources :contests, :member => {:finish => :get}
     admin.resources :therms
     admin.resources :queries
     admin.resources :videos
