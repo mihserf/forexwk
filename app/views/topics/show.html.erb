@@ -101,13 +101,15 @@
 
 
     <% if logged_in? && post.editable_by?(current_user) -%>
-    <p> <% edit_post_link = edit_post_path(post.id, :forum_id => @forum.id, :topic_id => @topic.id)  %>
-      <span class="edit"> <%= link_to 'Edit post', edit_post_path(post.id, :forum_id => @forum.id, :topic_id => @topic.id) %>
+    <p> <%# edit_post_link = edit_post_path(post.id, :forum_id => @forum.id, :topic_id => @topic.id)  %>
+        <% edit_post_link = "/posts/#{post.id}/edit?forum_id=#{@forum.id}&topic_id=#{@topic.id}" %>
+        http://localhost:3000/posts/6/edit?forum_id=1&topic_id=11
+      <span class="edit"> <%= link_to 'Edit post', edit_post_link %>
         <%= ajax_spinner_for "edit-post-#{post.id}", "spinner_bounce.gif" %>
         <%= link_to_remote('Edit post'[], 
-              {:url => edit_post_path(:forum_id => @forum.id, :topic_id => @topic.id, :id => post.id), :method => :get,
+              {:url => edit_post_link, :method => :get,
                :before => "EditForm.init(#{post.id});", :condition => "!EditForm.isEditing(#{post.id})" }, 
-              {:href => edit_post_path(:forum_id => @forum, :topic_id => @topic, :id => post, :page => params[:page]), :class => "utility"}) %>
+              {:href => edit_post_link, :class => "utility"}) %>
       </span>
     </p>
     <% end -%>
