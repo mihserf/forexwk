@@ -102,15 +102,13 @@
 
     <% if logged_in? && post.editable_by?(current_user) -%>
     <p> 
-        <% edit_post_link = "/posts/#{post.id}/edit?forum_id=#{@forum.id}&topic_id=#{@topic.id}" %>
-        <% edit_post_link = edit_forum_topic_post_path(@forum.id,@topic.id,post.id)  %>
       <span class="edit"> 
         <%= ajax_spinner_for "edit-post-#{post.id}", "spinner_bounce.gif" %>
         <a class="utility" href=<%=edit_post_link%>>Edit post</a>
-        <%= #link_to_remote('Edit post'[],
-             # {:url => edit_post_path(:forum_id => @forum.id, :topic_id => @topic.id, :id => post.id), :method => :get,
-              # :before => "EditForm.init(#{post.id});", :condition => "!EditForm.isEditing(#{post.id})" },
-              #{:href => edit_post_path(:forum_id => @forum, :topic_id => @topic, :id => post, :page => params[:page]), :class => "utility"})
+        <%= link_to_remote('Edit post'[],
+              {:url => edit_forum_topic_post_path(@forum.id,@topic.id,post.id), :method => :get,
+               :before => "EditForm.init(#{post.id});", :condition => "!EditForm.isEditing(#{post.id})" },
+              {:href => edit_forum_topic_post_path(@forum.id,@topic.id,post.id, :page => params[:page]), :class => "utility"})
               %>
       </span>
     </p>
@@ -146,7 +144,7 @@
 <div id="reply" class="editbox">
 <div class="container">
   <%= content_tag 'p', h(flash[:bad_reply]), :class => 'notice' if flash[:bad_reply] %>
-  <% form_for :post, :url => posts_path(:forum_id => @forum, :topic_id => @topic, :page => @topic.last_page) do |f| -%>
+  <% form_for :post, :url => forum_topic_posts_path(@forum.id,@topic.id, :page => @topic.last_page) do |f| -%>
   <table width="100%" border="0" cellpadding="0" cellspacing="0">
     <tr>
       <td rowspan="2" width="70%">
