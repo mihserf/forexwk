@@ -69,7 +69,6 @@
 
 <table border="0" cellspacing="0" cellpadding="0" class="posts wide">
 <% for post in @posts do %>
-  <% edit_post_link = edit_post_path(1)  %>
 <% unless post == @posts.first %>
 <tr class="spacer">
   <td colspan="2">
@@ -102,12 +101,12 @@
 
 
     <% if logged_in? && post.editable_by?(current_user) -%>
-    <p> <% edit_post_link = edit_post_path(post.id, :forum_id => @forum.id, :topic_id => @topic.id)  %>
+    <p> 
         <% edit_post_link = "/posts/#{post.id}/edit?forum_id=#{@forum.id}&topic_id=#{@topic.id}" %>
-        http://localhost:3000/posts/6/edit?forum_id=1&topic_id=11
+        <% edit_post_link = edit_forum_topic_post_path(@forum.id,@topic.id,post.id)  %>
       <span class="edit"> 
         <%= ajax_spinner_for "edit-post-#{post.id}", "spinner_bounce.gif" %>
-        <a class="utility" href=edit_post_link>Edit post</a>
+        <a class="utility" href=<%=edit_post_link%>>Edit post</a>
         <%= #link_to_remote('Edit post'[],
              # {:url => edit_post_path(:forum_id => @forum.id, :topic_id => @topic.id, :id => post.id), :method => :get,
               # :before => "EditForm.init(#{post.id});", :condition => "!EditForm.isEditing(#{post.id})" },
