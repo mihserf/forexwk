@@ -104,7 +104,6 @@
     <p> 
       <span class="edit"> 
         <%= ajax_spinner_for "edit-post-#{post.id}", "spinner_bounce.gif" %>
-        <a class="utility" href=<%=edit_post_link%>>Edit post</a>
         <%= link_to_remote('Edit post'[],
               {:url => edit_forum_topic_post_path(@forum.id,@topic.id,post.id), :method => :get,
                :before => "EditForm.init(#{post.id});", :condition => "!EditForm.isEditing(#{post.id})" },
