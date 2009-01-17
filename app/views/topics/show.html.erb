@@ -102,13 +102,12 @@
 
     <% if logged_in? && post.editable_by?(current_user) -%>
     <p>
-      <span class="edit"> <%= edit_post_path(:forum_id => @forum, :topic_id => @topic, :id => post) %>
+      <span class="edit">
         <%= ajax_spinner_for "edit-post-#{post.id}", "spinner_bounce.gif" %>
-        <%= link_to ('Edit post', edit_post_path(:forum_id => @forum, :topic_id => @topic, :id => post, :page => params[:page]), :class => "utility")
-              #{:url => edit_post_path(:forum_id => @forum.id, :topic_id => @topic.id, :id => post.id), :method => :get,
-               #:before => "EditForm.init(#{post.id});", :condition => "!EditForm.isEditing(#{post.id})" },
-              #{:href => edit_post_path(:forum_id => @forum, :topic_id => @topic, :id => post, :page => params[:page]), :class => "utility"})
-              %>
+        <%= link_to_remote('Edit post'[], 
+              {:url => edit_post_path(:forum_id => @forum.id, :topic_id => @topic.id, :id => post.id), :method => :get,
+               :before => "EditForm.init(#{post.id});", :condition => "!EditForm.isEditing(#{post.id})" }, 
+              {:href => edit_post_path(:forum_id => @forum, :topic_id => @topic, :id => post), :class => "utility"}) %>
       </span>
     </p>
     <% end -%>
