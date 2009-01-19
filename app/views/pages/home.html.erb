@@ -44,8 +44,7 @@
 <div class="library_also">
         <div class="line small">Читайте также:</div>
         <% @fresh_books.each do |book| %>
-          <div class="rate_name"><%= link_to book.name %></div>
-          <div class="rate_rate"><%= book.author %></div>
+          <div class="div_row"><div class="book_name"><%= link_to book.name %></div><div class="book_author"><%= book.author %></div></div>
         <% end %>
 </div>
 <div class="mfooter" style="margin-bottom:5px; "></div>

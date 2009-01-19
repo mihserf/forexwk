@@ -1392,8 +1392,22 @@ div.video_row img{
 	margin:0px 2px;
 	}
 
+.div_row{
+    width:100%;
+    border-bottom:1px solid #ccc;
+    overflow: hidden;
+    padding-bottom:3px;
+    padding-top:3px;
+}
+.book_name{
+    width:155px;
+    float:left;
+}
 
-
+.book_author{
+    width:160px;
+    float:left;
+}
 
 
 
