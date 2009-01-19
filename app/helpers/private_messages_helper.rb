@@ -43,7 +43,7 @@ module PrivateMessagesHelper
       
       title = if opts[:title]
       elsif current_user.id != context_user.id
-        "Ваши личные сообщения с #{context_user.display_name}"
+        "Ваше общение с #{context_user.display_name}"
       else
         'Личные сообщения'
       end
