@@ -1,197 +1,198 @@
 default_private_message_link_text: 'Send this user a private message'
 
-beast_title: "Forum"
+beast_title: "Форум ForexWK"
 beast_sidebar_title: "What is Beast?"
 beast_sidebar_body: A small, light-weight forum in Rails with a scary name and a goal of around 500 lines of code when we're done.
 beast_welcome: Welcome to Beast
 
-forum_title: Forum
-forums_title: Forums
-new_forum: New forum
-edit_forum: Edit forum
-save_forum: Save forum
-create_new_forum: Create new forum
+project_title: "ForexWK.com"
+forum_title: "Форум ForexWK"
+forums_title: Форумы
+new_forum: Новый форум
+edit_forum: Редактировать форум
+save_forum: Сохранить форум
+create_new_forum: Создать новый форум
 
-forum_is_unmoderated: This forum is currently unmoderated.
-please_be_courteous: Please always be courteous.
+forum_is_unmoderated: Этот форум в настоящее время не модерируется.
+please_be_courteous: Пожалуйста, будьте вежливы .
 
-topic_title: Topic
-Topics_title: Topics
-edit_topic: Edit topic
-new_topic: Новый топик
-topic_posted_by: "{title} posted by {user} @ {date}"
-topic_replied_by: "{title} replied by {user} @ {date}"
-locked_topic: This topic is locked
-monitoring_topic: Monitoring topic
-monitor_topic: Monitor topic
-post_topic: Post topic
-reply_to_topic: Reply to topic
-save_reply: Save Reply
+topic_title: Тема
+Topics_title: Темы
+edit_topic: Редактировать тему
+new_topic: Новая тема
+topic_posted_by: "{title} создал {user} @ {date}"
+topic_replied_by: "В {title} последний ответивший {user} @ {date}"
+locked_topic: Эта тема заблокирована
+monitoring_topic: Ведётся мониторинг
+monitor_topic: Следить за темой
+post_topic: Создать тему
+reply_to_topic: Ответить
+save_reply: Сохранить ответ
 
-post_title: Post
-posts_title: Posts
-edit_post: Edit post
-delete_post: Delete post
-last_post: Last Post
-recent_posts: Recent Posts
+post_title: Сообщение
+posts_title: Сообщения
+edit_post: Редкитовать сообщение
+delete_post: Удалить сообщение
+last_post: Последнее сообщение
+recent_posts: Последние сообщения
 
-voices_title: Voices
-monitor_title: Monitor
-users_title: Users
-recent_activity: Recent Activity
-no_recent_activity: No recent activity
-users_online: Users Online
-change_login: Please change your login
+voices_title: Участники
+monitor_title: Следить
+users_title: Пользователи
+recent_activity: Текущая активность
+no_recent_activity: Нет текущей активности
+users_online: Пользователей он-лайн
+change_login: Пожалуйста, измените Ваш логин
 gravatar_notice: To have your very own avatar displayed on this forum visit {gravatar} and sign up for a free gravatar.
-change_email_or_password: Change e-mail or password
-name_or_login: Name / Login
-reset_password: Reset Password
-user_profile: User Profile
-update_profile: Update Profile
-find_a_user: Find a User
-display_name_or_login: Display name or login
-users: users
-active: active
-lurking: lurking
-add_as_moderator: Add as moderator
-user_is_an_administrator: User is an administrator
-monitored: monitored
-user_since: User since
+change_email_or_password: Измените email или пароль
+name_or_login: Имя / Логин
+reset_password: Сброс пароля
+user_profile: Профиль пользователя
+update_profile: Обновить профиль
+find_a_user: Найти пользователя
+display_name_or_login: Показывать имя или логин
+users: пользователи
+active: активен
+lurking: Прослушка
+add_as_moderator: Добавить как модератор
+user_is_an_administrator: Пользователь является администратором
+monitored: слежение
+user_since: Пользователь с 
 
-pages_title: Pages
-next_page: Next Page
-next: "Next &raquo;"
-previous: "&laquo; Previous"
-topics_count: "{count} topic(s)"
-posts_count: "{count} post(s)"
-voices_count: "{count} voice(s)"
-posts_count_found: "{count} post(s) found"
-cancel: cancel
-page: "page {page}"
+pages_title: Страницы
+next_page: Следующая страница
+next: "Далее &raquo;"
+previous: "&laquo; Назад"
+topics_count: "{count} тем"
+posts_count: "{count} сообщений"
+voices_count: "{count} участников"
+posts_count_found: "{count} сообщений найдено"
+cancel: отмена
+page: "страница {page}"
 
 # field titles
-admin_title: Admin
-title_title: Title
-position_title: Position
-description_title: Description
-edit_title: Edit
-moderators_title: Moderators
-views_title: Views
-settings_title: Settings
-logout_title: Logout
-signup_title: Signup
-login_title: Login
-save_title: Save
-password_title: Password
-sticky_title: Sticky
-locked_title: Locked
-body_title: Body
-display_name_title: Display Name
-identity_url_title: Identity Url
-website_title: Website
-bio_title: Bio
+admin_title: Администратор
+title_title: Заголовок
+position_title: Позиция
+description_title: Описание
+edit_title: Редактирование
+moderators_title: Модераторы
+views_title: Смотреть
+settings_title: Настройки
+logout_title: Выход
+signup_title: Вход
+login_title: Логин
+save_title: Сохранить
+password_title: Пароль
+sticky_title: Приклеено
+locked_title: Заблокировано
+body_title: Сообщение
+display_name_title: Показать имя
+identity_url_title: Идентифицировать url
+website_title: Сайт
+bio_title: Информация
 email_title: Email
-basics_title: Basics
-avatars_title: Avatars
-search_title: Search
+basics_title: Основы
+avatars_title: Аватары
+search_title: Поиск
 
-by: by
-save_changes: Save Changes
-remember_me: Remember me on this computer
-delete_conf: "Delete this {thing} forever?"
-email_directions: Enter your email, and a brand new login key will be sent to you.  Click the link in the email to log in, and then change your password.
-email_submit: E-mail me the link
-powered_by: Powered by
-and: and
-users_monitored_topics: "{name}'s Monitored Topics"
-delete: delete
-activation: Please visit the link below to activate your account.
-without_http: without http://
-admin_in_parens: '(admin)'
-admin_and_moderation: Admin &amp; Moderation
-remove_moderated_forum: This user can moderate the following forums.  Click one to remove.
-remove_user_as_moderator: Remove user as moderator for
-searching_for: Searching for
-locked: locked
-edit: edit
-delete: delete
-login: login
-once: once
-and_again: and again
+by: ""
+save_changes: Сохранить изменения
+remember_me: Запомнить меня на этом компьютере
+delete_conf: "Удалить  {thing} навсегда?"
+email_directions: Введите ваш email, и новый логин будет выслан вам.  Кликните на ссылку в письме чтобы войти и затем измените пароль.
+email_submit: Отправить мне ссылку
+powered_by: "Powered by"
+and: и
+users_monitored_topics: "{name} следит за темами"
+delete: удалить
+activation: Пожалуйста, перейдите по ссылке ниже, чтобы активировать ваш аккаунт.
+without_http: без http://
+admin_in_parens: '(администратор)'
+admin_and_moderation: Администрирование &amp; Модерирование
+remove_moderated_forum: Этот пользователь может модерировать следующие форумы.  Кликните, чтобы убрать.
+remove_user_as_moderator: У пользователя убрать права модератора для следующих тем
+searching_for: Ищется
+locked: Заблокировано
+edit: редактировать
+delete: удалить
+login: вход
+once: единожды
+and_again: и снова
 
-open_id_field: Enter your OpenID Identity Url if you know it
-open_id_field_extended: Enter your OpenID Identity Url if you know it.  If your Identity Url supports the {sreg} extension, you can {login_link} and create your account automatically
+open_id_field: Введите Ваш OpenID если Вы его знаете
+open_id_field_extended: Введите Ваш OpenID если Вы его знаете.  If your Identity Url supports the {sreg} extension, you can {login_link} and create your account automatically
 login_field: Logins should start with least 2 characters and may consist of letters, numbers, or the underscore.
 password_field: Enter your desired password twice.  It must be at least 5 characters.
 
-formatting_help: Formatting Help
-formatting_bold: "*bold*"
-formatting_italics: "_italics_"
-formatting_blockquote: "bq. <span>(quotes)</span>"
-formatting_list: "* or # <span>(lists)</span>"
+formatting_help: Подсказки форматирования
+formatting_bold: "*жирным*"
+formatting_italics: "_курсивом_"
+formatting_blockquote: "bq. <span>(кавычки)</span>"
+formatting_list: "* или # <span>(список)</span>"
 
 # additions by Raimonds Simanovskis on 2007-05-11
-or: or
-by_user: by {user}
-in_forum: in {forum}
-a_few_seconds_ago: "a few seconds ago"
-1_minute_ago: "1 minute ago"
-minutes_ago: "{minutes} minutes ago"
-1_hour_ago: "1 hour ago"
-hours_ago: "{hours} hours ago"
-1_day_ago: "1 day ago"
-days_ago: "{days} days ago"
+or: или
+by_user: пользователем {user}
+in_forum: в {forum}
+a_few_seconds_ago: "несколько секунд назад"
+1_minute_ago: "минуту назад"
+minutes_ago: "{minutes} минут назад"
+1_hour_ago: "час назад"
+hours_ago: "{hours} часов назад"
+1_day_ago: "день назад"
+days_ago: "{days} дней назад"
 
-topics: topics
-posts: posts
-topic_count: "{count} topic"
-post_count: "{count} post"
-voice_count: "{count} voice"
-post_count_found: "{count} post found"
+topics: темы
+posts: сообщения
+topic_count: "{count} тем"
+post_count: "{count} сообщений"
+voice_count: "{count} участников"
+post_count_found: "{count} сообщений найдено"
 
-comma_locked_topic: ", this topic is locked."
+comma_locked_topic: ", эта тема заблокирована."
 
-view: view
-last: last
+view: смотреть
+last: последняя
 
-administrator_title: Administrator
-moderator_title: Moderator
+administrator_title: Администратор
+moderator_title: Модератор
 
-topic_locked_title: Topic locked
+topic_locked_title: Тема заблокирована
 
-recent_posts_in_topic: "Recent Posts in '{topic}' | Beast"
+recent_posts_in_topic: "Последние сообщения '{topic}' "
 
-delete_post_conf: "Delete this post?  Are you sure?"
-delete_topic_conf: "Delete this topic?  Are you sure?"
+delete_post_conf: "Удалить это сообщение? Вы уверены?"
+delete_topic_conf: "Удалить эту тему?  Вы уверены?"
 
 date_format: "%b %e, %Y"
 datetime_format: "%b %e, %Y  %l:%M%p"
 
-posts_feed_title: "{search_posts_title} | Beast"
+posts_feed_title: "{search_posts_title}"
 
-feed_language: en-us
-posts_user_is_monitoring: "Posts that {user} is monitoring"
+feed_language: ru
+posts_user_is_monitoring: "Сообщения, за которыми следит {user}"
 
-view_all: all
+view_all: все
 
-for_user: for {user}
+for_user: для {user}
 
-signup: Signup
-signup_action: Signup
-login_action: Login
+signup: Регистрация
+signup_action: Регистрация
+login_action: Вход
 
-check_email_message: "Please check the e-mail address"
-post_something_message: "Please post something at least..."
-error_occured_message: "An error occurred"
-post_deleted_message: "Post of '{title}' was deleted."
-logged_out_message: "You have been logged out."
-openid_not_found_message: "Sorry, the OpenID server couldn't be found"
-openid_canceled_message: "OpenID verification was canceled"
-openid_failed_message: "Sorry, the OpenID verification failed"
+check_email_message: "Пожалуйста, проверьте email"
+post_something_message: "Пожалуйста напишите что-нибудь, как минимум..."
+error_occured_message: "Возникла ошибка"
+post_deleted_message: "Сообщение темы '{title}' удалено."
+logged_out_message: "Вы вышли."
+openid_not_found_message: "Извините, OpenID сервер не найден"
+openid_canceled_message: "OpenID верификация отменена"
+openid_failed_message: "Извините, OpenID верификация неудачна"
 openid_saving_error_message: "Error saving the fields from your OpenID profile at {identity_url}: {errors}"
 openid_no_user_message: "Sorry, no user by the identity URL {identity_url} exists"
-invalid_login_message: "Invalid login or password, try again please."
-topic_deleted_message: "Topic '{title}' was deleted."
+invalid_login_message: "Неправильный логин или пароль."
+topic_deleted_message: "Тема '{title}' удалена."
 could_not_find_account_message: "I could not find an account with the email address '{email}'. Did you type it correctly?"
 signup_permanent_error_message: "A permanent error occured while sending the signup message to '{email}'. Please check the e-mail address."
 signup_cannot_sent_message: "The signup message cannot be sent to '{email}' at this moment. Please, try again later."

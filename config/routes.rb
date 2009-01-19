@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.root :controller => "pages", :action => "home"
   map.resources :posts, :name_prefix => 'all_', :collection => { :search => :get }
   #map.resources :posts, :name_prefix => 'all_', :only=>[:get], :collection => { :search => :get }
 	map.resources :forums, :topics, :posts, :monitorship

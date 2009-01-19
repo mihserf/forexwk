@@ -2,7 +2,7 @@
 <table>
 <% @users.each do |user| %>
   <tr>
-    <td><%= link_to image_tag(user.avatar.url(:thumb)), user_path(user) %></td> <td><%= user.name_or_login %></td>
+    <td><%= link_to image_tag(user.avatar.url(:thumb)), user_path(user) %></td> <td><%= link_to user.name_or_login, user_path(user) %></td>
   </tr>
 <% end %>
 </table>
