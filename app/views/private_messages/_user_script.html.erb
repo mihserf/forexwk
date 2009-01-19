@@ -5,24 +5,6 @@ function show_private_message_form(userId, subject){
   $('#private-message').show();
   $('#private_message_recipient_id').val(userId);
   $('#private_message_title').val(subject || '<тема сообщения>');
+  $('#private_message_title').focus();
 }
 
-
-var PrivateMessageForm = {
-  show: function(userId, subject) {
-    if(subject && !(subject.match(/^re:/i))) {
-      subject = "RE: " + subject;
-    }
-
-    $('private-message').show();
-	
-	Field.clear('private_message_body');
-	
-	$('private_message_recipient_id').value = userId;
-	
-	var title = $('private_message_title');
-	title.value = subject || '<Enter Subject>';
-	Field.select(title);
-	Field.focus(title);
-  }
-}

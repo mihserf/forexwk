@@ -136,15 +136,15 @@ module ApplicationHelper
   
   def pagination collection
     if collection.total_pages > 1
-      "<p class='pages'>" + 'Pages'[:pages_title] + ": <strong>" + 
-      will_paginate(collection, :inner_window => 10, :next_label => "next"[], :prev_label => "previous"[]) +
+      "<p class='pages'>" + 'Страницы' + ": <strong>" +
+      will_paginate(collection, :inner_window => 10, :next_label => ">"[], :prev_label => "<") +
       "</strong></p>"
     end
   end
   
   def next_page collection
     unless collection.current_page == collection.total_pages or collection.total_pages == 0
-      "<p style='float:right;'>" + link_to("Next page"[], { :page => collection.current_page.next }.merge(params.reject{|k,v| k=="page"})) + "</p>"
+      "<p style='float:right;'>" + link_to(">"[], { :page => collection.current_page.next }.merge(params.reject{|k,v| k=="page"})) + "</p>"
     end
   end
 

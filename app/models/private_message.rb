@@ -1,5 +1,5 @@
 class PrivateMessage < ActiveRecord::Base
-  def self.per_page() 25 end
+  def self.per_page() 2 end
 
   belongs_to :sender, :class_name => 'User', :foreign_key => 'sender_id'
   belongs_to :recipient, :class_name => 'User', :foreign_key => 'recipient_id'

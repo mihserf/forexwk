@@ -1,6 +1,7 @@
+<h2><%= title %><a name="<%= dom_id private_messages.first %>" id="<%= dom_id private_messages.first %>">&nbsp;</a></h2>
+
 <%= pagination private_messages %>
 
-<h2><%= title %><a name="<%= dom_id private_messages.first %>" id="<%= dom_id private_messages.first %>">&nbsp;</a></h2>
 
 <table border="0" cellspacing="0" cellpadding="0" class="private_messages posts wide">
 <% for message in private_messages do %>
@@ -16,7 +17,7 @@
     <div class="date">
       <a href="#<%= dom_id message %>" rel="bookmark">
       <abbr class="updated" title="<%= message.created_at.xmlschema %>">
-      <%= RuTils::DateTime::distance_of_time_in_words(message.created_at.to_i,Time.now.to_i) %>
+      <%= RuTils::DateTime::distance_of_time_in_words(message.created_at.to_i,Time.now.to_i) %> назад
       </abbr>
       </a>
     </div>
