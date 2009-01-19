@@ -16,7 +16,7 @@ class PagesController < ApplicationController
     @page=Page.find_by_permalink("home")
 
     #contests block
-    @contest = current_contest || Contest.find(:first, :order => "date_end DESC").id
+    @contest = current_contest || Contest.find(:first, :order => "date_end DESC")
     @top_users = User.top(@contest.id).all(:limit => 5)
 
     #dealing_centers block
