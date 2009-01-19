@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
-  #map.resources :posts, :name_prefix => 'all_', :collection => { :search => :get }
-  map.resources :posts, :name_prefix => 'all_', :only=>[:get], :collection => { :search => :get }
+  map.resources :posts, :name_prefix => 'all_', :collection => { :search => :get }
+  #map.resources :posts, :name_prefix => 'all_', :only=>[:get], :collection => { :search => :get }
 	map.resources :forums, :topics, :posts, :monitorship
 
   %w(forum).each do |attr|

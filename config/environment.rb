@@ -76,4 +76,5 @@ Rails::Initializer.run do |config|
 end
 require 'lib/extensions.rb'
 require 'lib/savage_beast/user_init.rb'
+Gibberish.current_language = :ru
 #require 'lib/user_private_messages_extension.rb'

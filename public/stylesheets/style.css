@@ -1533,7 +1533,28 @@ td.entry-content a{
     font-size:10px;
 }
 
+a.utility
+{
+  color: #f99;
+  font-size: 0.65em;
+  padding: 2px 5px 4px;
+  font-family: 'Lucida Grande', Tahoma, Arial, Helvetica, sans-serif;
+  margin-top: 0.2em;
+}
+
 ul.help {
     list-style:none;
+    padding:3px 10px;
+    font-size:0.75em;
+    color:#ccc;
+    font-family: 'Lucida Grande', Tahoma, Arial, Helvetica, sans-serif;
+}
+ul.help span { color:#666; }
+.help_title {
+background:#222222 none repeat scroll 0 0;
+color:white;
+font-size:0.7em;
+margin:0.2em 0 0.5em;
+padding:2px 10px 3px;
 }
 /* End of styles for private messages list */
