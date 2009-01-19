@@ -21,7 +21,7 @@
 <div class="info_autor"></div>
 </div>
 <div class="article_additional">
-        <div class="text"><%= link_to "Все статьи", user_articles_path(@article.user.id) %>, опубликованные <b><%= @article.user.name %></b></div>
+        <div class="text"><%= link_to "Все статьи", user_articles_path(@article.user.id) %>, опубликованные <b><%= @article.user.name_or_login %></b></div>
         <div class="additional"><p><b>Дополнений </b><%= @article.stat_additions %></p><p><b>Комментариев к дополнениям </b><%= @article.stat_comments %></p></div>
 </div>
 <div class="mfooter"></div>

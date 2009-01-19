@@ -15,42 +15,49 @@
     <div class="mfooter"></div>
     <div class="hr" style="margin-bottom:10px; "><hr /></div>
     <% if admin? || current_user==@user %>
-    <div class="names"><b>Персональные данные</b></div>
-    <div class="mfooter"></div>
-    <% if @user.show_name? || current_user==@user || admin? %>
+      <div class="names"><b>Персональные данные</b></div>
+      <div class="mfooter"></div>
+        <% if @user.show_name? || current_user==@user || admin? %>
+          <div class="names">Имя</div>
+          <div class="values"><%= @user.first_name %></div>
+          <div class="mfooter"></div>
+          <div class="names">Фамилия</div>
+          <div class="values"><%= @user.last_name %></div>
+          <div class="mfooter"></div>
+        <% end %>
+      <div class="names">Логин</div>
+      <div class="values"><%= @user.login %></div>
+      <div class="mfooter"></div>
+      <div class="names">E-mail</div>
+      <div class="values"><%= @user.email %></div>
+      <div class="mfooter"></div>
+      <div class="names">Статус</div>
+      <div class="values"><%= @user.status_string %></div>
+      <div class="mfooter"></div>
       <div class="names">Имя</div>
-      <div class="values"><%= @user.first_name %></div>
+      <div class="values"><%= @user.name %></div>
       <div class="mfooter"></div>
-      <div class="names">Фамилия</div>
-      <div class="values"><%= @user.last_name %></div>
+      <br>
+      <div class="names">ICQ</div>
+      <div class="values"><%= @user.icq %></div>
       <div class="mfooter"></div>
+      <div class="names">Skype</div>
+      <div class="values"><%= @user.skype %></div>
+      <div class="mfooter"></div>
+      <div class="names">Yahoo messenger</div>
+      <div class="values"><%= @user.yahoo %></div>
+      <div class="mfooter"></div>
+      <div class="names">MSN</div>
+      <div class="values"><%= @user.msn %></div>
+
     <% end %>
-    <div class="names">Логин</div>
-    <div class="values"><%= @user.login %></div>
     <div class="mfooter"></div>
-    <div class="names">E-mail</div>
-    <div class="values"><%= @user.email %></div>
+    <div class="hr" style="margin-bottom:10px; "><hr /></div>
+    
     <div class="mfooter"></div>
-    <div class="names">Статус</div>
-    <div class="values"><%= @user.status_string %></div>
-    <div class="mfooter"></div>
-    <div class="names">Имя</div>
-    <div class="values"><%= @user.name %></div>
-    <div class="mfooter"></div>
-    <br>
-    <div class="names">ICQ</div>
-    <div class="values"><%= @user.icq %></div>
-    <div class="mfooter"></div>
-    <div class="names">Skype</div>
-    <div class="values"><%= @user.skype %></div>
-    <div class="mfooter"></div>
-    <div class="names">Yahoo messenger</div>
-    <div class="values"><%= @user.yahoo %></div>
-    <div class="mfooter"></div>
-    <div class="names">MSN</div>
-    <div class="values"><%= @user.msn %></div>
-    <% end %>
-  </div>
+      <%= private_messages @user %>
+      <%= private_message_for @user %>  
+    </div>
   <div id="rightbar">
           <div class="rate_box">
                   <div style="margin-bottom:10px; "><b>Рейтинг</b></div>

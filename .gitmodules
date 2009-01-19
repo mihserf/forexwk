@@ -34,3 +34,6 @@
 [submodule "vendor/plugins/acts_as_indexed"]
 	path = vendor/plugins/acts_as_indexed
 	url = git://github.com/dougal/acts_as_indexed.git
+[submodule "vendor/plugins/rutils"]
+	path = vendor/plugins/rutils
+	url = git://github.com/julik/rutils.git

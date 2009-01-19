@@ -9,7 +9,7 @@ class Notifier < ActionMailer::Base
   default_url_options[:host] = "forexwk.com"
 
   def password_reset_instructions(user)
-    subject       "Password Reset Instructions"
+    subject       "[Forexwk.com] Инструкции по смене пароля"
     from          get_admin_email
     recipients    user.email
     sent_on       Time.now
@@ -17,7 +17,7 @@ class Notifier < ActionMailer::Base
   end
 
   def message_rating_changed(user, rating_val, reason)
-    subject       "Изменение рейтинга"
+    subject       "[Forexwk.com] Изменение рейтинга"
     from          get_admin_email
     recipients    user.email
     sent_on       Time.now
@@ -26,7 +26,7 @@ class Notifier < ActionMailer::Base
   end
 
   def message_addition_added(user, addition)
-    subject       "Дополнение к Вашей статье"
+    subject       "[Forexwk.com] Дополнение к Вашей статье"
     from          get_admin_email
     recipients    user.email
     sent_on       Time.now
@@ -35,7 +35,7 @@ class Notifier < ActionMailer::Base
   end
 
   def message_comment_added(user, comment)
-    subject       "Комментарий к Вашему дополнению"
+    subject       "[Forexwk.com] Комментарий к Вашему дополнению"
     from          get_admin_email
     recipients    user.email
     sent_on       Time.now
@@ -44,7 +44,7 @@ class Notifier < ActionMailer::Base
   end
 
   def message_new_contest(user, contest)
-    subject       "Новая акция!"
+    subject       "[Forexwk.com] Новая акция!"
     from          get_admin_email
     recipients    user.email
     sent_on       Time.now

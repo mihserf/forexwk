@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   include SavageBeast::UserInit
+  #include UserPrivateMessagesExtension
 
   has_many :articles
   has_many :additions
@@ -11,6 +12,11 @@ class User < ActiveRecord::Base
   has_one :messaging_rule
 
   belongs_to :dealing_center
+
+  has_many :private_messages_sent, :foreign_key => 'sender_id',
+        :class_name => 'PrivateMessage', :order => ::PrivateMessage.default_order
+  has_many :private_messages_received, :foreign_key => 'recipient_id',
+        :class_name => 'PrivateMessage', :order => ::PrivateMessage.default_order
 
   validates_uniqueness_of :login, :message => "Извините, но этот логин занят"
   validates_uniqueness_of :login, :message => "Извините, но этот email занят"
@@ -89,6 +95,24 @@ class User < ActiveRecord::Base
   def rating_for_contest(contest=current_contest)
     rating_in_dates(contest.date_start,contest.date_end)
   end
+
+  #private_messages methods
+  def private_messages(options = {})
+    ::PrivateMessage.find_associated_with(self, options)
+  end
+
+  def private_messages_count
+    ::PrivateMessage.count_associated_with(self)
+  end
+
+  def private_messages_with_user(user, options = {})
+    ::PrivateMessage.find_between(self, user, options)
+  end
+
+  def private_messages_with_user_count(user)
+    ::PrivateMessage.count_between(self, user)
+  end
+
 
   def self.recount_rate
     users = User.all(:select => "id")

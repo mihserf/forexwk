@@ -1,0 +1,65 @@
+<%= pagination private_messages %>
+
+<h2><%= title %><a name="<%= dom_id private_messages.first %>" id="<%= dom_id private_messages.first %>">&nbsp;</a></h2>
+
+<table border="0" cellspacing="0" cellpadding="0" class="private_messages posts wide">
+<% for message in private_messages do %>
+<% unless message == private_messages.first %>
+<tr class="spacer">
+  <td colspan="2">
+    <a name="<%= dom_id message %>" id="<%= dom_id message %>">&nbsp;</a>
+  </td>
+</tr>
+<% end %>
+<tr class="post hentry" id="<%= dom_id message %>-row">
+  <td class="author vcard">
+    <div class="date">
+      <a href="#<%= dom_id message %>" rel="bookmark">
+      <abbr class="updated" title="<%= message.created_at.xmlschema %>">
+      <%= RuTils::DateTime::distance_of_time_in_words(message.created_at.to_i,Time.now.to_i) %>
+      </abbr>
+      </a>
+    </div>
+
+    <%= avatar_for(message.sender) unless message.sender == current_user %>
+    От: <span class="fn"><%= link_to truncate(h(message.sender.display_name), 15), user_path(message.sender), :class => (message.sender == target_user ? "threadauthor" : nil) %></span>
+    <% if message.sender.admin? %>
+    <span class="admin">
+      <%= 'Администратор' %>
+    </span>
+    <% end %>
+
+    <div class="recipient">
+      <%= avatar_for(message.recipient) unless message.recipient == current_user %>
+      К: <%= link_to truncate(h(message.recipient.display_name), 15), user_path(message.recipient), :class => (message.recipient == target_user ? "threadauthor" : nil) %>
+      <% if message.recipient.admin? %>
+        <span class="admin">
+          <%= 'Администратор' %>
+        </span>
+      <% end %>
+    </div>
+
+  </td>
+  <td class="body entry-content" id="post-body-<%= message.id %>">
+  	<h3><%= message.title %></h3>
+<!--
+    <%= link_to_function image_tag('clearbits/comment.gif', :class => 'icon reply'), "$('reply').toggle()" if logged_in? %>
+-->
+    <%= message.body_html %>
+	
+    <p>
+	  <% if current_user.id == message.recipient.id -%>
+	  <%= link_to_function 'Ответить', "show_private_message_form(#{message.sender.id}, '#{escape_javascript(message.title)}')", :class => "utility" %> &mdash;
+      <% end -%>
+      
+      <%= link_to 'Удалить', private_message_path(message), :class => "utility", :method => :delete,
+               :confirm => 'Удалить это сообщение?' %>
+    </p>
+  </td>
+</tr>
+
+<% end %>
+</table>
+       
+<%= next_page private_messages %>
+<%= pagination private_messages %>

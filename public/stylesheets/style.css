@@ -1458,3 +1458,82 @@ span.date{
     display:inline;
     padding-top:5px;
 }
+
+/* Styles for private messages list */
+.post .recipient {
+    clear: both;
+    padding-top: 1em;
+}
+.post .recipient img {
+    float: right;
+    margin-right: 0;
+    margin-left: 0.5em;
+}
+
+/* fade edit links */
+.post .author .edit a
+{
+  font-size:0.7em;
+  color:#666;
+}
+
+.post .author img {
+	float:left;
+	margin-right:0.5em;
+	}
+.post .author
+{
+	border-top:2px solid #eee;
+	padding:5px 10px;
+	background:#eee;
+	font-weight:bold;
+	color:#333;
+	font-size:0.9em;
+	min-height:32px;
+	width:10em;
+	min-width:8em;
+	vertical-align:top;
+}
+
+.post .author .posts,
+.post .author .admin
+{
+	display:block;
+	font-size:0.75em;
+	color:black;
+	color:#666;
+}
+.post .author a
+{
+	color:#333;
+	text-decoration:none;
+}
+.post .author a.threadauthor
+{
+	color:#080;
+}
+.post .author a:hover
+{
+	color:#369;
+	text-decoration:underline;
+}
+
+.post .date
+{
+	font-size:0.75em;
+	color:#666;
+	font-weight:normal;
+	margin-bottom:0.5em;
+}
+
+td.entry-content{
+    padding-left:10px;
+}
+td.entry-content a{
+    font-size:10px;
+}
+
+ul.help {
+    list-style:none;
+}
+/* End of styles for private messages list */

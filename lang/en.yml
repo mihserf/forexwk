@@ -1,3 +1,5 @@
+default_private_message_link_text: 'Send this user a private message'
+
 beast_title: "Beast"
 beast_sidebar_title: "What is Beast?"
 beast_sidebar_body: A small, light-weight forum in Rails with a scary name and a goal of around 500 lines of code when we're done.

@@ -76,3 +76,4 @@ Rails::Initializer.run do |config|
 end
 require 'lib/extensions.rb'
 require 'lib/savage_beast/user_init.rb'
+#require 'lib/user_private_messages_extension.rb'

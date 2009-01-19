@@ -14,6 +14,8 @@ ActionController::Routing::Routes.draw do |map|
     end
   end
 
+  map.resources :private_messages
+
     
   map.resource :user_session
   #map.root :controller => "user_sessions", :action => "new"
