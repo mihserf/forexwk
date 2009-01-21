@@ -1,6 +1,6 @@
 class ThermsController < ApplicationController
   def index
-    per_page = 5
+    per_page = 50
     
     alphabet=%w(А Б В Г Д Е Ё Ж З И Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Э Ю Я A B C D E F G H I J K L M N O P Q R S T U V W X Y Z)
       l,k,p="",0,1;
@@ -12,8 +12,8 @@ class ThermsController < ApplicationController
         r="<span>#{l}</span>"
         uniq_therms_letters.each do |tl|
           tl[:l]=tl[:l].mb_chars.upcase.to_s
-          current_page = (params[:page].nil? || tl[:p]==params[:page]) ? "" : "?page=#{params[:page]}"
-          r = " <a href='/therms?page=#{tl[:p]}##{l}'>#{l}</a> " if l==tl[:l]
+          current_page = (params[:page].nil? || (tl[:p]==params[:page] if params[:page])) ? "" : "?page=#{params[:page]}"
+          r = " <a href='/therms#{current_page}##{l}'>#{l}</a> " if l==tl[:l]
         end
         r
       end

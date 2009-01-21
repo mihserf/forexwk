@@ -1,11 +1,11 @@
 <h1>Изменение моего пароля</h1>
-
+<%= "<h2>"+flash[:password_reset_error]+"</h2>" if flash[:password_reset_error] %>
 <% form_for @user, :url => password_reset_path, :method => :put do |f| %>
-  <%= f.error_messages %>
-  <%= f.label :password %><br />
+  <%#= f.error_messages %>
+  <%= f.label :password, "пароль" %><br />
   <%= f.password_field :password %><br />
   <br />
-  <%= f.label :password_confirmation %><br />
+  <%= f.label :password_confirmation, "подтверждение пароля" %><br />
   <%= f.password_field :password_confirmation %><br />
   <br />
   <%= f.submit "Обновить пароль и войти" %>

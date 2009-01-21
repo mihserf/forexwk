@@ -1,7 +1,8 @@
 <h1>Вход</h1>
 
+<%= "<h2>"+flash[:login_error]+"</h2>" if flash[:login_error] %>
 <% form_for @user_session, :url => user_session_path do |f| %>
-  <%= f.error_messages %>
+  <%#= f.error_messages :header_message => "не подходит пароль или логин", :message => nil %>
   <div id="login_container">
     <%= f.label :login, "логин" %><br />
     <%= f.text_field :login %><br />

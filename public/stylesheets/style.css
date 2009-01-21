@@ -6,7 +6,7 @@
 body{
 	background: #4d624d; 
 	font-family: verdana, tahoma, sans-serif;
-	pink_boxcolor:#000000;;
+	color:#000000;
 	margin:0px;
 	padding:0px;
         font-size:12px;
@@ -63,6 +63,7 @@ h4 a:hover {color:#666666; text-decoration: none;}
   	left: 50%;
   	padding: 0px;
 	}
+
 /* ================= heeader ===============*/
 
 #header{
@@ -526,7 +527,7 @@ p.small span {
 .rate{padding-left:3textpx;}
 
 .pink_box, .pink_line {
-	width:265px;
+	width:310px;
 	height:54px;
 	background-color:#f7ede9;
 	margin: 10px 0px;
@@ -1033,6 +1034,7 @@ ul#therms {
 ul#therms li{
     padding-bottom:10px;
     padding-top:5px;
+    padding-left:10px;
 }
 
 .letters_links{
@@ -1444,6 +1446,7 @@ div.video_row img{
 
 .first_letter{
     font-weight:bold;
+    margin-left:-5px
 }
 .pagination {
     padding:20px 0px 20px 0px;
@@ -1572,3 +1575,10 @@ margin:0.2em 0 0.5em;
 padding:2px 10px 3px;
 }
 /* End of styles for private messages list */
+
+.first_breadcrumb{padding-bottom:15px !important;}
+.first_breadcrumb a{
+    font-size:16px;
+    margin-left:0px;
+    line-height:13px;
+}

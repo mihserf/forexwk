@@ -6,6 +6,7 @@ class SearchesController < ApplicationController
 
       #@results = class_name.search params[:q], :page => params[:page], :per_page => 15
        @results = class_name.find_with_index params[:q]
+       @results=@results.paginate_result(params[:page] || 1, 15)
 #      if class_name.to_s=="Article"
 #        @results = ActsAsFerret::find(
 #          params[:q],

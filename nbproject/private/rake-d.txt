@@ -50,6 +50,7 @@ doc\:plugins\:fckeditor=Generate documentation for the fckeditor plugin
 doc\:plugins\:gibberish=Generate documentation for the gibberish plugin
 doc\:plugins\:jrails=Generate documentation for the jrails plugin
 doc\:plugins\:paperclip=Generate documentation for the paperclip plugin
+doc\:plugins\:rutils=Generate documentation for the rutils plugin
 doc\:plugins\:settingslogic=Generate documentation for the settingslogic plugin
 doc\:plugins\:thinking-sphinx=Generate documentation for the thinking-sphinx plugin
 doc\:plugins\:white_list=Generate documentation for the white_list plugin

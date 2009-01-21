@@ -30,6 +30,7 @@ class PasswordResetsController < ApplicationController
       flash[:notice] = "Пароль успешно обновлён"
       redirect_to account_url
     else
+      flash[:password_reset_error] = "Пароли не совпадают или пароль слишком короткий"
       render :action => :edit
     end
   end

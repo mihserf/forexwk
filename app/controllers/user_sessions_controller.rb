@@ -12,6 +12,7 @@ class UserSessionsController < ApplicationController
       flash[:notice] = "Вход, осуществлён!"
       redirect_back_or_default account_url
     else
+      flash[:login_error] = "не подходит логин или пароль"
       render :action => :new
     end
   end

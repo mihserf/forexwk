@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
 
 
 
-  acts_as_authentic
+  acts_as_authentic :login_field_validation_options => {:message=>"не верно"}, :password_field_validation_options => {:message=>"не верно"}
   acts_as_indexed :fields => [:first_name, :last_name, :login]
   #acts_as_ferret :fields => {:first_name=>{}, :last_name=>{}, :login=>{}},:store_class_name => true
   acts_as_rateable

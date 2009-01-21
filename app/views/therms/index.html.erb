@@ -10,7 +10,7 @@
 <% current_first_letter,first_letter=nil %>
 <% @therms.each do |therm| %>
   <% current_first_letter = therm.name.first.mb_chars.upcase.to_s  %>
-  <%=  "<span class='first_letter'><a name='#{current_first_letter}' >#{current_first_letter}</span>" unless first_letter == current_first_letter %>
+  <%=  "<li><span class='first_letter'><a name='#{current_first_letter}' >#{current_first_letter}</span></li>" unless first_letter == current_first_letter %>
   
  
   <li><%= link_to therm.name, therm_path(therm.name) %></li>
