@@ -939,3 +939,7 @@ div.editbox ul.help {
 {
   color: #666;
 }
+
+.monitoring_tooltip{
+    font-size:10px; color:#ccc; display:block; clear:left;
+}

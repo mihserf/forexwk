@@ -20,7 +20,8 @@
     onclick="if (this.checked) {<%= remote_function :url => forum_topic_monitorship_path(@forum, @topic) %>} else {<%= remote_function :url => forum_topic_monitorship_path(@forum, @topic), :method => :delete %>}" />
   <label id="monitor_label" for="monitor_checkbox"><%= @monitoring ? 'Monitoring topic'[] : 'Monitor topic'[] %></label>
   <%= hidden_field_tag '_method', 'delete' if @monitoring %>
-  <%= submit_tag :Set, :id => 'monitor_submit' %>
+  <%= submit_tag "ok", :id => 'monitor_submit' %>
+  <span class="monitoring_tooltip">(получение уведомлений о сообщениях)</span>
 </div>
 <% end -%>
 
