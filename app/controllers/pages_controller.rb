@@ -20,7 +20,7 @@ class PagesController < ApplicationController
     @top_users = User.top(@contest.id).all(:limit => 5)
 
     #dealing_centers block
-    @dealing_centers = DealingCenter.find(:all, :limit => 20,:conditions=>["temp=?",false], :order => "name DESC")
+    @dealing_centers = DealingCenter.find(:all, :limit => 20, :conditions=>["temp=?",false], :order => "name DESC")
 
     #events block
     @events = Event.find(:all, :limit => 5, :order => "created_at DESC")
