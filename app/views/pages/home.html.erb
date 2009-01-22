@@ -7,9 +7,9 @@
 <div class="title_middle"><%= link_to 'Диллинговые центры', dealing_centers_path %></div>
 <div class="links_box" id="mainpage">
   <%  @dealing_centers.in_groups(3, false) do |group| %>
-     <div class="links_row">
+     <div class="links_row"><% i=0 %>
       <% group.each do |dealing_center| %>
-        <div><%= link_to dealing_center.name, dealing_centers_path(:anchor=>dealing_center.id) %></div>
+        <div><%= link_to dealing_center.name, dealing_centers_path(:anchor=>dealing_center.id) %>(<%= dealing_center.users.size %>)</div>
       <% end %>
       <div class="mfooter"></div>
     </div>
