@@ -5,7 +5,7 @@
 
 <p>
     <%= f.label 'относится к каталогу:' %><br />
-    <%= f.select :catalogue_id, nested_set_options(Catalogue) {|i| "#{'--' * i.level} #{i.name}" } %>
+    <%= f.select :catalogue_id, nested_set_options(Catalogue) {|i| "#{'--' * i.level} #{i.name}" }, :class=>"article_catalogue_select" %>
 </p>
 
 <p>

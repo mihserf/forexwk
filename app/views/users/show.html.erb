@@ -3,7 +3,7 @@
   <div id="common_left">
     <div class="photo"><%= image_tag @user.avatar.url(:normal), :style=>"padding:10px;", :class=>"photo" %>
     <h3><%= @user.name_or_login %></h3>
-    <% unless @user.dealing_center.nil? %>
+    <% unless @user.dealing_center.nil? || @user.dealing_center.url.blank?  %>
       <h3>Диллинговый центр <%= link_to @user.dealing_center.name, "http://"+@user.dealing_center.url %></h3>
     <% end %>
     <% article_count = Article.count(:conditions=>["user_id=:user_id",{:user_id=>@user.id}]) %>
