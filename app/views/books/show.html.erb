@@ -4,3 +4,5 @@
 
 <h3>Содержание</h3>
 <p><%= @book.contents %></p>
+
+<%= link_to "скачать книгу", @book.book.url  unless @book.book_file_name.nil? %>

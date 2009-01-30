@@ -29,11 +29,18 @@
 </p>
 <br>
 
-<% unless @book.new_record? && @book.cover.nil? %>
+<% unless @book.new_record? || @book.cover_file_name.nil? %>
   <%= image_tag @book.cover.url(:thumb)  %>
 <% end %>
 <p>
 <%= f.label :cover, "Обложка " %><%= f.file_field :cover %>
+</p>
+
+<% unless @book.new_record? || @book.book_file_name.nil? %>
+  <%= link_to "книга", @book.book.url  %>
+<% end %>
+<p>
+<%= f.label :book, "Книга " %><%= f.file_field :book %>
 </p>
 
 

@@ -1,5 +1,6 @@
 class Therm < ActiveRecord::Base
   before_save :set_ru
+  before_save :set_permalink
 
   acts_as_indexed :fields => [:name, :description]
 #  acts_as_ferret :fields =>{:name=>{:boost=>4},:description=>{}},:store_class_name => true
@@ -18,5 +19,9 @@ class Therm < ActiveRecord::Base
     else
       self.ru=nil
     end
+  end
+
+  def set_permalink
+    permalink = name.dirify
   end
 end
