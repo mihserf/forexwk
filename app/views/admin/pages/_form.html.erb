@@ -21,6 +21,9 @@
 <% Dir.foreach("app/controllers") {|it| controllers << it.gsub(/_controller.rb/,"") unless (it==".") || (it=="..") || (it=="application.rb")}  %>
 <%=f.select :controller_name, controllers, { :include_blank => true }%>
 </p>
+
+<%= render :partial => "shared/seo_fields", :locals => {:f => f} %>
+
 <p>
 <%=f.submit 'Сохранить изменения' %>
 </p>

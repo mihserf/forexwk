@@ -9,6 +9,8 @@ class Contest < ActiveRecord::Base
 #    has date_start, date_end
 #  end
 
+  acts_as_seo
+  
   def self.total_prize
     sum(:prize)
   end

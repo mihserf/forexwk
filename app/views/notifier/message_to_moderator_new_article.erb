@@ -1,3 +1,5 @@
-<p>Добавлена новая статья в раздел <%= link_to @article.catalogue.name, catalogue_articles_url(@article.catalogue) %></p>
+
+<p>В раздел  <%= link_to @article.catalogue.name, catalogue_articles_url(@article.catalogue) %>
+добавлена новая статья <%= link_to @article.name, catalogue_article_url(@article.catalogue.id, @article.id) %> </p>
 
 

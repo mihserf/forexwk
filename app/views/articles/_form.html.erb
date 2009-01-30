@@ -33,6 +33,9 @@
     <p><%= f.label Settings.rating.bonus.for_article.to_s+' баллов автору за статью' %> да <%= radio_button_tag :rate, "true" %>
     нет <%= radio_button_tag :rate, "false", true %></p>
   <% end %>
+
+  <%= render :partial => "shared/seo_fields", :locals => {:f => f} %>
+
 <% end %>
 
 <p>

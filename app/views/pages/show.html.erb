@@ -1,6 +1,8 @@
 
 <% unless @page.nil? %>
-    <h3><%=@page.name%></h3>
+    <%= page_title(@page.name) %>
+    <%= meta @page %>
+
     <%=@page.content %>
 <% else %>
       <h3>Запрашиваемой страницы не существует.</h3>

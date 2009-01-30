@@ -4,6 +4,8 @@ class DealingCenter < ActiveRecord::Base
   acts_as_indexed :fields => [:name, :description, :url]
   #acts_as_ferret :fields =>{:name=>{:boost=>4},:description=>{},:url=>{}},:store_class_name => true, :remote => true
 
+  acts_as_seo
+  
 #  define_index do
 #    indexes :name
 #    indexes :description

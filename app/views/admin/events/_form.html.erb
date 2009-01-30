@@ -23,6 +23,8 @@
 <%= fckeditor_textarea(:event, :description, :toolbarSet => 'Simple', :width => '98%', :height => '300px') %>
 </p>
 
+<%= render :partial => "shared/seo_fields", :locals => {:f => f} %>
+
 
 <p>
 <%=f.submit 'Сохранить изменения' %>

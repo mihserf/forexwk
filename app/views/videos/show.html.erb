@@ -1,5 +1,5 @@
-<h2 style="margin-top:30px; ">Видео</h2>
-<h3 style="margin-top:30px; "><%= @video.name %></h3>
+<%= page_title(@video.name) %>
+<%= meta @video %>
 
 <div class="video">
 <object type="application/x-shockwave-flash" data="/swf/uflvplayer.swf" height="385" width="640"><param name="bgcolor" value="#FFFFFF" /><param name="allowFullScreen" value="true" /><param name="allowScriptAccess" value="always" /><param name="movie" value="/swf/uflvplayer.swf" /><param name="FlashVars" value="way=<%= @video.video.url %>&amp;swf=/swf/uflvplayer.swf&amp;w=640&amp;h=385&amp;pic=http://&amp;autoplay=0&amp;tools=1&amp;skin=grey&amp;volume=70&amp;q=1&amp;comment=forexwk.com" /></object>

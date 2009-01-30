@@ -34,6 +34,9 @@
 <%=f.text_area :description, :size=>"70x6"%>
 </p>
 
+<%= render :partial => "shared/seo_fields", :locals => {:f => f} %>
+
+
   
 <%=f.submit 'Сохранить изменения' %>
 </p>

@@ -1,3 +1,5 @@
-<h2><%= @event.name %></h2>
+<%= page_title(@event.name) %>
+<%= meta @event %>
+
 <span class="date"><%= @event.created_at.to_date %></span>
 <p><%= @event.description %></p>

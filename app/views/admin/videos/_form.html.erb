@@ -23,6 +23,8 @@
 <%= f.label :screenshot, "Скриншот " %><%= f.file_field :screenshot %>
 </p>
 
+<%= render :partial => "shared/seo_fields", :locals => {:f => f} %>
+
 
 <p>
 <%=f.submit 'Сохранить изменения' %>

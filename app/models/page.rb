@@ -5,4 +5,7 @@ class Page < ActiveRecord::Base
 #  define_index do
 #    indexes :content
 #  end
+
+  acts_as_seo
+  
 end

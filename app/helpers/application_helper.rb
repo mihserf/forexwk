@@ -54,6 +54,9 @@ module ApplicationHelper
     render :partial => "videos/random_video", :locals => { :video => video }
   end
 
+  def meta(obj=nil)
+    render :partial => "shared/meta", :locals=> {:obj => obj}
+  end
 
  #FORUM helpers
   def head_extras

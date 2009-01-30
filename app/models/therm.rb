@@ -11,6 +11,8 @@ class Therm < ActiveRecord::Base
 #    has created_at, updated_at
 #  end
 
+  acts_as_seo
+  
   def set_ru
     bytes=[]
     self.name.first.each_byte{|i| bytes<<i}

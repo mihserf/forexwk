@@ -1,6 +1,8 @@
+<%= page_title(@page.name) %>
+<%= meta @page %>
 
 <%=@page.content%>
-<div style="padding-top:70px">
+<div style="padding-top:35px">
 <% if flash[:notice] %>
   <h3><%=flash[:notice]%></h3>
 <% else %>

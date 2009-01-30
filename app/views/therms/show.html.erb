@@ -1,3 +1,6 @@
 <%= search_in(Therm) %>
-<h3><%= @therm.name %></h3>
+
+<%=  page_title(@therm.name) %>
+<%=  meta @therm  %>
+
 <%= @therm.description %>

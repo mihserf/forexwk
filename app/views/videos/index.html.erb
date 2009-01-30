@@ -1,6 +1,8 @@
 <%= search_in(Video) %>
 
-<h2 style="margin-top:30px; ">Видео</h2>
+<%= page_title('Видео') %>
+<%= meta %>
+
 <%= will_paginate(@videos) %>
 
 <% for video in @videos %>

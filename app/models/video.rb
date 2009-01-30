@@ -19,4 +19,6 @@ class Video < ActiveRecord::Base
 
   #validates_attachment_presence :video, :content_type => ['video/x-flv', 'flv-application/octet-stream', 'application/octet-stream']
 
+  acts_as_seo
+  
 end

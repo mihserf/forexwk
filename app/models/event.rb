@@ -8,4 +8,6 @@ class Event < ActiveRecord::Base
 #    has created_at, updated_at
 #  end
 
+  acts_as_seo
+
 end

@@ -34,3 +34,6 @@
 [submodule "vendor/plugins/rutils"]
 	path = vendor/plugins/rutils
 	url = git://github.com/julik/rutils.git
+[submodule "vendor/plugins/seo_helper"]
+	path = vendor/plugins/seo_helper
+	url = git://github.com/relevance/seo_helper.git

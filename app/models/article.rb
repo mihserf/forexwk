@@ -21,6 +21,8 @@ class Article < ActiveRecord::Base
 
   #acts_as_list :scope => :catalogue
 
+  acts_as_seo
+  
   def has_additions?
     !additions.empty?
   end

@@ -27,6 +27,10 @@
 <%= hidden_field_tag 'sortable_ids' %>
 <% end %>
 
+
+<%= render :partial => "shared/seo_fields", :locals => {:f => f} %>
+
+
 <p>
 <%=f.submit 'Сохранить изменения' %>
 </p>

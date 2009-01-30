@@ -2,10 +2,12 @@
 
 
 
-<%= catalogue_breadcrumbs %>
+<%= @catalogue.nil? ? page_title("Статьи") : catalogue_breadcrumbs %>
 
 <div class="mfooter"></div>
-<%= "<h2>"+@catalogue.name+"</h2>" unless @catalogue.nil?%>
+<%= page_title(@catalogue.name) unless @catalogue.nil?%>
+<%= meta @catalogue unless @catalogue.nil? %>
+
 <%= "<h2>Все статьи, опубликованные "+link_to(@user.name_or_login, user_path(@user))+"</h2>" unless @user.nil?%>
 
 <div class="links_box">

@@ -31,7 +31,9 @@
 <div id="common_article">
   <div id="common_left">
    <% unless @article.temp? && !moderator? %>
-   <h3><%= @article.name %></h3>
+   <%= page_title(@article.name, :h2) %>
+   <%= meta @article %>
+
     <%= @article.content %>
 
     <% if @article.has_additions? %>
