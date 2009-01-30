@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
   has_attached_file :avatar,
                     :styles => { :thumb => "29x29>",
                                  :square => ["29x29#", :jpg],
-                                 :normal  => "150x150>" },
+                                 :normal  => "100x100>" },
                     :url => "/attachments/:class/:id/:style_:basename.:extension",
                     :path => ":rails_root/public/attachments/:class/:id/:style_:basename.:extension"
 
