@@ -1,4 +1,5 @@
 <% content_for :meta do %>
     <% meta = {:description => (obj.metatag_description if obj) || 'forex', :keywords => (obj.metatag_keywords if obj) || 'forex'} %>
     <%= meta_tags(meta) %>
+    <%= html_title("#{obj.metatag_title+' | ' if obj && obj.metatag_title} ForexWK.com", "|") %>
 <% end %>
