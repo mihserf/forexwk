@@ -610,6 +610,7 @@ p.small span {
 	margin-top:10px;
 	font-size:12px;
 	color:#000000;
+        overflow:hidden;
 	}
 
 #common_left {
