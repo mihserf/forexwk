@@ -733,8 +733,8 @@ a.broun:hover {border-bottom: 0px dashed #883527;}
 	}
 
 #rightbar {
-   /* width: 183px;
-	_width: 200px;*/
+    width: 153px;
+/*	_width: 200px;*/
 	padding-left:13px;
     margin:0px;
     float: left;

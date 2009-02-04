@@ -40,7 +40,7 @@ class SearchesController < ApplicationController
 
     end
       query = Query.find_or_create_by_query(params[:q])
-      query.results = @results.count
+      query.results = @results.count rescue 0
       query.queries+=1
       query.save
   end
