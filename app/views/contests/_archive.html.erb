@@ -1,10 +1,12 @@
 <% unless contests.empty? %>
   <div class="hr" style="margin:10px 0px; "><hr /></div>
     <h4 class="title">Архив конкурсов</h4>
-    <div class="links_path pages">
-            <div class="aaa">Страницы: </div>
-            <%= will_paginate contests %>
-    </div>
+    <% if will_paginate contests %>
+      <div class="links_path pages">
+              <div class="aaa">Страницы: </div>
+              <%= will_paginate contests %>
+      </div>
+    <% end %>
 
     <div class="title_middle" style="padding-left:0px;width:665px;">
             <div class="run_time">Время проведения</div>
@@ -29,10 +31,12 @@
     <%end%>
 
   </div>
-  <div class="links_path pages" style="margin-top:10px; ">
-          <div class="aaa">Страницы: </div>
-          <%= will_paginate contests %>
-  </div>
+  <% if will_paginate contests %>
+    <div class="links_path pages" style="margin-top:10px; ">
+            <div class="aaa">Страницы: </div>
+            <%= will_paginate contests %>
+    </div>
+  <% end %>
   <div class="mfooter" style="margin-bottom:5px; "></div>
 
 <% end %>

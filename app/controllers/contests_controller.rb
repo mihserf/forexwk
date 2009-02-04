@@ -19,7 +19,7 @@ class ContestsController < ApplicationController
   end
 
   def archive
-    @contests = Contest.paginate(:page => params[:page], :per_page => 2, :conditions => ["date_end < ?",Date.today.to_date])
+    @contests = Contest.paginate(:page => params[:page], :per_page => 10, :conditions => ["date_end < ?",Date.today.to_date])
     render :partial => "/contests/archive", :locals => {:contests => @contests}
   end
 

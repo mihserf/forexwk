@@ -530,11 +530,11 @@ p.font12 a:hover {color:#275a7a; text-decoration: none;}
 
 p.small, div.small {
 	color:#222222;
-	font-size:10px;
+	font-size:11px;
 	}
 
 p.small span {
-	color:#807c65;
+	color:#815646;
 	}
 .rate_plus{color:#807c65 !important;}
 .rate_minus{color:#5b8f5b !important;}
@@ -1080,7 +1080,7 @@ ul.admin_menu{
 
 .left {
 	width:290px;
-	height:124px;
+	/*height:124px;*/
 	float:left;
 	padding:18px 10px 18px 10px;
 	}
@@ -1608,4 +1608,4 @@ padding:2px 10px 3px;
 }
 
 .text_decoration_none {text-decoration: none !important;}
-
+span.current {background:#F0EEE1; color:#815646}
