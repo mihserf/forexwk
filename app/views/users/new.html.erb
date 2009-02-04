@@ -1,5 +1,5 @@
-<div class="hr"><hr /></div>
-<h2 style="margin-top:30px; ">Регистрация</h2>
+
+<h2>Регистрация</h2>
 <% form_for @user, :url => account_path, :html => { :multipart => true } do |f| %>
   <%= render :partial => "form", :object => f %>
 <% end %>

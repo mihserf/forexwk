@@ -4,7 +4,8 @@
 }
 
 body{
-	background: #4d624d; 
+	background: #4d624d;
+        /*background: #4d624d url('../images/header_bg.jpg') repeat-x 0 0 ;*/
 	font-family: verdana, tahoma, sans-serif;
 	color:#000000;
 	margin:0px;
@@ -21,6 +22,7 @@ label {
 	font-size:12px;
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 	margin:0px;
+        width:160px;
 	}
 
 img {
@@ -106,7 +108,7 @@ h4 a:hover {color:#666666; text-decoration: none;}
 
 .search {
 	height: 22px;
-	width: 173px;
+	width: 205px;
 	margin: 10px 0px 0px 35px;
 	}
 .search_text {
@@ -114,7 +116,7 @@ h4 a:hover {color:#666666; text-decoration: none;}
 }
 .search_text input{
 	height: 19px;
-	width: 137px;
+	width: 179px;
 	color: #666666;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 10px;
@@ -182,7 +184,9 @@ h4 a:hover {color:#666666; text-decoration: none;}
 	margin-right:5px;
 	border:1px solid #a8a592;
 	}
-
+.login { color:#815646 !important;}
+.login img{ margin-top:3px;}
+.registration {padding-left:2px;}
 .exit {
         height: 31px;
         padding-top:30px;
@@ -316,13 +320,13 @@ div.hr hr {
 }
 
 #menu {
-	width: 180px;
+	width: 202px;
 	margin-bottom: 35px;
 }
  
 #menu ul {
 	list-style: none;
-	margin: 20px 0px 0px 20px;;
+	margin: 20px 0px 0px 0px;;
 	padding: 0;
 	text-align: left;
 	color:#275a7a;
@@ -379,14 +383,17 @@ div.hr hr {
 	width: 202px;
 	height: 18px;
 	background: #f0eee1;
-	text-align:center;
+	text-align:left;
+        padding-left:7px;
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 	font-size:12px;
 	font-weight:bold;
-	color:999271;
+	color:#999271;
 	text-decoration:underline;
 	margin-bottom: 5px;
 	}
+
+        .title_left a{ color:#999271 !important;}
 
 .analize_left {
 	width:193px;
@@ -464,7 +471,7 @@ a.c {
 
 #middlebar {
     float: left;
-    width: 697px;
+    width: 663px;
     margin:0px 0px 20px 0px;
     background-color: #FFFFFF;
 	overflow:hidden;
@@ -655,7 +662,7 @@ p.small span {
 .user_time {
 	color:#807c65;
 	font-size:10px;
-	float:right;
+	float:none !important;
 	}
 
 .user_time span{
@@ -724,8 +731,8 @@ a.broun:hover {border-bottom: 0px dashed #883527;}
 	}
 
 #rightbar {
-    width: 183px;
-	_width: 200px;
+   /* width: 183px;
+	_width: 200px;*/
 	padding-left:13px;
     margin:0px;
     float: left;
@@ -769,7 +776,7 @@ a.broun:hover {border-bottom: 0px dashed #883527;}
 	height:45px;
 	width:100%;
 	clear:both;
-	background: url('../images/footer_bg.gif') repeat-x #4d624d;
+	/*background: url('../images/footer_bg.gif') repeat-x #4d624d;*/
 }
 
 
@@ -895,7 +902,7 @@ a.blue:hover {border-bottom: 0px dashed #275a7a;}
 .reg_form_line {
 	margin:0px;
 	height:30px;
-	width:390px;
+	width:400px;
 	}
 .reg_form_line label{
         float:left;
@@ -919,8 +926,8 @@ a.blue:hover {border-bottom: 0px dashed #275a7a;}
 	}
 
 .normal_text {
-	font-size:11px;
-	color:#000000;
+	/*font-size:11px;*/
+	/*color:#000000;*/
 	margin:10px 20px 20px 0px;
 	}
 	
@@ -1072,7 +1079,7 @@ ul.admin_menu{
 }
 
 .left {
-	width:250px;
+	width:290px;
 	height:124px;
 	float:left;
 	padding:18px 10px 18px 10px;
@@ -1236,13 +1243,13 @@ ul.admin_menu{
 
 .library_also {
 	float:right;
-	width:315px;
+	width:325px;
 	border:0px solid red;
-	margin-right:30px;
 	}
+*html .library_also {margin-right:5px;}
 
 .library_also .line {
-	width:315px;
+	width:100%;
 	height:18px;
 	padding-top:2px;
 	border-bottom:1px solid #dad6be;
@@ -1600,4 +1607,5 @@ padding:2px 10px 3px;
 
 }
 
+.text_decoration_none {text-decoration: none !important;}
 

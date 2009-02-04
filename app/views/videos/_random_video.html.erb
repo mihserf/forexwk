@@ -1,8 +1,8 @@
 <% unless video.nil? %>
-  <div class="title_left"><%= link_to video.name, video_path(video)  %></div>
+  <div class="title_left"><%= link_to "Видеоуроки", videos_path  %></div>
   <div class="analize_left">
-         <%= image_tag video.screenshot.url(:medium) %>
-         <%= link_to video.description, video_path(video) %>
+         <%= link_to image_tag(video.screenshot.url(:medium)), video_path(video) %>
+         <%= link_to video.name, video_path(video) %>
          <div class="mfooter" style="margin-bottom:10px; "></div>
   </div>
 <% end %>

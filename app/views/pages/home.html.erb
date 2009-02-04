@@ -25,7 +25,8 @@
 <div class="title_middle"><%= link_to 'Новости', events_path %></div>
 <% @events.each do |event| %>
   <div class="news_mainpage">
-        <%= link_to event.name, event_path(event) %>, <%= event.short_description %> <div class="user_time"><%= event.created_at.to_date %></div>
+        <div class="user_time"><%= event.created_at.to_date %></div>
+        <%= link_to event.name, event_path(event) %>, <%= event.short_description %>
         <div class="mfooter"></div>
   </div>
 <% end %>
@@ -42,10 +43,10 @@
 <div class="title_middle"><%= link_to 'Книги', books_path %></div>
 <div class="left" style="padding-top:0px;">
         <div class="teamlead">Лидер</div>
-        <div class="small"><%= image_tag @leader_book.cover.url(:thumb) %> <%= @leader_book.author %><br> <p class="bold"><%= link_to @leader_book.name, book_path(@leader_book) %></p> <%= link_to @leader_book.description, book_path(@leader_book) %></div>
+        <div><%= image_tag @leader_book.cover.url(:thumb) %> <%= @leader_book.author %><br> <p class="bold"><%= link_to "&laquo"+@leader_book.name+"&raquo", book_path(@leader_book), :class => "text_decoration_none" %></p> <%= @leader_book.description %></div>
 </div>
 <div class="library_also">
-        <div class="line small">Читайте также:</div>
+        <div class="line">Читайте также:</div>
         <% @fresh_books.each do |book| %>
           <div class="div_row"><div class="book_name"><%= link_to book.name %></div><div class="book_author"><%= book.author %></div></div>
         <% end %>
