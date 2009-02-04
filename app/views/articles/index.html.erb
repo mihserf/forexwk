@@ -23,7 +23,7 @@
     <div id="common_left">
       <% @articles.each do |item| %>
         <% unless item.temp? && !moderator? %>
-          <div class="article_<%=item.id%> <%= " need_moder" if item.temp? %>" >
+          <div class="article_<%=item.id%> <%= " need_moder" if item.temp? %> article" >
             <div>
               <%= link_to image_tag("/images/edit_ico.gif"),edit_catalogue_article_path((@catalogue.nil? ? item.catalogue.id : @catalogue),item) if item.user==current_user || moderator?%>
               <%= "| "+link_to_ajax_delete(article_path(item),item)  if moderator?%>

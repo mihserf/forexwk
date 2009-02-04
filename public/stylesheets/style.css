@@ -49,9 +49,10 @@ h3 {
 	}
 
 h4 {
-	font-size:12px;
+	font-size:13px;
 	color:#005b7f;
 	margin-bottom:8px;
+        font-weight:bold;
 	}
 
 a, a:visited { color:#275a7a;}
@@ -591,6 +592,7 @@ p.small span {
 .small span a:active {color:#8da48d; text-decoration: none;}
 .small span a:hover {color:#5b8f5b; text-decoration: underline;}
 
+.article {margin-top:10px}
 .article_additional {
 	font-size:11px;
 	color:#000000;
