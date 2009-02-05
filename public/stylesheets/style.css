@@ -78,22 +78,22 @@ h4 a:hover {color:#666666; text-decoration: none;}
 
 #header{
 	width: 1100px;
-	height: 118px;
+	height: 58px;
 	/*background: url('../images/header_bg.jpg') #4d624d;*/
 	overflow: hidden;
 	}
 
 #banner {
-	width: 924px;
-	height: 60px;
-	background-color: #7c98ad;
-	margin: 58px 0px 0px 94px;
+	background-color:#7C98AD;
+        height:60px;
+        margin:10px 0 0 29px;
+        width:924px;
 	}
 /* ================= heeader ===============*/
 
 #header_menu{
 	width: 987px;
-	height: 116px;
+	/*height: 116px;*/
 	background: url('../images/header2_bg.gif') repeat-x top #FFFFFF;
 	margin: 0px 0px 0px 63px;
 	overflow: hidden;
