@@ -8,7 +8,7 @@
 
 
 <% unless @results.empty? %>
-  <p>результатов: <%= @results.total_pages %></p>
+  <p>результатов: <%= @results.total_entries %></p>
   <% @results.each do |result| %>
     <%
     case dom_class(result)
