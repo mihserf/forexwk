@@ -5,11 +5,14 @@
 
 <div class="mfooter"></div>
 
-<h2><%= @catalogue.name %></h2>
 
+<% if sub_catalogues(@catalogue)  %>
 <div class="links_box">
   <%= sub_catalogues(@catalogue) %><br>
 </div>
+<% end %>
+
+<h2><%= @article.name %></h2>
 
 <div class="info_box">
 <div class="info_article">
