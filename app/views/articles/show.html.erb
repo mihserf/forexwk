@@ -6,7 +6,7 @@
 <div class="mfooter"></div>
 
 
-<% if sub_catalogues(@catalogue)  %>
+<% unless sub_catalogues(@catalogue)==""  %>
 <div class="links_box">
   <%= sub_catalogues(@catalogue) %><br>
 </div>
