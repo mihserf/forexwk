@@ -5,7 +5,7 @@ module CataloguesHelper
 
   def sub_catalogues(catalogue)
     catalogues = catalogue.nil? ? Catalogue.roots : catalogue.children
-    render :partial => "catalogues/sub_catalogues", :locals => {:items => catalogues}
+    render :partial => "catalogues/sub_catalogues", :locals => {:items => catalogues} unless catalogues.empty?
   end
 
   def catalogue_breadcrumbs
