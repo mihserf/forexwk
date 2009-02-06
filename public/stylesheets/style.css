@@ -1440,6 +1440,7 @@ div.video_row img{
 	margin:8px 0px 0px 0px;
 	padding:7px 9px;
 	background:url('/images/left_news_item_bg.gif') repeat-x top;
+        font-size:11px !important;
 	}
     .contest_users th{
         font-weight:normal;
