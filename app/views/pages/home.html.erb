@@ -43,7 +43,7 @@
 <div class="title_middle"><%= link_to 'Книги', books_path %></div>
 <div class="left" style="padding-top:0px;">
         <div class="teamlead">Лидер</div>
-        <div><%= image_tag @leader_book.cover.url(:thumb) %> <%= @leader_book.author %><br> <p class="bold"><%= link_to "&laquo"+@leader_book.name+"&raquo", book_path(@leader_book), :class => "text_decoration_none" %></p> <%= @leader_book.description %></div>
+        <div><%= image_tag @leader_book.cover.url(:thumb) %> <%= @leader_book.author %><br> <p class="bold"><%= link_to "&laquo;"+@leader_book.name+"&raquo;", book_path(@leader_book), :class => "text_decoration_none" %></p> <%= @leader_book.description %></div>
 </div>
 <div class="library_also">
         <div class="line">Читайте также:</div>
