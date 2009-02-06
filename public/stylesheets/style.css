@@ -597,13 +597,13 @@ p.small span {
 .article_additional {
 	font-size:11px;
 	color:#000000;
-	width:310px;
+	width:300px;
 	height:180px;
 	float:left;
 	}
 
 .text {
-	margin:10px 0px 55px 30px;
+	margin:10px 0px 55px 0px;
 	}
 
 .text a {
