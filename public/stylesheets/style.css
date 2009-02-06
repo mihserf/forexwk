@@ -104,12 +104,12 @@ h4 a:hover {color:#666666; text-decoration: none;}
 	}
 
 #logo {
-	margin: 15px 0px 0px 30px;
+	margin: 15px 0px 0px 35px;
 	}
 
 .search {
 	height: 22px;
-	width: 205px;
+	width: 195px;
 	margin: 10px 0px 0px 35px;
 	}
 .search_text {
@@ -117,7 +117,7 @@ h4 a:hover {color:#666666; text-decoration: none;}
 }
 .search_text input{
 	height: 19px;
-	width: 179px;
+	width: 170px;
 	color: #666666;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 10px;
@@ -322,7 +322,7 @@ div.hr hr {
 }
 
 #menu {
-	width: 202px;
+	width: 195px;
 	margin-bottom: 35px;
 }
  
@@ -382,7 +382,7 @@ div.hr hr {
 	}
 
 .title_left {	
-	width: 202px;
+	width: 190px;
 	height: 18px;
 	background: #f0eee1;
 	text-align:left;
@@ -398,7 +398,7 @@ div.hr hr {
         .title_left a{ color:#999271 !important;}
 
 .analize_left {
-	width:193px;
+	width:188px;
 	_width:202px;
 	background:url('../images/left_news_item_bg.gif') repeat-x;
 	border:1px solid #f0eee1;
@@ -424,7 +424,7 @@ div.hr hr {
 
 .ad {
 	background-color: #d6e3d6;
-	width: 192px;
+	width: 187px;
 	_width: 203px;
 	padding: 5px;
 	margin-bottom:20px;
