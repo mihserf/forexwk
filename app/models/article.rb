@@ -8,6 +8,9 @@ class Article < ActiveRecord::Base
   acts_as_taggable
 
   acts_as_indexed :fields => [:name, :content, :cached_tag_list]
+
+  before_save :sanitize
+
 #  acts_as_ferret :fields =>{:name=>{:boost=>4}, :content=>{}, :cached_tag_list=>{:boost=>3}},:store_class_name => true
 #
 #  define_index do
@@ -25,5 +28,9 @@ class Article < ActiveRecord::Base
   
   def has_additions?
     !additions.empty?
+  end
+
+  def sanitize
+    self.content = Sanitize.clean(self.content, Sanitize::Config::RELAXED)
   end
 end

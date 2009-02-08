@@ -37,3 +37,6 @@
 [submodule "vendor/plugins/seo_helper"]
 	path = vendor/plugins/seo_helper
 	url = git://github.com/relevance/seo_helper.git
+[submodule "vendor/plugins/sanitize"]
+	path = vendor/plugins/sanitize
+	url = git://github.com/rgrove/sanitize.git

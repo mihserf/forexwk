@@ -8,9 +8,7 @@
 <h2><%= @catalogue.name %></h2>
 
 <% if sub_catalogues(@catalogue)  %>
-<div class="links_box">
-  <%= sub_catalogues(@catalogue) %><br>
-</div>
+  <%= sub_catalogues(@catalogue) %>
 <% end %>
 
 <div class="info_box">
