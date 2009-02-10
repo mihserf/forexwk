@@ -641,7 +641,9 @@ p.small span {
 	padding-left:0px;
 	overflow:hidden;
 	float:left;
+        text-align:justify;
 	}
+#common_left h2, #common_left h3, #common_left h4{ text-align:left !important}
 
 #common_left p {
 	margin-bottom:10px;
