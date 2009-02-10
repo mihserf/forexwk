@@ -1214,12 +1214,12 @@ ul.admin_menu{
 	}
 
 .news_mainpage {
-	margin:20px 0px;
+	margin:13px 0px;
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 	font-size:11px;
 	color:#000000;
 	width:663px;
-	height:40px;
+	/*height:40px;*/
 	clear:both;
 	}
 
