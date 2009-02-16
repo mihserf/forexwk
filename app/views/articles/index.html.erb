@@ -15,6 +15,7 @@
 
 <div class="hr"><hr /></div>
 <% unless @articles.empty? %>
+  <%= will_paginate(@articles) %>
   <div style="margin-top:10px;">
   <%= link_to "сортировать по дате", (@catalogue.nil? ? (@user.nil? ? articles_path : user_articles_path(@user)) : catalogue_articles_path(@catalogue)) unless params[:action]=="per_date" || params[:action]=="index" %>
   <%= link_to "сортировать по рейтингу", (@catalogue.nil? ? (@user.nil? ? per_rating_articles_path : per_rating_user_articles_path(@user)) : per_rating_catalogue_articles_path(@catalogue)) unless params[:action]=="per_rating" %>
@@ -46,4 +47,5 @@
   </div>
 <% end %>
 <div class="mfooter"></div>
+<%= will_paginate(@articles) %>
 <%= link_to 'редактировать', edit_admin_catalogue_path(@catalogue), :class => "admin_edit_link"  if moderator? && !@catalogue.nil? %>

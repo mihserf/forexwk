@@ -12,12 +12,13 @@ class ArticlesController < ApplicationController
 
   def index
     set_ordering :date unless defined? @orders
+    per_page = 10
     if @catalogue 
-      @articles = @catalogue.articles.find(:all, :include => :stat_rating, :order => @orders[:for_all])
+      @articles = @catalogue.articles.paginate(:page => params[:page], :per_page => per_page, :include => :stat_rating, :order => @orders[:for_all])
     elsif @user
-      @articles = @user.articles.find(:all, :include => :stat_rating, :order => @orders[:for_all])
+      @articles = @user.articles.paginate(:page => params[:page], :per_page => per_page, :include => :stat_rating, :order => @orders[:for_all])
     else
-      @articles = Article.find(:all, :include => :stat_rating, :order => @orders[:for_all])
+      @articles = Article.paginate(:page => params[:page], :per_page => per_page, :include => :stat_rating, :order => @orders[:for_all])
     end
   end
 
