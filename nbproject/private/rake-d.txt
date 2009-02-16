@@ -51,6 +51,7 @@ doc\:plugins\:gibberish=Generate documentation for the gibberish plugin
 doc\:plugins\:jrails=Generate documentation for the jrails plugin
 doc\:plugins\:paperclip=Generate documentation for the paperclip plugin
 doc\:plugins\:rutils=Generate documentation for the rutils plugin
+doc\:plugins\:sanitize=Generate documentation for the sanitize plugin
 doc\:plugins\:seo_helper=Generate documentation for the seo_helper plugin
 doc\:plugins\:settingslogic=Generate documentation for the settingslogic plugin
 doc\:plugins\:thinking-sphinx=Generate documentation for the thinking-sphinx plugin

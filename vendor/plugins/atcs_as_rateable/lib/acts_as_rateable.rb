@@ -60,7 +60,7 @@ module Juixe
       # This module contains instance methods
       module InstanceMethods
         # Helper method that defaults the current time to the submitted field.
-        def add_rating(rating_val, current_user,reason=nil)
+        def add_rating(rating_val, current_user,reason=nil,obj_id=nil)
           rating_val = rating_val.to_i
           rate_section = rating < Settings.rating.point ? rating.floor+1 : Settings.rating.point
           if rating_val.abs > Settings.rating.point
@@ -97,15 +97,17 @@ module Juixe
           case self.class.to_s
             when "Article"
               reason_str="Оценили статью"
+              obj_id = self.id
             when "Addition"
               reason_str="Оценили дополнение"
+              obj_id = self.id
             else
               reason_str=reason
           end
 
           
           
-          self.user.add_rating(rating_val, User.find(:first,:conditions => {:admin => true}),reason_str) unless self.class.to_s=="User"
+          self.user.add_rating(rating_val, User.find(:first,:conditions => {:admin => true}),reason_str,obj_id) unless self.class.to_s=="User"
           # writing rating data of rated user for current contest
           if self.class.to_s=="User" && current_contest
             user_contest = UserContest.find_or_create_by_contest_id_and_user_id(current_contest.id,id)
@@ -120,7 +122,15 @@ module Juixe
 
           #sending notifiation about rating changing
           if self.class.to_s == "User"
-            Notifier.deliver_message_rating_changed(self, rating_val, reason_str)
+            case reason_str
+            when "Оценили статью"
+              Notifier.deliver_message_rating_changed_for_article(self, rating_val, reason_str, obj_id)
+            when "Оценили дополнение"
+              Notifier.deliver_message_rating_changed_for_addition(self, rating_val, reason_str, obj_id)
+            else
+              Notifier.deliver_message_rating_changed(self, rating_val, reason_str)
+            end
+            
           end
 
           #ratings << rating

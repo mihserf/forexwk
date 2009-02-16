@@ -36,10 +36,11 @@
     <%= @article.content %>
 
     <% if @article.has_additions? %>
-      <p style="margin:2px 5px; "><b>Дополнение</b></p>
+      <p style="margin:2px 5px; "><b><%= Addition.count(:conditions => ["article_id=?",@article.id]) > 1 ? "Дополнения" : "Дополнение" %> </b></p>
       <div class="mfooter"></div>
       <% @article.additions.each do |addition| %>
         <div class="addition_<%=addition.id%>">
+          <a name='<%= addition.id %>'></a>
           <%= rating(addition) %>
           <div class="comment_box ">
               <div class="comm_title">

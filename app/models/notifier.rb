@@ -25,6 +25,24 @@ class Notifier < ActionMailer::Base
     content_type 'text/html'
   end
 
+  def message_rating_changed_for_article(user, rating_val, reason, obj_id)
+    subject       "[Forexwk.com] Изменение рейтинга за статью"
+    from          get_admin_email
+    recipients    user.email
+    sent_on       Time.now
+    body({:user => user,:rating_val => rating_val,:reason => reason, :obj_id => obj_id})
+    content_type 'text/html'
+  end
+
+  def message_rating_changed_for_addition(user, rating_val, reason, obj_id)
+    subject       "[Forexwk.com] Изменение рейтинга за дополнение"
+    from          get_admin_email
+    recipients    user.email
+    sent_on       Time.now
+    body({:user => user,:rating_val => rating_val,:reason => reason, :obj_id => obj_id })
+    content_type 'text/html'
+  end
+
   def message_addition_added(user, addition)
     subject       "[Forexwk.com] Дополнение к Вашей статье"
     from          get_admin_email

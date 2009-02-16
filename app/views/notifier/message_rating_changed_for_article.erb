@@ -1,0 +1,15 @@
+<%
+  if @rating_val.to_s.last.to_i.abs == 1
+    point="балл"
+  elsif ((@rating_val.to_s.last.to_i.abs > 1) && (@rating_val.to_s.last.to_i.abs < 5) && (@rating_val.to_i.abs > 14)) || ((@rating_val.to_i.abs > 1) && (@rating_val.to_i.abs < 5))
+    point="балла"
+  else
+    point="баллов"
+  end
+%>
+
+<p>Ваша <%= link_to 'статья', article_url(@obj_id) %> на <a href="http://forexwk.com">ForexWK.com</a> получила новую оценку. Ваш <%= link_to 'рейтинг', user_url(@user) %> <%= @rating_val>0 ? "увеличился" : "уменьшился"  %> на <%= @rating_val.abs %> <%= point %> .
+
+<p>Письмо сгенерировано автоматически и не требует ответа.</p>
+
+<p>Для того чтобы не получать более уведомлений об изменении рейтинга, внесите соответствующее изменение в Вашем <%= link_to 'профиле', user_url(@user) %></p>
