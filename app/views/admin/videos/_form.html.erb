@@ -16,7 +16,7 @@
 <%= f.label :video, "Видео-файл " %><%= f.file_field :video %>
 </p>
 
-<% unless @video.new_record? && @video.cover.nil? %>
+<% unless @video.new_record? && @video.screenshot.nil? %>
   <%= image_tag @video.screenshot.url(:thumb)  %>
 <% end %>
 <p>
