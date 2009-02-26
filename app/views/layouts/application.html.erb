@@ -37,7 +37,7 @@
                     <li <%= "class='active'" if params[:controller]=="admin/therms" %> ><%= link_to "Словарь", admin_therms_path %></li>
                     <li <%= "class='active'" if params[:controller]=="admin/queries" %> ><%= link_to "Запросы", admin_queries_path %></li>
                     <li <%= "class='active'" if params[:controller]=="admin/users" %> ><%= link_to "Пользователи", admin_users_path %></li>
-                    <li <%= "class='active'" if params[:controller]=="admin/dealing_centers" %> ><%= link_to "Диллинговые центры", admin_dealing_centers_path %></li>
+                    <li <%= "class='active'" if params[:controller]=="admin/dealing_centers" %> ><%= link_to "Дилинговые центры", admin_dealing_centers_path %></li>
                     <li <%= "class='active'" if params[:controller]=="admin/pages" %> ><%= link_to "Страницы", admin_pages_path %></li>
                     <li <%= "class='active'" if params[:controller]=="admin/contests" %> ><%= link_to "Акции", admin_contests_path %></li>
                     <li <%= "class='active'" if params[:controller]=="admin/videos" %> ><%= link_to "Видео", admin_videos_path %></li>
@@ -96,7 +96,7 @@
 					<li <%= "class='active'" if request.path=="/" %> ><%= request.path=="/" ? "Главная" : link_to("Главная", "/") %></li>
 					<li <%= "class='active'" if params[:controller]=="articles" %> ><%= link_to("Статьи", articles_path) %></li>
                                         <li <%= "class='active'" if params[:controller]=="therms" %> ><%=  link_to("Словарь", therms_path) %></li>
-                                        <li <%= "class='active'" if params[:controller]=="dealing_centers" %> ><%=  link_to("Диллинговые центры", dealing_centers_path) %></li>
+                                        <li <%= "class='active'" if params[:controller]=="dealing_centers" %> ><%=  link_to("Дилинговые центры", dealing_centers_path) %></li>
                                         <li <%= "class='active'" if params[:controller]=="videos" %> ><%= link_to("Видео", videos_path) %></li>
                                         <li <%= "class='active'" if params[:controller]=="books" %> ><%= link_to("Книги", books_path) %></li>
                                         <li <%= "class='active'" if params[:controller]=="events" %> ><%= link_to("События", events_path) %></li>

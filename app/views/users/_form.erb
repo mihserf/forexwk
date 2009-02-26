@@ -34,11 +34,11 @@
 
  </div>
 
-<div class="additional additional_header"><b>Диллинговый центр</b></div>
-<div class="normal_text">Вибирая или предлагая диллинговый центр, вы получаете <%= Settings.rating.bonus.for_dealing_center %> баллов в персональный рейтинг активности.
+<div class="additional additional_header"><b>Дилинговый центр</b></div>
+<div class="normal_text">Вибирая или предлагая дилинговый центр, вы получаете <%= Settings.rating.bonus.for_dealing_center %> баллов в персональный рейтинг активности.
 Вы можете внести его позже, или изменить, но при повторном изменении баллы, в соответствиии
 с правилами, не зачисляются.</div>
-<div class="reg_form_line"><%= form.label "Диллинговый центр" %>
+<div class="reg_form_line"><%= form.label "Дилинговый центр" %>
 <%= form.select :dealing_center_id, DealingCenter.find(:all, :select => "id,name", :conditions => ["temp=:temp OR temp='nil'"+(form.object.new_record? ? "":"OR added_by_user=:user_id"),{:temp=>false,:user_id=>form.object.id}], :order => "name").map{|i| [i.name,i.id]}, {:include_blank => true}, :class => "reg_text"   %>
 </div>
     <div style="float:left">
