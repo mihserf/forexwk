@@ -53,7 +53,7 @@ class ArticlesController < ApplicationController
     @article.tag_list=params[:tags] unless params[:tags]==""
     if  @article.update_attributes(params[:article])
       if params[:rate]=="true" && current_user.moderator? && !@article.temp 
-        @article.user.add_rating(Settings.rating.bonus.for_article,User.find(:first,:conditions => {:admin=>true},:select=>"admin,id").id,"за статью")
+        @article.user.add_rating(params[:rating],User.find(:first,:conditions => {:admin=>true},:select=>"admin,id").id,"за статью")
         if current_contest
           user_contest=UserContest.find_or_create_by_contest_id_and_user_id(current_contest.id,@article.user_id)
           user_contest.articles += 1

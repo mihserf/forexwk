@@ -30,7 +30,9 @@
   <p><%= f.label 'модерирована, показывать всем' %> да <%= f.radio_button :temp, "false", :checked => (@article.temp? ? false:true)  %>
   нет <%= f.radio_button :temp, "true" %></p>
   <% if @article.temp? %>
-    <p><%= f.label Settings.rating.bonus.for_article.to_s+' баллов автору за статью' %> да <%= radio_button_tag :rate, "true" %>
+    <% ar=[] %>
+    <% 0.step(Settings.rating.bonus.for_article_max,Settings.rating.bonus.for_article_step){|i| ar << [i,i] } %>
+    <p><%= select_tag :rating, options_for_select(ar) %> баллов автору за статью: да <%= radio_button_tag :rate, "true" %>
     нет <%= radio_button_tag :rate, "false", true %></p>
   <% end %>
 
