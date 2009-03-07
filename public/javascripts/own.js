@@ -3,6 +3,15 @@ $.postJSON = function(url, data, callback) {
 };
 
 $(document).ready(function(){
+    $('input.example_value').each(function() {
+        this.exampleValue = this.value;
+    });
+    $('input.example_value').focus(function() {
+        if ($(this).hasClass('example_value')) {
+            this.value = '';
+            $(this).removeClass('example_value');
+        }
+    });
   $('a[rel*=facebox]').facebox();
   $("a.rjs").click(  function() {
             $.ajax({

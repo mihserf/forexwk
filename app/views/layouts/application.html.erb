@@ -50,7 +50,7 @@
 			<div id="logo"><a href="/"><img src="/images/logo.gif" alt=""></a></div>
                         <div class="search">
                               <% form_tag(searches_path, :method => 'get') do %>
-                                <div class="search_text"><%= text_field_tag :q, params[:q], :id => :q %></div>
+                                <div class="search_text"><%= text_field_tag :q, params[:q] || "поиск по сайту", :id => :q, :class => 'example_value' %></div>
                                 <div class="search_submit"><input type="image" src="/images/search_button.gif"></div>
                               <% end %>
                         </div>

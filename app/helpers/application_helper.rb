@@ -45,7 +45,26 @@ module ApplicationHelper
    end
 
   def search_in(model)
-    render :partial => "shared/search_in", :locals => { :model => model }
+    case model.class_name
+    when "Article"
+      example_value = "поиск по статьям и дополнениям"
+    when "DealingCenter"
+      example_value = "поиск по диллинговым центрам"
+    when "Therm"
+      example_value = "поиск по терминам"
+    when "Video"
+      example_value = "поиск по видео"
+    when "Addition"
+      example_value = "поиск по дополнениям"
+    when "Book"
+      example_value = "поиск по книгам"
+    when "Event"
+      example_value = "поиск по новостям"
+    else
+      example_value = "поиск по разделу"
+    end
+
+    render :partial => "shared/search_in", :locals => { :model => model, :example_value => example_value }
   end
 
   def random_video
