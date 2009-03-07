@@ -12,6 +12,12 @@ $(document).ready(function(){
             $(this).removeClass('example_value');
         }
     });
+    $('input.example_value').blur(function() {
+        if (this.value == '') {
+            this.value = this.exampleValue;
+            $(this).addClass('example_value');
+        }
+    });
   $('a[rel*=facebox]').facebox();
   $("a.rjs").click(  function() {
             $.ajax({

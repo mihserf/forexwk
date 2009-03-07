@@ -1643,3 +1643,6 @@ span.current {background:url('/images/list_bg.gif') no-repeat; color:#815646;
     * + html span.current { display:inline; margin-bottom:-8px; }  /* for IE 7 */
     span.current  > * { display:table; table-layout:fixed; width:18px; overflow:hidden; }
 
+
+
+.scroll_table {width:100%; overflow-x:scroll;}
