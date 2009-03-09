@@ -1655,7 +1655,7 @@ span.current {background:url('/images/list_bg.gif') no-repeat; color:#815646;
 
 .indication {float:left; width:332px; padding:4px}
 .indication table {text-align:center; font-size:11px; border:#999 solid 1px; width:100%; border-collapse: collapse;}
-.indication th {font-weight:bold; border:#999 solid 1px; vertical-align:top; padding:2px;}
+.indication th {font-weight:bold; color:#999271; border:#999 solid 1px; vertical-align:top; padding:2px;}
 .indication td {border:#999 solid 1px;}
 .indication th.indication.title {font-size:13px; font-weight:normal;}
 .indication_article_date {width:30px}

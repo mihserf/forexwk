@@ -9,7 +9,6 @@ class ContestsController < ApplicationController
     
     @contests = Contest.find(:all, :order => "created_at DESC")
     @total_prize = Contest.total_prize
-    @rules = Page.find_by_permalink("contest_rules")
   end
 
   def users

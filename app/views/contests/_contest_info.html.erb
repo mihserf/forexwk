@@ -1,10 +1,10 @@
 <div style=" width: 655px">
       <div class="left">
-              <h4 class="title" style="margin-left:0px; "><%= current_contest ? "Текущий конкурс" : "Прошедший конкурс" %></h4>
+              <h4 class="title" style="margin-left:0px; display:inline; "><%= contest.name %></h4> <%=  "<small>(прошедший конкурс)</small>" unless current_contest %> <a href="#conditions" class="lblue" style="font-size:11px " rel="facebox">Условия конкурса</a>
               <p class="small">Начало <%= "текущего" if current_contest %> конкурса <span><%= contest.date_start.to_date %></span></p>
               <p class="small">Окончание <span><%= contest.date_end.to_date %></span></p>
               <p class="small">Подведение итогов <span><%= contest.date_total.to_date %></span></p>
-              <p class="small">Приз <span>$<%= contest.prize %></span></p>
+              <p class="small">Приз <span>$<%= contest.prize %></span> <a href="#rules" class="lblue" style="font-size:11px " rel="facebox">Правила участия</a></p>
       </div>
       <div class="right_box">
               <div class="right">
@@ -24,3 +24,17 @@
       <div class="mfooter"></div>
 </div>
 <div class="mfooter"></div>
+
+<a name="conditions"></a>
+  <div id="conditions">
+    <%= javascript_tag "$('#conditions').hide();" %>
+    <h3>Условия конкурса</h3>
+    <%= contest.description %>
+  </div>
+
+<a name="rules"></a>
+  <div id="rules">
+    <%= javascript_tag "$('#rules').hide();" %>
+    <h3>Правила участия</h3>
+    <%= contest.rules %>
+  </div>
