@@ -5,11 +5,13 @@
                     <input type="hidden" name="type" value="<%= model.to_s.tableize %>"/>
                     <div class="search_submit"><input type="image" src="/images/search_button_light.gif"></div>
                   <% end %>
+                  <% if params[:controller]=="articles" %>
                     <div class="add_article">
                       <% form_tag new_catalogue_article_path((@catalogue.nil? ? Catalogue.first.id : @catalogue.id )), :method => :get do%>
                       <input type="image" src="/images/add_article.gif" alt="">
                       <% end %>
                     </div>
+                  <% end %>
             </div>
             <span class="buffer"></span>
             <div class="hr"></div>
