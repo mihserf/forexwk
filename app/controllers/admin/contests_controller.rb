@@ -1,5 +1,4 @@
 class Admin::ContestsController < ApplicationController
-  before_filter :admin_required
 
 
   def index

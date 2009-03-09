@@ -1,7 +1,4 @@
-class Admin::ThermsController < ApplicationController
-  before_filter :admin_required
-
-
+class Admin::ThermsController < AdminController
 
   def index
     @therms=Therm.all(:order => "ru DESC,name")

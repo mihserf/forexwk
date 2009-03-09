@@ -1,5 +1,5 @@
 class Admin::CataloguesController < ApplicationController
-  before_filter :admin_required
+  
   def index
     @catalogues = Catalogue.all
   end

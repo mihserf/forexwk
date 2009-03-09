@@ -1646,3 +1646,17 @@ span.current {background:url('/images/list_bg.gif') no-repeat; color:#815646;
 
 
 .scroll_table {width:100%; overflow-x:scroll;}
+.indications_titles, .indications_numbers {font-size:9px}
+.indications_numbers span {display:block; float:left; padding:0 10px; width:20px; text-align:center}
+.article_indication_name {width: 300px; text-align:left; font-size:11px;}
+.article_indication_date {width:70px; text-align:center; font-size:10px;}
+.admin_indications{padding-bottom:30px; font-size:12px;}
+
+
+.indication {float:left; width:332px; padding:4px}
+.indication table {text-align:center; font-size:11px; border:#999 solid 1px; width:100%; border-collapse: collapse;}
+.indication th {font-weight:bold; border:#999 solid 1px; vertical-align:top; padding:2px;}
+.indication td {border:#999 solid 1px;}
+.indication th.indication.title {font-size:13px; font-weight:normal;}
+.indication_article_date {width:30px}
+.indication_row {clear:left; float:left}

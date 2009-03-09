@@ -1,7 +1,4 @@
-class Admin::PagesController < ApplicationController
-  before_filter :admin_required
-
-
+class Admin::PagesController < AdminController
 
   def index
     @pages=Page.find(:all, :order => :permalink)

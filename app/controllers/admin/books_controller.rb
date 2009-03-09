@@ -1,6 +1,5 @@
-class Admin::BooksController < ApplicationController
-  before_filter :admin_required
-
+class Admin::BooksController < AdminController
+  
   def index
     @books=Book.find(:all, :order=>"created_at DESC")
   end

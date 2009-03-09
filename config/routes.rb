@@ -66,6 +66,9 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :videos
     admin.resources :books
     admin.resources :events
+    admin.resources :articles
+    admin.resources :article_indications, :only => [:create, :destroy]
+    admin.resources :indications
   end
 
   map.with_options :controller => "pages" do |page|

@@ -1,5 +1,4 @@
-class Admin::QueriesController < ApplicationController
-  before_filter :admin_required
+class Admin::QueriesController < AdminController
 
   def index
     @queries = Query.find(:all, :limit =>200, :order => "results")

@@ -1,5 +1,4 @@
 class Admin::EventsController < ApplicationController
-  before_filter :admin_required
 
   def index
     @events=Event.find(:all, :order=>"created_at DESC")

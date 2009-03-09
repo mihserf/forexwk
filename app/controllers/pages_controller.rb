@@ -19,6 +19,9 @@ class PagesController < ApplicationController
     @contest = current_contest || Contest.find(:first, :order => "date_end DESC")
     @top_users = User.top(@contest.id).all(:limit => 5)
 
+    #indications block
+    @indications = Indication.all(:include => :articles, :order => :number)
+
     #dealing_centers block
     @dealing_centers = DealingCenter.find_by_sql(" SELECT dc.id AS id, dc.name AS name, dc.url AS url, dc.commerce AS commerce FROM dealing_centers dc LEFT JOIN users u ON dc.id = u.dealing_center_id WHERE temp=false GROUP BY dc.name ORDER BY dc.commerce DESC, COUNT( dc.id ) DESC , dc.name LIMIT 0 , 30 ")
     #@dealing_centers = DealingCenter.find(:all, :limit => 20,  :conditions=>["temp=?",false], :joins => :users, :group => "dealing_centers.id", :order => "count(dealing_centers.id) DESC, dealing_centers.name")

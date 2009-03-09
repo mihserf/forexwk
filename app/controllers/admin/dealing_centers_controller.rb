@@ -1,8 +1,5 @@
 class Admin::DealingCentersController < ApplicationController
 
- before_filter :admin_required
-
-
   def index
     @dealing_centers=DealingCenter.find(:all, :order => :name)
   end

@@ -1,7 +1,4 @@
-class Admin::VideosController < ApplicationController
-  before_filter :admin_required
-
-
+class Admin::VideosController < AdminController
 
   def index
     @videos=Video.find(:all, :order=>"created_at DESC")

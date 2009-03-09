@@ -7,6 +7,31 @@
 <div class="title_middle"><%= link_to 'Конкурс рейтингов', contest_path((current_contest.id rescue Contest.find(:first, :order => "date_end DESC").id)) %></div>
 <%= contest_info(@contest) %>
 
+<div class="title_middle"><%= link_to 'Блок статей', articles_path %></div>
+<% @indications.in_groups_of(2) do |row| %>
+  <div class="indication_row">
+  <% row.each do |indication| %>
+    <% next if indication.articles.size.zero? && !indication.by_filter? %>
+    <div class="indication">
+      <table>
+        <tr><th colspan="2" class="indication_title"><%= indication.name %></th></tr>
+        <tr>
+          <th class="indication_article_date">Дата публикации</th>
+          <th>Название статьи</th>
+        </tr>
+        <% articles = indication.by_filter? ? Article.filter(indication.filter_id,indication.max_articles) : indication.articles %>
+        <% articles.each do |article| %>
+          <tr>
+            <td><%= article.created_at.to_date %></td>
+            <td><%= link_to article.name, catalogue_article_path(article.catalogue.id,article.id) %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  <% end %>
+  </div>
+<% end %>
+<div class="mfooter"></div>
 <div class="title_middle"><%= link_to 'Дилинговые центры', dealing_centers_path %></div>
 <div class="links_box" id="mainpage">
   <%  @dealing_centers.in_groups(3, false) do |group| %>

@@ -1,0 +1,30 @@
+
+<%= error_messages_for :indications %>
+<%form_for [:admin,@indication], :html => { :multipart => true } do |f|%>
+
+<p>
+<%= f.label 'Название' %><br />
+<%=f.text_field :name%>
+</p>
+
+<p>
+<%= f.label 'Порядковый номер' %><br />
+<% ar=[]; 1.upto(Indication.all.size){|i| ar<<i}   %>
+<%= f.select :number, ar %>
+</p>
+
+<p>
+<%= f.label 'Максимальное количество статей в блоке' %><br />
+<%= f.text_field :max_articles, :size=>"3"%>
+</p>
+
+<p>
+<%= f.label 'либо сортировать статьи по: (вывод будет только с учётом этого фильтра, без учёта отмеченных статей)' %><br />
+<% filter_collection = Article::FILTER.map {|k,v| [v[:title],k]}  %>
+<%= f.select :filter_id, filter_collection, { :include_blank => true } %>
+</p>
+
+<p style="padding-top:20px;">
+<%= f.submit 'Сохранить изменения' %>
+</p>
+<%end%>

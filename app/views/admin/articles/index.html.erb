@@ -1,0 +1,48 @@
+<%= javascript_include_tag "article_indications" %>
+
+<%= link_to 'Добавить отличие', new_admin_indication_path %>
+<table class="admin_indications">
+  <% @indications.each do |i|  %>
+    <tr class="indication_<%=i.id%>">
+      <td><%= i.number %>: <%= i.name %></td>
+      <td>
+        <%= link_to_ajax_delete(admin_indication_path(i), i) %>
+        <%= link_to image_tag("/images/edit_ico.gif",:alt=>"Редактировать"), edit_admin_indication_path(i) %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+
+<% form_tag admin_article_path(0), :method => :put do %>
+  <%= will_paginate(@articles) %>
+  <table>
+    <th><%= link_to 'статья', admin_articles_path(:order => 'name') %></th>
+    <th><%= link_to 'дата', admin_articles_path %></th>
+    <th>&nbsp;&nbsp;</th>
+    <th class='indications_numbers'>
+      <% @indications.each do |i|  %>
+        <% next if i.by_filter? %>
+        <span><%= i.number %></span>
+      <% end %>
+    </th>
+    <th></th>
+    <% for article in @articles %>
+    <tr class="article_<%=article.id%>">
+      <td class='article_indication_name'><%= article.name %></td>
+      <td class='article_indication_date'><%= article.created_at.to_date %></td>
+      <td>
+        <%= link_to_ajax_delete(article_path(article), article) %>
+        <%= link_to image_tag("/images/edit_ico.gif",:alt=>"Редактировать"), edit_article_path(article) %>
+      </td>
+      <td class='indications_numbers'>
+        <% @indications.each do |i|  %>
+        <% next if i.by_filter? %>
+        <span><%= check_box_tag i.id.to_s, article.id, article.indications.exists?(:id => i.id) %></span>
+        <% end %>
+      </td>
+    </tr>
+  <%end%>
+  </table>
+  <%= will_paginate(@articles) %>
+<% end %>

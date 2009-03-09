@@ -1,5 +1,4 @@
-class Admin::UsersController < ApplicationController
-  before_filter :admin_required
+class Admin::UsersController < AdminController
 
   def index
     @users = User.all
