@@ -19,7 +19,7 @@
           <th class="indication_article_date">Дата публикации</th>
           <th>Название статьи</th>
         </tr>
-        <% articles = indication.by_filter? ? Article.filter(indication.filter_id,indication.max_articles) : indication.articles %>
+        <% articles = indication.by_filter? ? Article.filter(indication.filter_id,indication.max_articles) : indication.articles.all(:limit => indication.max_articles) %>
         <% articles.each do |article| %>
           <tr>
             <td><%= article.created_at.to_date %></td>
