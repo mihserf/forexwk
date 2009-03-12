@@ -9,8 +9,8 @@
 
 <p>
 <%= f.label 'Порядковый номер' %><br />
-<% ar=[]; 1.upto(Indication.all.size){|i| ar<<i}   %>
-<%= f.select :number, ar %>
+<% ar=[]; 1.upto(Indication.all.size+(@indication.new_record? ? 1 : 0)){|i| ar<<i}   %>
+<%= f.select :number, ar, :selected => (@indication.new_record? ? ar.last : @indication.number) %>
 </p>
 
 <p>
