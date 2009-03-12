@@ -11,7 +11,7 @@
 <% @indications.in_groups_of(2) do |row| %>
   <div class="indication_row">
   <% row.each do |indication| %>
-    <% next if indication.nil || (indication.articles.size.zero? && !indication.by_filter?) %>
+    <% next if indication.nil? || (indication.articles.size.zero? && !indication.by_filter?) %>
     <div class="indication">
       <table>
         <tr><th colspan="2" class="indication_title"><%= indication.name %></th></tr>
