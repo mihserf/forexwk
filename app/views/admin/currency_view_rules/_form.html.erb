@@ -1,3 +1,11 @@
+<script type="text/javascript" src="/javascripts/farbtastic/farbtastic.js"></script>
+<link rel="stylesheet" href="/stylesheets/farbtastic.css" type="text/css" />
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#colorpicker').farbtastic('#currency_view_rule_color');
+  });
+</script>
+
 
 <%= error_messages_for :currency_view_rules %>
 <%form_for [:admin,@currency_view_rule], :html => { :multipart => true } do |f|%>
@@ -21,9 +29,10 @@
 </p>
 
 <p>
-<%= f.label 'Цвет' %><br />
+<%= f.label 'Цвет валютных пар (используется при выводе списка валютных пар в блоке слева)' %><br />
 <%=  f.text_field :color %>
 </p>
+<div id="colorpicker"></div>
 
 <p>
 <%= f.label 'Сообщение' %><br />
