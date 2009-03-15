@@ -54,6 +54,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :contests, :member => {:users => :get}, :collection => {:archive => :get}
 
+  map.resources :trend_datas
+  map.resources :currency_pairs, :has_many => [:trend_datas], :member => {:archive => :get}
+
   
   map.namespace :admin do |admin|
     admin.resources :pages
@@ -69,6 +72,13 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :articles
     admin.resources :article_indications, :only => [:create, :destroy]
     admin.resources :indications
+    admin.resources :trend_datas, :has_many => :currency_datas, :member => {:download_data => :get}
+    admin.resources :currency_datas
+    admin.resources :trends
+    admin.resources :currency_pairs
+    admin.resources :currency_view_rules
+    admin.resources :currency_pair_currency_view_rules, :only => [:create, :destroy]
+
   end
 
   map.with_options :controller => "pages" do |page|

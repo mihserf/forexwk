@@ -1,0 +1,13 @@
+<p style='padding-bottom:20px'><%= link_to 'Валютные пары', admin_currency_pairs_path %></p>
+<ul>
+<% for trend in @trend_datas %>
+  <li style="list-style:none"><%= trend.created_at.to_date %> : <%= trend.name %>
+  <div class='admin_edit_actions' style="font-size:10pt;  padding-bottom:7px">
+    <%= link_to image_tag("/images/edit_ico.gif",:alt=>"Редактировать"), edit_admin_trend_data_path(trend) %>
+     | <%=link_to image_tag("/images/delete_ico.gif",:alt=>"Удалить"), admin_trend_data_path(trend), :method => :delete, :confirm => 'подтвердите удаление'%>
+  </div>
+  </li>
+<%end%>
+</ul>
+<%#= CurrencyPair.all_for_user(current_user).map{|i| i.name+"<br>"} %>
+<%= link_to 'Добавить данные', new_admin_trend_data_path %>

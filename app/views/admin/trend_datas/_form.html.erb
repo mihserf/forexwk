@@ -1,0 +1,26 @@
+<%= error_messages_for :trends %>
+<%form_for [:admin,@trend_data], :html => { :multipart => true } do |f|%>
+
+<p>
+<%= f.label 'Название' %><br />
+<%=f.text_field :name%>
+</p>
+<br>
+<p>
+<%= f.label 'Дата создания' %><br />
+<%= f.date_select :created_at, :use_month_numbers => true  %>
+</p>
+<br>
+<p>
+<% unless @trend_data.new_record? || @trend_data.excel_data_file_name.nil? %>
+  <%= link_to "Excel-данные", download_data_admin_trend_data_path(@trend_data)  %>
+<% else %>
+  <%= f.label :excel_data, "Excel-данные (файл с расширением csv в кодировке UTF8) " %><%= f.file_field :excel_data %>
+  <%= hidden_field_tag 'trend_data[creating]', true %>
+<% end %>
+</p>
+<br>
+<p>
+<%=f.submit 'Сохранить изменения' %>
+</p>
+<%end%>

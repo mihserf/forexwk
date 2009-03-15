@@ -1,9 +1,5 @@
 class Admin::IndicationsController < AdminController
 
-  def edit
-
-  end
-
   def new
     @indication = Indication.new
   end

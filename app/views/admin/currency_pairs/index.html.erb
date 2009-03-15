@@ -1,0 +1,47 @@
+<%= javascript_include_tag "currency_view_rules" %>
+
+<%= link_to 'Добавить правило', new_admin_currency_view_rule_path %>
+<table class="admin_indications">
+  <% @currency_view_rules.each do |i|  %>
+    <tr class="currency_view_rule_<%=i.id%>">
+      <td><%= i.number %>: <%= i.name %></td>
+      <td>
+        <%= link_to_ajax_delete(admin_currency_view_rule_path(i), i) %>
+        <%= link_to image_tag("/images/edit_ico.gif",:alt=>"Редактировать"), edit_admin_currency_view_rule_path(i) %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<p>
+  Соблюдайте очерёдность правил в соответствии с возрастанием их сложности (первое - лёгкое; последнее - сложное).<br>
+  Обязательно должен быть отмечен доступ к валютной паре, если он уже отмечен для менее сложного правила.<br>
+  Например, если валютная пара отмечена для правила 1, то она тоже должна быть отмечена для всех вышестоящих правил (2,3,4,...)
+</p>
+
+<% form_tag admin_currency_pair_path(0), :method => :put do %>
+  <table>
+    <th>валютная пара</th>
+    <th>&nbsp;&nbsp;</th>
+    <th class='currency_view_rules_numbers'>
+      <% @currency_view_rules.each do |i|  %>
+        <span><%= i.number %></span>
+      <% end %>
+    </th>
+    <th></th>
+    <% for currency_pair in @currency_pairs %>
+    <tr class="currency_pair_<%=currency_pair.id%>">
+      <td class='currency_pair_name'><%= currency_pair.title %></td>
+      <td>
+        <%= link_to_ajax_delete(admin_currency_pair_path(currency_pair), currency_pair) %>
+        <%= link_to image_tag("/images/edit_ico.gif",:alt=>"Редактировать"), edit_admin_currency_pair_path(currency_pair) %>
+      </td>
+      <td class='currency_view_rules_numbers'>
+        <% @currency_view_rules.each do |i|  %>
+        <span><%= check_box_tag i.id.to_s, currency_pair.id, currency_pair.currency_view_rules.exists?(:id => i.id) %></span>
+        <% end %>
+      </td>
+    </tr>
+  <%end%>
+  </table>
+<% end %>
+<%= link_to 'Добавить валютную пару', new_admin_currency_pair_path %>

@@ -1,0 +1,13 @@
+
+<%= error_messages_for :currency_pairs %>
+<%form_for [:admin,@currency_pair], :html => { :multipart => true } do |f|%>
+
+<p>
+<%= f.label 'Название (должно быть без разделителей, например, USDCHF )' %><br />
+<%=  f.text_field :name, :size => 6, :maxlength => 6 %>
+</p>
+
+<p style="padding-top:20px;">
+<%= f.submit 'Сохранить изменения' %>
+</p>
+<%end%>

@@ -31,6 +31,7 @@ class PagesController < ApplicationController
     #books block
     @fresh_books = Book.all(:limit => 4, :order => "created_at DESC" )
     @leader_book = Book.find(:first, :conditions => ["leader=?", true], :order => "updated_at DESC") || @fresh_books.first
+
   end
 
   def contacts

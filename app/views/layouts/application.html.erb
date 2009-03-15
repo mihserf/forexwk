@@ -17,6 +17,7 @@
   <script type="text/javascript" src="/javascripts/jquery.tooltip.js"></script>
   <script type="text/javascript" src="/javascripts/own.tooltip.js"></script>
   <script type="text/javascript" src="/javascripts/own.js"></script>
+  <script type="text/javascript" src="/javascripts/currency_trend_data.js"></script>
 
   <%= for_forum() %>
 
@@ -43,7 +44,8 @@
                     <li <%= "class='active'" if params[:controller]=="admin/videos" %> ><%= link_to "Видео", admin_videos_path %></li>
                     <li <%= "class='active'" if params[:controller]=="admin/books" %> ><%= link_to "Книги", admin_books_path %></li>
                     <li <%= "class='active'" if params[:controller]=="admin/events" %> ><%= link_to "События", admin_events_path %></li>
-                    <li <%= "class='active'" if params[:controller]=="admin/events" %> ><%= link_to "Статьи", admin_articles_path %></li>
+                    <li <%= "class='active'" if params[:controller]=="admin/articles" %> ><%= link_to "Статьи", admin_articles_path %></li>
+                    <li <%= "class='active'" if params[:controller]=="admin/trends" %> ><%= link_to "Тренды", admin_trend_datas_path %></li>
             </ul>
           <% end %>
                 <div id="banner"></div>
@@ -112,30 +114,24 @@
           <!--div id="container"-->
     		<div id="leftbar">
     			<div id="menu">
-                                        <%= catalogue_menu %>
-					<div class="mfooter"></div>
+                          <%= catalogue_menu %>
+                          <div class="mfooter"></div>
     			</div>
                         <div class="news_block">
-					<div class="title_left">Технический анализ</div>
-					<div class="analize_left">
-						<img src="/images/left_news_item.gif" alt="">
-						 <select size="1" class="select">
-							<option disabled>Выберите героя</option>
-							<option value="Чебурашка">Чебурашка</option>
-							<option selected value="Крокодил Гена">Крокодил Гена</option>
-							<option value="Шапокляк">Шапокляк</option>
-						<option value="Крыса Лариса">Крыса Лариса</option>
-					    </select>
-					</div>
-				</div>
-				<div class="news_block">
-                                    <%= random_video %>
-				</div>
-				<div class="ad">
-                                    <% tag_cloud @tags, %w(a b c d) do |tag, css_class| %>
-                                      <%= link_to tag.name, { :controller => :articles,  :action => :tag, :id => tag.name }, :class => css_class %>
-                                    <% end %>
-				</div>
+                                <div class="title_left">Технический анализ</div>
+                                <div class="analize_left">
+                                    <div id="ajax_trends"></div>
+                                    <%= currency_pairs %><%= link_to 'архив',"#", :id => "currency_pair_archive" %>
+                                </div>
+                        </div>
+                        <div class="news_block">
+                            <%= random_video %>
+                        </div>
+                        <div class="ad">
+                            <% tag_cloud @tags, %w(a b c d) do |tag, css_class| %>
+                              <%= link_to tag.name, { :controller => :articles,  :action => :tag, :id => tag.name }, :class => css_class %>
+                            <% end %>
+                        </div>
     		</div>
                 <div id="middlebar">
                   <p style="color: green"><%= flash[:notice] %></p>

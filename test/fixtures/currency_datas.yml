@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  trend_data: 
+  currency_pair: 
+  current_price: 1.5
+
+two:
+  trend_data: 
+  currency_pair: 
+  current_price: 1.5

@@ -1660,3 +1660,12 @@ span.current {background:url('/images/list_bg.gif') no-repeat; color:#815646;
 .indication th.indication_title {font-size:13px; font-weight:normal;}
 .indication_article_date {width:30px}
 .indication_row {clear:left; float:left}
+
+#ajax_trends {overflow:hidden; height:160px; width:185px}
+.trend {font-size: 10px; overflow:hidden; height:150px; width:181px; float:left; padding:2px}
+    .trend_message {font-size:12px}
+    .last_update {float:right; clear:right; padding-bottom:3px;}
+    .trend_table {float:left; padding-bottom:3px;}
+    .trend_table table {width:100%; font-size: 9px; border: 1px solid #ccc; border-collapse:collapse}
+        .trend_table table td, .trend_table table th {border: 1px solid #ccc; text-align:center; vertical-align:middle;}
+        .trend_table table th {font-weight:normal;}

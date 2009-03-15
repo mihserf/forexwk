@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  type: 1
+  stage: 1
+  prob_cont: 1.5
+  currency_data: 
+
+two:
+  type: 1
+  stage: 1
+  prob_cont: 1.5
+  currency_data: 

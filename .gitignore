@@ -13,6 +13,7 @@ doc/rails
 index/**/*
 public/attachments/**/*
 config/database.yml
+excel_data/*
 
 db/sphinx
 config/development.sphinx.conf

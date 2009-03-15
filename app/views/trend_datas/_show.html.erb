@@ -1,0 +1,23 @@
+<div class="trend">
+  <% if message %>
+    <span class="trend_message"><%= message %></span>
+  <% else %>
+  <div class="last_update">данные за <%= trend_data.created_at.to_date %></div>
+  <div class="trend_table">
+    <table>
+      <tr>
+        <th>период</th>
+        <th>напр-е тренда</th>
+        <th>стадия тренда</th>
+      </tr>
+      <% trends.each do |trend| %>
+      <tr>
+        <td><%= Trend::TYPES[trend.trend_type] %></td>
+        <td><%= image_tag "/images/"+Trend::CHARACTERS[trend.character]+".png", :alt => Trend::TYPES[trend.character] %></td>
+        <td><%= Trend::STAGES[trend.stage] %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+  <% end %>
+</div>
