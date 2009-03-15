@@ -12,7 +12,8 @@ class CurrencyPair < ActiveRecord::Base
   end
 
   def title
-    self[:name].include?("/") ? self[:name] : self[:name].insert(3,"/")
+    [name[0..2],name[3..5]].join("/")
+    #self[:name].include?("/") ? self[:name] : self[:name].insert(3,"/")
   end
 
   def self.all_for_user(current_user)
