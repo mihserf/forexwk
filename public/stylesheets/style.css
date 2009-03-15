@@ -1669,3 +1669,4 @@ span.current {background:url('/images/list_bg.gif') no-repeat; color:#815646;
     .trend_table table {width:100%; font-size: 9px; border: 1px solid #ccc; border-collapse:collapse}
         .trend_table table td, .trend_table table th {border: 1px solid #ccc; text-align:center; vertical-align:middle;}
         .trend_table table th {font-weight:normal;}
+#ajax_currency_pair {border: 1px solid #ccc; background:#fff;}
