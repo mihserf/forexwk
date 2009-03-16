@@ -36,5 +36,5 @@
   <div id="rules">
     <%= javascript_tag "$('#rules').hide();" %>
     <h3>Правила участия</h3>
-    <%= contest.rules %>
+    <%= contest_rules if contest_rules %>
   </div>
