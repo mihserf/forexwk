@@ -18,3 +18,5 @@ excel_data/*
 db/sphinx
 config/development.sphinx.conf
 log/*.pid
+
+nbproject/*
