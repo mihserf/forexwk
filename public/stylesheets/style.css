@@ -1653,13 +1653,13 @@ span.current {background:url('/images/list_bg.gif') no-repeat; color:#815646;
 .admin_indications{padding-bottom:30px; font-size:12px;}
 
 
-.indication {float:left; width:332px; padding:4px}
+.indication {float:left; width:330px; padding:4px; overflow:hidden;}
 .indication table {text-align:center; font-size:11px; border:#999 solid 1px; width:100%; border-collapse: collapse;}
 .indication th {font-weight:bold; color:#999271; border:#999 solid 1px; vertical-align:top; padding:2px;}
 .indication td {border:#999 solid 1px;}
 .indication th.indication_title {font-size:13px; font-weight:normal;}
 .indication_article_date {width:30px}
-.indication_row {clear:left; float:left}
+.indication_row {clear:left; float:left; height:133px; width:100%}
 .article_name_cell {text-align:left; padding:0px 2px}
 
 #ajax_trends {overflow:hidden; height:170px; width:185px}
