@@ -77,31 +77,15 @@ module ApplicationHelper
     render :partial => "shared/meta", :locals=> {:obj => obj}
   end
 
-  def currency_pairs
-    user_currency_pairs = CurrencyPair.all_for_user(current_user)
-    all_currency_pairs = CurrencyPair.all(:include => {:currency_view_rules => :currency_pair_currency_view_rules}, :order => :name).map do|i|
-      if user_currency_pairs.include?(i)
-        i.denied = 0
-        i.view_rule_number = 0
-      else
-        i.denied = 1
-        currency_view_rule = i.currency_view_rules.sort_by{|x| x.number}.first
-        #currency_view_rule = i.currency_view_rules.find(:first, :order => :number)
 
-        unless currency_view_rule.nil?
-          i.color = currency_view_rule.color
-          i.view_rule_number = currency_view_rule.number
-        else
-          i.color = "#ccc"
-          i.view_rule_number = 100
-        end
-      end
-      i
-    end.sort_by {|i| [i.denied, i.view_rule_number, i.name]}
+  def currency_pairs_select(*args)
+    options = args.extract_options!
+    
+    all_currency_pairs = CurrencyPair.all_with_rules_for_user(current_user).sort_by {|i| [i.denied_for_sort, i.view_rule_number, i.name]}
 
     trend_data = TrendData.last
 
-    render  :partial => 'shared/currency_pairs_select', :locals => {:all_currency_pairs => all_currency_pairs, :trend_data => trend_data}
+    render  :partial => 'shared/currency_pairs_select', :locals => {:all_currency_pairs => all_currency_pairs, :trend_data => trend_data, :multiple => options[:multiple], :id => options[:id], :name => options[:name], :size => options[:size], :class_name => options[:class]}
   end
 
  #FORUM helpers

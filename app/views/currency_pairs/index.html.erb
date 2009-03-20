@@ -1,0 +1,16 @@
+<%= render :partial => '/shared/currency_pairs_filter' %>
+
+<%= will_paginate(@currency_datas) %>
+
+<% currency_datas_grouped_by_date = @currency_datas.group_by {|i| i.trend_data.created_at.to_date} %>
+<% currency_datas_grouped_by_date.each do |date,currency_datas| %>
+  <h3><%= date %></h3>
+  <div class='currency_datas'>
+  <% currency_datas.each do |currency_data| %>
+    <% currency_pair = @currency_pairs.find{|i| i.id == currency_data.currency_pair.id} %>
+    <%= render :partial => '/trend_datas/show', :locals => {:currency_pair => currency_pair, :currency_data => currency_data, :trend_data => currency_data.trend_data , :trends => currency_data.trends, :show_date => false} %>
+  <% end %>
+  </div>
+<% end %>
+
+<%= will_paginate(@currency_datas) %>

@@ -1,0 +1,25 @@
+<%= stylesheet_link_tag "ui.datepicker.css", :media => "screen"%>
+<%= javascript_include_tag "ui.datepicker.js"%>
+<%= javascript_include_tag "ui.datepicker-ru.js"%>
+<%= javascript_include_tag "initiate_datepicker"%>
+<%= javascript_include_tag "currency_pairs_filter"%>
+<script>
+  $(document).ready(function(){
+    $("#show_currency_pairs_filter").click(function(e){
+      e.preventDefault();
+      $("#currency_pairs_filter").toggle("fast");
+    });
+  });
+</script>
+
+<a id='show_currency_pairs_filter' href='#'>Выберите валютные пары и даты</a>
+<div id="currency_pairs_filter">
+  <% form_tag currency_pairs_path, :method => :get do %>
+    <%= currency_pairs_select(:id => 'currency_pairs', :name => 'currency_pairs[]', :multiple => "multiple", :size => 7) %>
+    <p>начало<br><%= text_field_tag 'date_begin', Date.today.months_ago(1), :class => "dateRange", :size => 10 %></p>
+    <p>конец<br><%= text_field_tag 'date_end', Date.today, :class => "dateRange", :size => 10 %></p>
+    <div class='help_message'><small>выбирайте несколько валютных пар, удерживая нажатыми ctrl или shift</small></div>
+    <div style='margin-top:15px'><%= submit_tag 'показать' %></div>
+  <% end %>
+</div>
+

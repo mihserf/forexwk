@@ -6,23 +6,15 @@ class TrendDatasController < ApplicationController
   def show
     @message = nil
     @trend_data = TrendData.find(params[:id])
-    currency_pair_id = CurrencyPair.find_by_name(params[:currency_pair_id]).id
-    currency_pairs = CurrencyPair.all_for_user(current_user).map(&:id)
-    if params[:currency_pair_id] && currency_pairs.include?(currency_pair_id)
-      currency_pair = currency_pair_id
+    currency_pair = CurrencyPair.all_with_rules_for_user(current_user, :conditions => ["currency_pairs.name=:name",{:name=>params[:currency_pair_id]}]).first
+
+    unless currency_pair.denied
+      @trends = currency_pair.currency_datas.find(:first, :conditions => ["trend_data_id=?",@trend_data.id]).trends
+      @currency_data = currency_pair.currency_datas.find(:first, :conditions => ["trend_data_id=?",@trend_data.id])
     else
-      currency_pair = nil
+      currency_pair.message = currency_pair.message.nil? ? "Вам пока недоступны данные по этой валютной паре" : currency_pair.message
     end
-    @trends = Trend.all(:include => {:currency_data => :currency_pair}, :conditions => ["currency_datas.trend_data_id=? AND currency_pairs.id IN (?)",@trend_data.id, currency_pair])
-
-    if @trends.empty?
-      #rule = CurrencyViewRule.first(:include => :currency_pair_currency_view_rules, :conditions => ["currency_pair_currency_view_rules.currency_pair_id=?",currency_pair], :order => :number)
-      rule = CurrencyPairCurrencyViewRule.all(:joins => :currency_view_rule, :conditions => {:currency_pair_id => currency_pair_id}, :order => "currency_view_rules.number").map{|i| i.currency_view_rule}.first
-      @message = rule.nil? ? "Вам пока недоступны данные по этой валютной паре" : rule.message
-    end
-    
-    render :partial => "show", :locals => {:trend_data => @trend_data , :trends => @trends, :message => @message }
+    render :partial => "show", :locals => {:currency_pair => currency_pair, :trend_data => @trend_data , :currency_data => @currency_data, :trends => @trends, :show_date => true}
   end
-
 
 end

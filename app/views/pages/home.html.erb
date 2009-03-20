@@ -23,7 +23,7 @@
         <% articles.each do |article| %>
           <tr>
             <td><%= article.created_at.to_date %></td>
-            <td><%= link_to article.name, catalogue_article_path(article.catalogue.id,article.id) %></td>
+            <td class='article_name_cell'><%= link_to article.name.crop(36), catalogue_article_path(article.catalogue.id,article.id) %></td>
           </tr>
         <% end %>
       </table>
@@ -45,7 +45,7 @@
     <div class="mfooter"></div>
 </div>
 
-<div class="banner_sm"></div>
+<div class="banner_sm" style="display:none"></div>
 
 <div class="title_middle"><%= link_to 'Новости', events_path %></div>
 <% @events.each do |event| %>
@@ -56,24 +56,26 @@
   </div>
 <% end %>
 
-<div class="dashdot">
+<div class="dashdot" style="display:none">
       <p><a href="#">Фондовые торги в Японии 8 апреля 2008г. завершились снижением индекса Nikkei..</a></p>
       <p><a href="#">Фондовые торги в Японии 8 апреля 2008г. завершились снижением индекса Nikkei..</a></p>
       <p><a href="#">Фондовые торги в Японии 8 апреля 2008г. завершились снижением индекса Nikkei..</a></p>
       <p><a href="#">Фондовые торги в Японии 8 апреля 2008г. завершились снижением индекса Nikkei..</a></p>
       <p><a href="#">Фондовые торги в Японии 8 апреля 2008г. завершились снижением индекса Nikkei..</a></p>
 </div>
-<div class="banner_sm"></div>
+<div class="banner_sm" style="display:none"></div>
 
-<div class="title_middle"><%= link_to 'Книги', books_path %></div>
-<div class="left" style="padding-top:0px;">
-        <div class="teamlead">Лидер</div>
-        <div><%= image_tag @leader_book.cover.url(:thumb) %> <%= @leader_book.author %><br> <p class="bold"><%= link_to "&laquo;"+@leader_book.name+"&raquo;", book_path(@leader_book), :class => "text_decoration_none" %></p> <%= @leader_book.description %></div>
-</div>
-<div class="library_also">
-        <div class="line">Читайте также:</div>
-        <% @fresh_books.each do |book| %>
-          <div class="div_row"><div class="book_name"><%= link_to book.name %></div><div class="book_author"><%= book.author %></div></div>
-        <% end %>
+<div  style="display:none">
+  <div class="title_middle"><%= link_to 'Книги', books_path %></div>
+  <div class="left" style="padding-top:0px;">
+          <div class="teamlead">Лидер</div>
+          <div><%= image_tag @leader_book.cover.url(:thumb) %> <%= @leader_book.author %><br> <p class="bold"><%= link_to "&laquo;"+@leader_book.name+"&raquo;", book_path(@leader_book), :class => "text_decoration_none" %></p> <%= @leader_book.description %></div>
+  </div>
+  <div class="library_also">
+          <div class="line">Читайте также:</div>
+          <% @fresh_books.each do |book| %>
+            <div class="div_row"><div class="book_name"><%= link_to book.name %></div><div class="book_author"><%= book.author %></div></div>
+          <% end %>
+  </div>
 </div>
 <div class="mfooter" style="margin-bottom:5px; "></div>

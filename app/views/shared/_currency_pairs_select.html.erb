@@ -1,10 +1,8 @@
 
 
-<%#= select_tag 'currency_pair', options_for_select(all_currency_pairs.map{ |c| [c.name, c.id] }) %>
-
-<select name='currency_pair' id='ajax_currency_pair'  trend_data_id="<%= trend_data.id %>">
+<select <%= "size='#{size}'" if size %> <%= "class='#{class_name}'" if class_name %> <%= "name='#{name}'" if name %> <%= "id='#{id}'" if id %> <%= multiple if multiple %> <%= "trend_data_id='#{trend_data.id}'" if trend_data %> >
   <% all_currency_pairs.each do |pair| %>
-    <option value="<%= pair.name %>" <%= "style='color:#{pair.color}' denied='#{!current_user ? 'all':1}'" if pair.denied==1 %> ><%= pair.title %></option>
+    <option value="<%= pair.name %>" <%= "style='color:#{pair.color}' denied='#{!current_user ? 'all':1}'" if pair.denied %> ><%= pair.title %></option>
   <% end %>
 </select>
 

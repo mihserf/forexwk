@@ -94,7 +94,7 @@ class ArticlesController < ApplicationController
 
   def tag
     set_ordering :date unless defined? @orders
-    @articles = Article.find_tagged_with(params[:id])
+    @articles = Article.find_tagged_with(params[:id]).paginate_result(params[:page] || 1, 15)
     render :action => "index"
   end
 

@@ -1,0 +1,14 @@
+<%= render :partial => '/shared/currency_pairs_filter' %>
+
+<h3><%= @currency_pair.title %></h3>
+<% if @currency_pair.denied %>
+    <h4><%= @currency_pair.message %></h4>
+<% else %>
+  <%= will_paginate(@currency_datas) %>
+  <div class='currency_datas'>
+  <% @currency_datas.each do |currency_data| %>
+    <%= render :partial => '/trend_datas/show', :locals => {:currency_pair => @currency_pair, :currency_data => currency_data, :trend_data => currency_data.trend_data , :trends => currency_data.trends, :show_date => true} %>
+  <% end %>
+  </div>
+  <%= will_paginate(@currency_datas) %>
+<% end %>

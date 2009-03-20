@@ -55,7 +55,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :contests, :member => {:users => :get}, :collection => {:archive => :get}
 
   map.resources :trend_datas
-  map.resources :currency_pairs, :has_many => [:trend_datas], :member => {:archive => :get}
+  map.resources :currency_pairs, :has_many => [:trend_datas], :member => {:archive => :get}, :collection => {:archives => :get}
 
   
   map.namespace :admin do |admin|

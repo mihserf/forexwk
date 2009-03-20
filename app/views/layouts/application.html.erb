@@ -48,7 +48,7 @@
                     <li <%= "class='active'" if params[:controller]=="admin/trends" %> ><%= link_to "Тренды", admin_trend_datas_path %></li>
             </ul>
           <% end %>
-                <div id="banner"></div>
+                <div id="banner" style="display:none"></div>
 		<div id="logo_search">
 			<div id="logo"><a href="/"><img src="/images/logo.gif" alt=""></a></div>
                         <div class="search">
@@ -118,10 +118,10 @@
                           <div class="mfooter"></div>
     			</div>
                         <div class="news_block">
-                                <div class="title_left">Технический анализ</div>
+                                <div class="title_left"><%= link_to 'Технический анализ', currency_pairs_path %></div>
                                 <div class="analize_left">
                                     <div id="ajax_trends"></div>
-                                    <%= currency_pairs %><%= link_to 'архив',"#", :id => "currency_pair_archive" %>
+                                    <%= currency_pairs_select(:id => 'ajax_currency_pair', :name => 'currency_pair') %><%= link_to 'архив',"#", :id => "currency_pair_archive" %>
                                 </div>
                         </div>
                         <div class="news_block">

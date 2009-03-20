@@ -1214,7 +1214,7 @@ ul.admin_menu{
 	}
 
 .news_mainpage {
-	margin:13px 0px;
+	margin:13px 10px;
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 	font-size:11px;
 	color:#000000;
@@ -1660,13 +1660,24 @@ span.current {background:url('/images/list_bg.gif') no-repeat; color:#815646;
 .indication th.indication_title {font-size:13px; font-weight:normal;}
 .indication_article_date {width:30px}
 .indication_row {clear:left; float:left}
+.article_name_cell {text-align:left; padding:0px 2px}
 
-#ajax_trends {overflow:hidden; height:160px; width:185px}
-.trend {font-size: 10px; overflow:hidden; height:150px; width:181px; float:left; padding:2px}
-    .trend_message {font-size:12px}
-    .last_update {float:right; clear:right; padding-bottom:3px;}
+#ajax_trends {overflow:hidden; height:170px; width:185px}
+.trend {font-size: 10px; overflow:hidden; height:160px; width:181px; float:left; padding:2px}
+    .currency_title {float:left; padding-left:3px; font-weight:bold;}
+    .trend_message {font-size:12px; display:block; padding-top:22px;}
+    .last_update {float:right; clear:right; padding-bottom:3px; text-align:right;}
     .trend_table {float:left; padding-bottom:3px;}
     .trend_table table {width:100%; font-size: 9px; border: 1px solid #ccc; border-collapse:collapse}
         .trend_table table td, .trend_table table th {border: 1px solid #ccc; text-align:center; vertical-align:middle;}
         .trend_table table th {font-weight:normal;}
 #ajax_currency_pair {border: 1px solid #ccc; background:#fff;}
+
+select {border: 1px solid #ccc; background:#fff;}
+
+.currency_datas {overflow:hidden; padding:0px; width:100%;}
+.currency_datas .trend {padding-right:40px}
+#currency_pairs_filter {overflow:hidden; padding:10px 3px; margin:10px 0px; display:none; width:217px; border: 1px solid #ccc; }
+    #currency_pairs_filter input {border: 1px solid #ccc;}
+    #currency_pairs_filter #currency_pairs {float:left; margin-right:10px}
+    .help_message {width:110px; float:right; padding-right:10px;}

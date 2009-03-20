@@ -1,8 +1,13 @@
 <div class="trend">
-  <% if message %>
-    <span class="trend_message"><%= message %></span>
+  <div class='currency_title'><%= currency_pair.title %></div>
+  <div class="last_update">
+     <%= "<p>"+trend_data.created_at.to_date.to_s+"</p>" if show_date %>
+    <p><%= "<nobr>стоимость "+currency_data.currency_price.to_s+"</nobr>" unless currency_pair.denied %></p>
+  </div>
+
+  <% if currency_pair.denied %>
+    <span class="trend_message"><%= currency_pair.message %></span>
   <% else %>
-  <div class="last_update">данные за <%= trend_data.created_at.to_date %></div>
   <div class="trend_table">
     <table>
       <tr>
