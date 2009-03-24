@@ -1,9 +1,0 @@
-<h3><%= @currency_pair.title %></h3>
-<% if @message %>
-    <h4><%= @message %></h4>
-<% else %>
-  <% @currency_datas.each do |currency_data| %>
-    <%= render :partial => '/trend_datas/show', :locals => {:trend_data => currency_data.trend_data , :trends => currency_data.trends, :message => nil } %>
-
-  <% end %>
-<% end %>

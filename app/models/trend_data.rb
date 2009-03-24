@@ -1,4 +1,5 @@
 require 'csv'
+require 'iconv'
 
 class TrendData < ActiveRecord::Base
   has_attached_file :excel_data,
@@ -12,6 +13,23 @@ class TrendData < ActiveRecord::Base
 
   def process_data
     if self.creating
+
+      begin
+      contents = File.open(self.excel_data.path).read
+      output = Iconv.conv('utf-8', 'cp1251', contents)
+      file = File.open(self.excel_data.path, 'w')
+      file.write(output)
+      rescue Iconv::IllegalSequence
+         puts "Could not be processed: #{filename}"
+      ensure
+        if defined? file
+          if file
+            file.close
+            file = nil
+          end
+        end
+      end
+
       i = 0
       CSV.open(self.excel_data.path,'r',";") do |row|
         i+=1
@@ -28,4 +46,5 @@ class TrendData < ActiveRecord::Base
       end
     end
   end
+
 end
