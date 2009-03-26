@@ -4,7 +4,7 @@
 
  <%=@page.content%>
 
-<div class="title_middle"><%= link_to 'Конкурс рейтингов', contest_path((current_contest.id rescue Contest.find(:first, :order => "date_end DESC").id)) %></div>
+<div class="title_middle"><%= link_to 'Конкурс рейтингов', contest_path((current_contest ? current_contest.id : Contest.find(:first, :order => "date_end DESC").id)) %></div>
 <%= contest_info(@contest) %>
 
 <div class="title_middle"><%= link_to 'Блок статей', articles_path %></div>

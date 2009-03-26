@@ -62,7 +62,7 @@
 			<div id="menu_top">
 				<div class="menu_links">
                                   <a href="/about_us" class="first">О проекте</a>
-                                  <%= link_to 'Конкурс рейтингов', contest_path((current_contest.id rescue Contest.find(:first, :order => "date_end DESC").id))%>
+                                  <%= link_to 'Конкурс рейтингов', contest_path((current_contest ? current_contest.id : Contest.find(:first, :order => "date_end DESC").id))%>
                                   <a href="/forums">Форум</a>
                                   <a href="/contacts">Обратная связь</a>
                                   <a href="/rules">Правила</a>
