@@ -7,7 +7,7 @@
 
 <div class="mfooter"></div>
 <%= page_title(@catalogue.name) unless @catalogue.nil?%>
-<%= meta @catalogue unless @catalogue.nil? %>
+<%= meta(@catalogue.nil? ? "" : @catalogue)  %>
 
 <%= "<h2>Все статьи, опубликованные "+link_to(@user.name_or_login, user_path(@user))+"</h2>" unless @user.nil?%>
 

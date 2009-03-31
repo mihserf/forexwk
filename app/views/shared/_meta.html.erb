@@ -1,5 +1,6 @@
 <% content_for :meta do %>
-    <% meta = {:description => (obj.metatag_description if obj) || 'forex', :keywords => (obj.metatag_keywords if obj) || 'forex'} %>
+    <% meta = {:description => (obj.metatag_description if obj && !(obj.is_a?(String))) || 'forex', :keywords => (obj.metatag_keywords if obj && !(obj.is_a?(String))) || 'forex'} %>
     <%= meta_tags(meta) %>
-    <%= html_title("#{obj.metatag_title+' | ' if obj && obj.metatag_title} ForexWK.com", "|") %>
+    <% html_title_str = obj.is_a?(String) ? obj : (obj.metatag_title if obj && obj.metatag_title) %>
+    <%= html_title("#{html_title_str+' | ' if obj} ForexWK.com Бесплатная энциклопедия Форекса", "|") %>
 <% end %>
