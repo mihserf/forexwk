@@ -1681,3 +1681,5 @@ select {border: 1px solid #ccc; background:#fff;}
     #currency_pairs_filter input {border: 1px solid #ccc;}
     #currency_pairs_filter #currency_pairs {float:left; margin-right:10px}
     .help_message {width:110px; float:right; padding-right:10px;}
+
+.counter {padding-left:63px; padding-top:8px;}
