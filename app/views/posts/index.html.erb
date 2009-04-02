@@ -9,7 +9,7 @@
 </h1>
 <p class="subtitle">
   <%#= feed_icon_tag @page_title, search_posts_path(true) %>
-  <%= link_to image_tag('feed-icon.png', :size => '14x14', :style => 'margin-right:5px', :alt => @page_title), formatted_forum_posts_path(@forum, :rss) %>
+  <%= link_to image_tag('feed-icon.png', :size => '14x14', :style => 'margin-right:5px'), formatted_forum_posts_path(@forum, :rss) %>
   <%= '{count} post(s) found'[(count=@posts.total_entries)==1 ? :post_count_found : :posts_count_found, number_with_delimiter(count)] %>
 </p>
 
