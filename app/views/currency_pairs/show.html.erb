@@ -1,6 +1,8 @@
 <%= render :partial => '/shared/currency_pairs_filter' %>
 
-<h3><%= @currency_pair.title %></h3>
+<%= page_title(@currency_pair.title) %>
+<%= meta(nil,"Текущие тренды") %>
+
 <% if @currency_pair.denied %>
     <h4><%= @currency_pair.message %></h4>
 <% else %>

@@ -73,8 +73,8 @@ module ApplicationHelper
     render :partial => "videos/random_video", :locals => { :video => video }
   end
 
-  def meta(obj=nil)
-    render :partial => "shared/meta", :locals=> {:obj => obj}
+  def meta(obj=nil,title=nil)
+    render :partial => "shared/meta", :locals=> {:obj => obj,:title => title}
   end
 
 
