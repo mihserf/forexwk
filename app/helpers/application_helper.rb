@@ -119,7 +119,7 @@ module ApplicationHelper
   def feed_icon_tag(title, url)
     (@feed_icons ||= []) << { :url => url, :title => title }
     #link_to image_tag('feed-icon.png', :size => '14x14', :style => 'margin-right:5px', :alt => "Subscribe to #{title}", :plugin => "aep_beast"), url
-    link_to image_tag('feed-icon.png', :size => '14x14', :style => 'margin-right:5px', :plugin => "aep_beast"), url
+    link_to image_tag('feed-icon.png', :size => '14x14', :style => 'margin-right:5px'), url
   end
 
   def search_posts_title
