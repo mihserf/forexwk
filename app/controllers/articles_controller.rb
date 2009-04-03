@@ -61,7 +61,8 @@ class ArticlesController < ApplicationController
         end
       end
       flash[:notice]="Статья обновлена."
-      redirect_back_or_default catalogue_articles_path(@catalogue)
+      #redirect_back_or_default catalogue_articles_path(@catalogue)
+      redirect_to catalogue_articles_path(@catalogue)
     end
   end
 
