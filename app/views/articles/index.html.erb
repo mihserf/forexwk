@@ -7,7 +7,7 @@
 
 <div class="mfooter"></div>
 <%= page_title(@catalogue.name) unless @catalogue.nil?%>
-<%= meta(@catalogue.nil? ? "" : @catalogue)  %>
+<%= @user.nil? ? meta(@catalogue.nil? ? "" : @catalogue) : meta("Все статьи пользователя") %>
 
 <%= "<h2>Все статьи, опубликованные "+link_to(@user.name_or_login, user_path(@user))+"</h2>" unless @user.nil?%>
 
@@ -17,8 +17,10 @@
 <div class="hr"><hr /></div>
 <% unless @articles.empty? %>
   <div style="margin-top:10px;">
-  <%= link_to "сортировать по дате", (@catalogue.nil? ? (@user.nil? ? articles_path : user_articles_path(@user)) : catalogue_articles_path(@catalogue)) unless params[:action]=="per_date" || params[:action]=="index" %>
-  <%= link_to "сортировать по рейтингу", (@catalogue.nil? ? (@user.nil? ? per_rating_articles_path : per_rating_user_articles_path(@user)) : per_rating_catalogue_articles_path(@catalogue)) unless params[:action]=="per_rating" %>
+  <% if @articles.size > 1 %>
+    <%= (params[:action]=="per_date" || params[:action]=="index") ? "сортирока по дате" : link_to("сортировать по дате", (@catalogue.nil? ? (@user.nil? ? articles_path : user_articles_path(@user)) : catalogue_articles_path(@catalogue))) %>
+    <%= (params[:action]=="per_rating") ? "сортировка по рейтингу" : link_to("сортировать по рейтингу", (@catalogue.nil? ? (@user.nil? ? per_rating_articles_path : per_rating_user_articles_path(@user)) : per_rating_catalogue_articles_path(@catalogue))) %>
+  <% end %>
   </div>
   <div id="common_article">
     <div id="common_left">
@@ -31,7 +33,9 @@
               <%= "| "+link_to_ajax_delete(article_path(item),item)  if moderator?%>
             </div>
             <div class="user_time"><%= item.created_at.to_date %> <span><%= item.created_at.strftime("%H:%M") %></span></div>
+            <% if @user.nil? %>
             <p class="font12" style="font-size:10px; margin-top:5px;">Автор: <%= link_to item.user.name_or_login, user_path(item.user.id) %></p>
+            <% end %>
             <h4><%= link_to item.name, catalogue_article_path((@catalogue.nil? ? item.catalogue.id : @catalogue),item) %></h4>
             <p class="small">дополнений <%= item.stat_additions %>, комментариев <%= item.stat_comments %>,средняя оценка <%= item.stat_rating.rating_avg unless item.stat_rating.nil? %>, общий рейтинг <%= item.stat_rating.rating_total unless item.stat_rating.nil? %></p>
             <p class="article_text"><%= item.short %></p>

@@ -118,7 +118,7 @@
                           <div class="mfooter"></div>
     			</div>
                         <div class="news_block">
-                                <div class="title_left"><%= link_to 'Технический анализ', currency_pairs_path %></div>
+                                <div class="title_left"><div style="float:right; padding-right:5px"><a href="/trends_description" title='описание системы вычисления трендов'><image src='/images/help.png'/></a></div><%= link_to 'Текущие тренды', currency_pairs_path %></div>
                                 <div class="analize_left">
                                     <div id="ajax_trends"></div>
                                     <%= currency_pairs_select(:id => 'ajax_currency_pair', :name => 'currency_pair') %><%= link_to 'архив',"#", :id => "currency_pair_archive" %>

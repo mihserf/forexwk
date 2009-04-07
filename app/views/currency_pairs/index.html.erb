@@ -1,3 +1,6 @@
+<%= page_title("Сводка по инструментам") %>
+<%= meta(nil,"Текущие тренды") %>
+
 <%= render :partial => '/shared/currency_pairs_filter' %>
 
 <%= will_paginate(@currency_datas) %>
@@ -8,7 +11,7 @@
   <div class='currency_datas'>
   <% currency_datas.each do |currency_data| %>
     <% currency_pair = @currency_pairs.find{|i| i.id == currency_data.currency_pair.id} %>
-    <%= render :partial => '/trend_datas/show', :locals => {:currency_pair => currency_pair, :currency_data => currency_data, :trend_data => currency_data.trend_data , :trends => currency_data.trends, :show_date => false} %>
+    <%= render :partial => '/trend_datas/show', :locals => {:currency_pair => currency_pair, :currency_data => currency_data, :trend_data => currency_data.trend_data , :trends => currency_data.trends.find(:all, :order => :trend_type), :show_date => false} %>
   <% end %>
   </div>
 <% end %>
