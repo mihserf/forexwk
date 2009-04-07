@@ -12,7 +12,7 @@
 <%= "<h2>Все статьи, опубликованные "+link_to(@user.name_or_login, user_path(@user))+"</h2>" unless @user.nil?%>
 
 
-  <%= sub_catalogues(@catalogue) %>
+  <%= sub_catalogues(@catalogue) unless @catalogue.nil? %>
 
 <div class="hr"><hr /></div>
 <% unless @articles.empty? %>
