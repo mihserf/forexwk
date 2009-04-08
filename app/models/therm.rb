@@ -24,6 +24,6 @@ class Therm < ActiveRecord::Base
   end
 
   def set_permalink
-    permalink = name.dirify
+    self[:permalink] = self[:name].dirify
   end
 end
