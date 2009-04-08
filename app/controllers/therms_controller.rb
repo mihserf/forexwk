@@ -13,7 +13,7 @@ class ThermsController < ApplicationController
         r="<span>#{l}</span>"
         uniq_therms_letters.each do |tl|
           tl[:l]=tl[:l].mb_chars.upcase.to_s
-          current_page = (params[:page].nil? || (tl[:p]==params[:page] if params[:page])) ? "" : "?page=#{tl[:p]}"
+          current_page = ((params[:page].nil? && tl[:p]==1) || (tl[:p]==params[:page] if params[:page])) ? "" : "?page=#{tl[:p]}"
           r = " <a href='/therms#{current_page}##{l}'>#{l}</a> " if l==tl[:l]
         end
         r
