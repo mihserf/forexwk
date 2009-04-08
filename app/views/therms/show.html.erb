@@ -1,6 +1,7 @@
 <%= search_in(Therm) %>
+<% unless @therm.nil? %>
+  <%=  page_title(@therm.name) %>
+  <%=  meta @therm  %>
 
-<%=  page_title(@therm.name) %>
-<%=  meta @therm  %>
-
-<%= @therm.description %>
+  <%= @therm.description %>
+<% end %>
