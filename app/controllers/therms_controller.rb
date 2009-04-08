@@ -28,6 +28,6 @@ class ThermsController < ApplicationController
   end
 
   def show
-    @therm = Therm.find_by_permalink(params[:id])
+    @therm = Therm.find_by_permalink(params[:id]) || Therm.find_by_id(params[:id])
   end
 end
