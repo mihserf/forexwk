@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => [:edit, :update]
-
+  
   def index
     @users = User.paginate(:page => params[:page], :per_page => 10, :order=>"login")
   end
@@ -20,6 +20,7 @@ class UsersController < ApplicationController
     @rules = Page.find_by_permalink("rules")
     @user.messaging_rule=@messaging_rule
     if params[:agreement]=="true" && @user.save
+      rating_for_choosing_dealing_center(new_user=true)
       add_dealing_center
       flash[:notice] = "Аккаунт создан!"
       redirect_back_or_default account_url
@@ -52,6 +53,7 @@ class UsersController < ApplicationController
     else
       @user = current_user # makes our views "cleaner" and more consistent
     end
+    rating_for_choosing_dealing_center
     unless params[:change_password]=="1"
       params[:user].delete(:password)
       params[:user].delete(:password_confirmation)
@@ -87,6 +89,12 @@ class UsersController < ApplicationController
       params[:dealing_center][:added_by_user]=@user.id
       @user.dealing_center = DealingCenter.new(params[:dealing_center])
       @user.save
+    end
+  end
+
+  def rating_for_choosing_dealing_center(new_user=false)
+    unless params[:user][:dealing_center_id].blank? || ((@user.dealing_center || @user.has_rating_for_dc?) unless new_user)
+      @user.add_rating(Settings.rating.bonus.for_choosing_dealing_center,User.find(:first,:conditions=>{:admin=>true}),"за выбор дилингового центра")
     end
   end
 

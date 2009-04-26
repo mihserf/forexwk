@@ -41,13 +41,14 @@
 <div class="reg_form_line"><%= form.label "Дилинговый центр" %>
 <%= form.select :dealing_center_id, DealingCenter.find(:all, :select => "id,name", :conditions => ["temp=:temp OR temp='nil'"+(form.object.new_record? ? "":"OR added_by_user=:user_id"),{:temp=>false,:user_id=>form.object.id}], :order => "name").map{|i| [i.name,i.id]}, {:include_blank => true}, :class => "reg_text"   %>
 </div>
+<div>
     <div style="float:left">
             <% fields_for DealingCenter.new do |fd| %>
               <div class="reg_form_line"><label>Название</label><%= fd.text_field :name, :class => "reg_text" %></div>
               <div class="reg_form_line"><label>Адрес сайта</label><%= fd.text_field :url, :class => "reg_text"  %></div>
             <% end %>
     </div>
-    <div style="float:left; margin:0px 10px 0px 10px;"><img src="/images/total.gif"></div>
+    <div style="float:left; margin:0px 10px 0px 10px;"><img src="/images/total.gif"/></div>
     <div style="float:left; color:#4d624d; font-size:11px; width:200px; margin-top:10px">При внесении своего центра, адрес его сайта обязателен</div>
 
     <div class="additional_fields">
@@ -58,7 +59,7 @@
       <div class="reg_form_line"><%= form.label :status_string, "Статус (подпись)" %><%= form.text_field :status_string, :class => "reg_text" %></div>
       <div class="photo"><%= image_tag @user.avatar.url(:normal), :style=>"padding:10px;"  unless form.object.new_record? %></div>
       <% unless form.object.new_record? %>
-        <div class="show_field"><img src="/images/change_icon.gif"> <a href="#" class="lbroun show_field">Изменить изображение</a></div>
+        <div class="show_field"><img src="/images/change_icon.gif"/> <a href="#" class="lbroun show_field">Изменить изображение</a></div>
       <% end %>
       <div class="reg_form_line <%=" hidden_field" unless form.object.new_record?%>">
         <%= form.label :avatar, "Аватара " %><%= form.file_field :avatar, :class => "reg_text"  %>
@@ -77,10 +78,10 @@
         <div class="additional additional_header"><b>Уведомления</b></div>
         <p>Отметьте какие уведомления Вы хотели бы получать на E-mail</p>
         <div class="buffer"></div>
-        <div class="reg_form_line"><%= fm.label :rating_changed, "Изменение рейтинга" %> <%= fm.check_box :rating_changed, :class => "reg_checkbox" %></div>
-        <div class="reg_form_line"><%= fm.label :addition_added, "Дополнение к Вашей статье" %> <%= fm.check_box :addition_added, :class => "reg_checkbox" %></div>
-        <div class="reg_form_line"><%= fm.label :comment_added, "Комментарий к Вашему дополнению" %> <%= fm.check_box :comment_added, :class => "reg_checkbox" %></div>
-        <div class="reg_form_line"><%= fm.label :new_contest, "Новая акция" %> <%= fm.check_box :new_contest, :class => "reg_checkbox" %></div>
+        <div class="reg_form_line"><%= fm.label :rating_changed, "Изменение рейтинга", :style => "width:auto !important;" %> <%= fm.check_box :rating_changed, :class => "reg_checkbox" %></div>
+        <div class="reg_form_line"><%= fm.label :addition_added, "Дополнение к Вашей статье", :style => "width:auto !important;" %> <%= fm.check_box :addition_added, :class => "reg_checkbox" %></div>
+        <div class="reg_form_line"><%= fm.label :comment_added, "Комментарий к Вашему дополнению", :style => "width:auto !important;" %> <%= fm.check_box :comment_added, :class => "reg_checkbox" %></div>
+        <div class="reg_form_line"><%= fm.label :new_contest, "Новая акция", :style => "width:auto !important;" %> <%= fm.check_box :new_contest, :class => "reg_checkbox" %></div>
       </div>
     <% end %>
     <div class="mfooter"></div>

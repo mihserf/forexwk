@@ -2,6 +2,7 @@ defaults: &defaults
     rating:
       bonus:
         for_dealing_center: 20
+        for_choosing_dealing_center: 20
         for_article: 30
         for_article_max: 100
         for_article_step: 5

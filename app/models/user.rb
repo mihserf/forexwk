@@ -117,6 +117,10 @@ class User < ActiveRecord::Base
     ::PrivateMessage.count_between(self, user)
   end
 
+  def has_rating_for_dc?
+    Rating.exists?(["rateable_type='User' AND rateable_id=#{self.id} AND (reason LIKE 'за дилинговый центр' OR reason LIKE 'за выбор дилингового центра')"])
+  end
+
 
   def self.recount_rate
     users = User.all(:select => "id")
