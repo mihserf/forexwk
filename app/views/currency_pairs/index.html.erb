@@ -1,6 +1,5 @@
 <%= page_title("Сводка по инструментам") %>
 <%= meta(nil,"Текущие тренды") %>
-
 <%= render :partial => '/shared/currency_pairs_filter' %>
 
 <%= will_paginate(@currency_datas) %>

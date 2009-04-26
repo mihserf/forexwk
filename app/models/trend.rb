@@ -24,9 +24,9 @@ class Trend < ActiveRecord::Base
   MONTH_T = 3
 
   TYPES = {
-    DAY_T => "краткосрочный",
-    WEEK_T => "среднесрочный",
-    MONTH_T => "долгосрочный"
+    DAY_T => "дневной",
+    WEEK_T => "недельный",
+    MONTH_T => "месячный"
   }
 
 end
