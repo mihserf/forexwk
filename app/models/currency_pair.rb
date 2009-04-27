@@ -37,7 +37,7 @@ class CurrencyPair < ActiveRecord::Base
       end
 
       #currency_pairs = self.all(:include => [:currency_view_rules], :conditions => ["currency_view_rules.id=?",rule.id]) if eval(rule.rule)
-      currency_pairs = self.all(options) #if ((eval(rule.rule)) || (current_user && current_user.admin?) || (current_user && current_user.moderator))
+      currency_pairs = self.all(options) if ((eval(rule.rule)) || (current_user && current_user.admin?) || (current_user && current_user.moderator))
     end
     return currency_pairs
   end
