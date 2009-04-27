@@ -16,7 +16,7 @@ class CurrencyPairsController < ApplicationController
     if params[:currency_pairs].blank?
       currency_conditions = nil
     else
-      currency_conditions = ["(currency_pairs.name IN (:names))",{:names => params[:currency_pairs]}]
+      currency_conditions = ["(currency_pairs.name IN (:currency_pairs))",{:currency_pairs => params[:currency_pairs]}]
       conditions[0]+=currency_conditions[0]
       conditions[1].merge! currency_conditions[1]
     end
@@ -33,7 +33,7 @@ class CurrencyPairsController < ApplicationController
 
     @currency_pairs = CurrencyPair.all_with_rules_for_user(current_user, :include => [{:currency_datas => :trends}], :conditions => currency_conditions).sort_by {|i| [i.denied_for_sort, i.view_rule_number, i.name]}
     #@currency_datas = CurrencyData.paginate(:page => params[:page], :per_page => 12, :include => [:currency_pair, :trend_data, :trends], :conditions => conditions, :order => "trend_datas.created_at DESC, currency_pairs.name" )
-    @currency_datas = CurrencyData.find(:all, :include => [:currency_pair, :trend_data, :trends], :conditions => conditions )#.sort_by {|a| a.currency_pair=@currency_pairs.find{|i| i.id == a.currency_pair.id}; [-a.trend_data.created_at.to_i, a.currency_pair.denied_for_sort, a.currency_pair.name]}
+    @currency_datas = CurrencyData.find(:all, :include => [:currency_pair, :trend_data, :trends], :conditions => conditions ).sort_by {|a| a.currency_pair=@currency_pairs.find{|i| i.id == a.currency_pair.id}; [-a.trend_data.created_at.to_i, a.currency_pair.denied_for_sort, a.currency_pair.name]}
     @currency_datas = @currency_datas.paginate_result(params[:page] || 1, 12)
   end
 end
