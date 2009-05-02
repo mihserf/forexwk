@@ -1,7 +1,7 @@
 class Notifier < ActionMailer::Base
   def get_admin_email
-    #User.find(:first, :conditions => {:admin => true}).email
-    "admin@forexwk.com"
+    User.find(:first, :conditions => {:admin => true}).email
+    #"admin@forexwk.com"
   end
   def get_moderator_emails
     User.find(:all, :conditions => {:moderator => true}).map{|i| i.email}
