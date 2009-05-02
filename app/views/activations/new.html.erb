@@ -1,0 +1,7 @@
+<h2>Активируйте ваш аккаунт</h2>
+
+<% form_for @user, :url => activate_path(@user.id), :html => { :method => :post } do |form| %>
+  <%= form.error_messages %>
+  <%= render :partial => "form", :locals => { :form => form }%>
+  <%= form.submit "Активировать" %>
+<% end %>

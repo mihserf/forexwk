@@ -1,6 +1,7 @@
 class Notifier < ActionMailer::Base
   def get_admin_email
-    User.find(:first, :conditions => {:admin => true}).email
+    #User.find(:first, :conditions => {:admin => true}).email
+    "Forexwk.com <admin@forexwk.com>"
   end
   def get_moderator_emails
     User.find(:all, :conditions => {:moderator => true}).map{|i| i.email}
@@ -14,6 +15,22 @@ class Notifier < ActionMailer::Base
     recipients    user.email
     sent_on       Time.now
     body          :edit_password_reset_url => edit_password_reset_url(user.perishable_token)
+  end
+
+  def activation_instructions(user)
+    subject       "[Forexwk.com] Инструкции по активации аккаунта"
+    from          get_admin_email
+    recipients    user.email
+    sent_on       Time.now
+    body          :account_activation_url => register_url(user.perishable_token)
+  end
+
+  def activation_confirmation(user)
+    subject       "[Forexwk.com] Аккаунт активирован"
+    from          get_admin_email
+    recipients    user.email
+    sent_on       Time.now
+    body          :root_url => root_url
   end
 
   def message_rating_changed(user, rating_val, reason)

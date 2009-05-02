@@ -29,6 +29,8 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.resources :password_resets
+  map.register '/register/:activation_code', :controller => 'activations', :action => 'new'
+  map.activate '/activate/:id', :controller => 'activations', :action => 'create'
 
   map.resources :catalogues do |catalogue|
     catalogue.resources :articles, :collection => {:per_rating => :get}

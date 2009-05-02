@@ -16,17 +16,33 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
+
     @messaging_rule = MessagingRule.new(params[:messaging_rule])
     @rules = Page.find_by_permalink("rules")
     @user.messaging_rule=@messaging_rule
-    if params[:agreement]=="true" && @user.save
+
+    if params[:agreement]=="true" && @user.signup!(params)
+      @user.deliver_activation_instructions!
       rating_for_choosing_dealing_center(new_user=true)
       add_dealing_center
-      flash[:notice] = "Аккаунт создан!"
-      redirect_back_or_default account_url
+      flash[:notice] = "Ваш аккаунт создан. Пожалуйста, следуйте инструкциям, высланным на Ваш email, для активации аккаунта"
+      redirect_to root_url
     else
       render :action => :new
     end
+
+#    @user = User.new(params[:user])
+#    @messaging_rule = MessagingRule.new(params[:messaging_rule])
+#    @rules = Page.find_by_permalink("rules")
+#    @user.messaging_rule=@messaging_rule
+#    if params[:agreement]=="true" && @user.save
+#      rating_for_choosing_dealing_center(new_user=true)
+#      add_dealing_center
+#      flash[:notice] = "Аккаунт создан!"
+#      redirect_back_or_default account_url
+#    else
+#      render :action => :new
+#    end
   end
 
   def show

@@ -24,11 +24,14 @@ class User < ActiveRecord::Base
   validates_presence_of :password, :message => "Пароль необходим для регистрации", :on => :create
   validates_presence_of :email, :message => "E-mail необходим для регистрации"
 
+  attr_accessible :login, :email, :password, :password_confirmation
 
+  #acts_as_authentic :login_field_validation_options => {:message=>"не верно"}, :password_field_validation_options => {:message=>"не верно"}
 
+  acts_as_authentic :login_field_validation_options => {:message=>"не верно" },
+                   :password_field_validation_options => {:message=>"не верно"},
+                   :password_field_validates_length_of_options => {:message=>"не верно", :on => :update, :if => :has_no_credentials? }
 
-
-  acts_as_authentic :login_field_validation_options => {:message=>"не верно"}, :password_field_validation_options => {:message=>"не верно"}
   acts_as_indexed :fields => [:first_name, :last_name, :login]
   #acts_as_ferret :fields => {:first_name=>{}, :last_name=>{}, :login=>{}},:store_class_name => true
   acts_as_rateable
@@ -44,6 +47,42 @@ class User < ActiveRecord::Base
     {:joins => :user_contests, :conditions =>["user_contests.contest_id=:contest_id",{:contest_id => contest_id}], :order => "user_contests.rating_total DESC" }
   }
 
+  def active?
+    active
+  end
+
+  def activate!
+    self.active = true
+    save
+  end
+
+  def has_no_credentials?
+    self.crypted_password.blank? && self.openid_identifier.blank?
+  end
+
+  def signup!(params)
+    self.login = params[:user][:login]
+    self.email = params[:user][:email]
+    save_without_session_maintenance
+  end
+
+  def activate!(params)
+    self.active = true
+    self.password = params[:user][:password]
+    self.password_confirmation = params[:user][:password_confirmation]
+    #self.openid_identifier = params[:user][:openid_identifier]
+    save
+  end
+
+  def deliver_activation_instructions!
+    reset_perishable_token!
+    Notifier.deliver_activation_instructions(self)
+  end
+
+  def deliver_activation_confirmation!
+    reset_perishable_token!
+    Notifier.deliver_activation_confirmation(self)
+  end
 
   def deliver_password_reset_instructions!
     reset_perishable_token!
@@ -56,6 +95,10 @@ class User < ActiveRecord::Base
 
   def name_or_login
     show_name? ? name : login
+  end
+
+  def has_no_credentials?
+    self.crypted_password.blank? && self.openid_identifier.blank?
   end
 
   # Cheks if user has enaugh own rating to rate objects with such rate value. Anyway user can add rating -1 to 1.  Admin can add any possible rating
