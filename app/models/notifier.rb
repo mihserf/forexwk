@@ -20,7 +20,7 @@ class Notifier < ActionMailer::Base
   def activation_instructions(user)
     subject       "[Forexwk.com] Инструкции по активации аккаунта"
     from          get_admin_email
-    recipients    user.email
+    @recipients =   user.email
     sent_on       Time.now
     body          :account_activation_url => register_url(user.perishable_token)
   end
