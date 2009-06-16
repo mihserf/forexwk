@@ -60,6 +60,17 @@
 		</div>
 		<div id="common_menu">
 			<div id="menu_top">
+                                <script type="text/javascript"><!--
+                                google_ad_client = "pub-3141802244477861";
+                                /* Forexwk - блок ссылок */
+                                google_ad_slot = "2553869387";
+                                google_ad_width = 680;
+                                google_ad_height = 15;
+                                //-->
+                                </script>
+                                <script type="text/javascript"
+                                src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                                </script>
 				<div class="menu_links">
                                   <a href="/about_us" class="first">О проекте</a>
                                   <%= link_to 'Конкурс рейтингов', contest_path((current_contest ? current_contest.id : Contest.find(:first, :order => "date_end DESC").id))%>
@@ -117,6 +128,17 @@
                           <%= catalogue_menu %>
                           <div class="mfooter"></div>
     			</div>
+                          <script type="text/javascript"><!--
+                          google_ad_client = "pub-3141802244477861";
+                          /* Forexwk.com под меню */
+                          google_ad_slot = "9539895106";
+                          google_ad_width = 120;
+                          google_ad_height = 240;
+                          //-->
+                          </script>
+                          <script type="text/javascript"
+                          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                          </script>
                         <div class="news_block">
                                 <div class="title_left"><div style="float:right; padding-right:5px"><a href="/trends_description" title='описание системы вычисления трендов'><image src='/images/help.png'/></a></div><%= link_to 'Текущие тренды', currency_pairs_path %></div>
                                 <div class="analize_left">
@@ -138,7 +160,30 @@
                   <p style="color: red"><%= flash[:error] if flash[:error] %></p>
                   <div class="hr"><hr /></div>
                   <span class="buffer"></span>
+
+                  <script type="text/javascript"><!--
+                  google_ad_client = "pub-3141802244477861";
+                  /* Баннеры на forexwk */
+                  google_ad_slot = "9638227041";
+                  google_ad_width = 680;
+                  google_ad_height = 90;
+                  //-->
+                  </script>
+                  <script type="text/javascript"
+                  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                  </script>
                   <%= yield  %>
+                  <script type="text/javascript"><!--
+                  google_ad_client = "pub-3141802244477861";
+                  /* Баннеры на forexwk */
+                  google_ad_slot = "9638227041";
+                  google_ad_width = 680;
+                  google_ad_height = 90;
+                  //-->
+                  </script>
+                  <script type="text/javascript"
+                  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                  </script>
     		</div>
 	</div>
 	<div class="mfooter"></div>
