@@ -40,3 +40,6 @@
 [submodule "vendor/plugins/sanitize"]
 	path = vendor/plugins/sanitize
 	url = git://github.com/rgrove/sanitize.git
+[submodule "vendor/plugins/sitemap"]
+	path = vendor/plugins/sitemap
+	url = git://github.com/queso/sitemap.git
