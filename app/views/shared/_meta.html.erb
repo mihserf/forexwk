@@ -1,5 +1,5 @@
 <% content_for :meta do %>
-    <% meta = {:description => (obj.metatag_description if obj && !(obj.is_a?(String))) || 'forex', :keywords => (obj.metatag_keywords if obj && !(obj.is_a?(String))) || 'forex'} %>
+    <% meta = {:description => (escape_once(obj.metatag_description) if obj && !(obj.is_a?(String))) || 'forex', :keywords => (escape_once(obj.metatag_keywords) if obj && !(obj.is_a?(String))) || 'forex'} %>
     <%= meta_tags(meta) %>
     <% html_title_str = obj.is_a?(String) ? obj : (obj.metatag_title if obj && obj.metatag_title) %>
     <% title = title.nil? ? "" : title+' | ' %>
